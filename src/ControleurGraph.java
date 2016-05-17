@@ -7,6 +7,7 @@ public class ControleurGraph extends MouseInputAdapter{
 	Trait modele;
 	boolean select1;
 	boolean select2;
+	public static final int TOLER = 4;
 
 	public ControleurGraph(Trait t) {
 		modele = t;
@@ -27,13 +28,14 @@ public class ControleurGraph extends MouseInputAdapter{
 	public void mousePressed(MouseEvent e){
 		
 		Point p = new Point(e.getX(), e.getY());
-		if(selectionP1(p, 5))
+		if(selectionP1(p, TOLER))
 			select1 = true;
-		else select1 = false;
-		
-		if(selectionP2(p, 3))
+		else if(selectionP2(p, TOLER))
 			select2 = true;
-		else select2 = false;
+		else {
+			select1 = false;
+			select2 = false;
+		}
 	}
 	
 	public void mouseReleased(MouseEvent e){

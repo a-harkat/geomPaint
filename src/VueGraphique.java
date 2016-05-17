@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 
 public class VueGraphique extends JPanel implements Observer {
 
-	//public static final int TAILLE = 80;
 	private Trait trait;
 	@Override
 	public void update(Observable arg0, Object arg1) {
