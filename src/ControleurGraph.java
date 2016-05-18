@@ -16,7 +16,7 @@ public class ControleurGraph extends MouseInputAdapter{
 	}
 
 	public void mouseDragged(MouseEvent e){
-		Point p = new Point(e.getX(), e.getY());
+		Point p = e.getPoint();
 		
 		if(select1)
 			modele.setPosition(p, modele.getPoint2());
@@ -27,7 +27,7 @@ public class ControleurGraph extends MouseInputAdapter{
 	
 	public void mousePressed(MouseEvent e){
 		
-		Point p = new Point(e.getX(), e.getY());
+		Point p = e.getPoint();
 		if(selectionP1(p, TOLER))
 			select1 = true;
 		else if(selectionP2(p, TOLER))
@@ -62,12 +62,7 @@ public class ControleurGraph extends MouseInputAdapter{
 	}
 	
 	public int distance(Point p1, Point p2){
-		int p1X = (int)(p1.getX());
-		int p1Y = (int)(p1.getY());
-		int p2X = (int)(p2.getX());
-		int p2Y = (int)(p2.getY());
-		int dist = (int)(Math.sqrt(((p1X - p2X)*(p1X - p2X)) + ((p1Y - p2Y)*(p1Y - p2Y))));
-		
-		return dist; 
+		return (int)(Math.sqrt(((p1.x - p2.x)*(p1.x - p2.x)) + 
+								((p1.y - p2.y)*(p1.y - p2.y)))); 
 	}
 }

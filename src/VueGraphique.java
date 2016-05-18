@@ -22,8 +22,8 @@ public class VueGraphique extends JPanel implements Observer {
 		g.setColor(Color.black);
 
 		if (trait != null) {
-			g.drawLine((int)trait.getPoint1().getX(), (int)trait.getPoint1().getY(),
-					   (int)trait.getPoint2().getX(), (int)trait.getPoint2().getY()); 
+			g.drawLine(trait.getPoint1().x, trait.getPoint1().y,
+					   trait.getPoint2().x, trait.getPoint2().y); 
 		}
 	}
 
