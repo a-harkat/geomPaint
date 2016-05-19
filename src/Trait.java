@@ -1,29 +1,33 @@
 import java.awt.Point;
-import java.util.Observable;
+import java.awt.geom.Line2D;
 
-public class Trait extends Observable{
+public class Trait extends Line2D.Double{
 	
-	private Point point1;
-	private Point point2;
-	
-	public Trait() {
-		point1 = new Point(100, 100);
-		point2 = new Point(400, 400);
+	public Trait(Point p1, Point p2) {
+		super(p1, p2);
 	}
 	
-	public Point getPoint1() {
-		return point1;
+	public Point getP1() {
+		return new Point((int)getX1(), (int)getY1());
+	}
+	public Point getP2() {
+		return new Point((int)getX2(), (int)getY2());
 	}
 	
-	public Point getPoint2() {
-		return point2;
+	public boolean selectionP1(Point p, int tolerance) {
+		int distance = distance(getP1(), p);
+		if (distance < tolerance) return true;
+		else return false;
 	}
 	
-	public void setPosition(Point p1, Point p2) {
-		this.point1 = p1;
-		this.point2 = p2;
-		
-	    setChanged();
-	    notifyObservers();
+	public boolean selectionP2(Point p, int tolerance) {
+		int distance = distance(getP2(), p);
+		if (distance < tolerance) return true;
+		else return false;
+	}
+	
+	public int distance(Point p1, Point p2){
+		return (int)(Math.sqrt(((p1.x - p2.x)*(p1.x - p2.x)) + 
+								((p1.y - p2.y)*(p1.y - p2.y)))); 
 	}
 }
