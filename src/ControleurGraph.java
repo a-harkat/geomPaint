@@ -54,7 +54,7 @@ public class ControleurGraph extends MouseInputAdapter{
 				newAdded = true;
 			}
 			else {
-				lsFigures.setFigure(lsFigures.traits.size()-1, traitTmp);
+				lsFigures.setFigure(lsFigures.figures.size()-1, traitTmp);
 			}
 		}
 	}
@@ -65,8 +65,8 @@ public class ControleurGraph extends MouseInputAdapter{
 
 		if(selectionner) {
 			int i;
-			for (i = 0; i < lsFigures.traits.size(); i++) {
-				selecTmp = lsFigures.traits.get(i);
+			for (i = 0; i < lsFigures.figures.size(); i++) {
+				selecTmp = lsFigures.figures.get(i);
 				if(traitSelect(selecTmp, e)) {
 					System.out.println("i am selected");
 					break;
@@ -84,7 +84,7 @@ public class ControleurGraph extends MouseInputAdapter{
 				select1 = false;
 				select2 = false;
 			}
-		}	
+		}
 	}
 
 	public void mouseReleased(MouseEvent e){

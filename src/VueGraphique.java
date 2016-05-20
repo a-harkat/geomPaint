@@ -46,8 +46,8 @@ public class VueGraphique extends JPanel implements Observer {
 		g.setColor(Color.black);
 
 		if(this.listeFigures != null)
-			for (int i = 0; i < this.listeFigures.traits.size(); i++) {
-				FigureGeom tr = this.listeFigures.traits.get(i);
+			for (int i = 0; i < this.listeFigures.figures.size(); i++) {
+				FigureGeom tr = this.listeFigures.figures.get(i);
 
 				if (tr != null) {
 					g.drawLine((int)tr.getP1().getX(), (int)tr.getP1().getY(),

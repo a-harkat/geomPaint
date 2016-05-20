@@ -11,13 +11,13 @@ public class ListFigures extends Observable{
 	/**
 	 * nom bizarre
 	 */
-	ArrayList<FigureGeom> traits;
+	ArrayList<FigureGeom> figures;
 	
 	/**
 	 * Constructeur de Liste Figures
 	 */
 	public ListFigures() {
-		traits = new ArrayList<>();
+		figures = new ArrayList<>();
 	}
 	
 	/**
@@ -25,7 +25,7 @@ public class ListFigures extends Observable{
 	 * @param figure a ajouter
 	 */
 	public void addFigure(FigureGeom figure) {
-		traits.add(figure);
+		figures.add(figure);
 		setChanged();
 		notifyObservers();
 	}
@@ -35,7 +35,7 @@ public class ListFigures extends Observable{
 	 * @param numfigure , numero de la figure a supprimer
 	 */
 	public void removeFigure(int numfigure) {
-		traits.remove(numfigure);
+		figures.remove(numfigure);
 		setChanged();
 		notifyObservers();
 	}
@@ -46,7 +46,7 @@ public class ListFigures extends Observable{
 	 * @param figure qui va remplacer l'ancienne
 	 */
 	public void setFigure(int numfigure, FigureGeom figure) {
-		traits.set(numfigure, figure);
+		figures.set(numfigure, figure);
 		setChanged();
 		notifyObservers();
 	}
