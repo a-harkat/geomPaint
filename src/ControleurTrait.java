@@ -47,16 +47,19 @@ public class ControleurTrait extends MouseInputAdapter implements ControleurFigu
 		Point p = new Point(e.getX(), e.getY());
 
 		if(select1) {
+			selecTmp.selectOn = true;
 			selecTmp.setLine(p, selecTmp.getP2());
 			lsFigures.setFigure(currIndex, selecTmp);
 		}
 
 		if(select2) {
+			selecTmp.selectOn = true;
 			selecTmp.setLine(selecTmp.getP1(), p);
 			lsFigures.setFigure(currIndex, selecTmp);
 		}
 		
 		if(selectionner && !select1 && !select2 && selectAll) {
+			selecTmp.selectOn = true;
 			if(departDeplt == null)
 				departDeplt = e.getPoint();
 			
