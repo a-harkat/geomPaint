@@ -89,7 +89,7 @@ public class ControleurTrait extends MouseInputAdapter implements ControleurFigu
 				newAdded = true;
 			}
 			else {
-				lsFigures.setFigure(lsFigures.figures.size()-1, traitTmp);
+				lsFigures.setFigure(lsFigures.getFigures().size()-1, traitTmp);
 			}
 		}
 	}
@@ -100,8 +100,8 @@ public class ControleurTrait extends MouseInputAdapter implements ControleurFigu
 
 		if(selectionner) {
 			int i;
-			for (i = 0; i < lsFigures.figures.size(); i++) {
-				selecTmp = lsFigures.figures.get(i);
+			for (i = 0; i < lsFigures.getFigures().size(); i++) {
+				selecTmp = lsFigures.getFigures().get(i);
 				if(traitSelect(selecTmp, e)) {
 					if(!selecTmp.selectOn)
 						selecTmp.selectOn = true;
@@ -112,23 +112,24 @@ public class ControleurTrait extends MouseInputAdapter implements ControleurFigu
 					break;
 				}
 			}
-			if(i < lsFigures.figures.size())
+			if(i < lsFigures.getFigures().size())
 				currIndex = i;
 			
-			if(lsFigures.figures.size() != 0) {
-
-				if(((UnTrait) selecTmp).selectionP1(ptEvt, TOLER)) {
-					select1 = true;
-				}
-				else if(((UnTrait) selecTmp).selectionP2(ptEvt, TOLER)) {
-					select2 = true;
-				}
-				else if(traitSelect(selecTmp, e))
-					selectAll = true;
-				else {
-					select1 = false;
-					select2 = false;
-					selectAll = false;
+			if(lsFigures.getFigures().size() != 0) {
+				if (selecTmp instanceof UnTrait) {
+					if(((UnTrait) selecTmp).selectionP1(ptEvt, TOLER)) {
+						select1 = true;
+					}
+					else if(((UnTrait) selecTmp).selectionP2(ptEvt, TOLER)) {
+						select2 = true;
+					}
+					else if(traitSelect(selecTmp, e))
+						selectAll = true;
+					else {
+						select1 = false;
+						select2 = false;
+						selectAll = false;
+					}
 				}
 			}
 		}

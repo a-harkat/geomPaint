@@ -11,7 +11,7 @@ public class ListFigures extends Observable{
 	/**
 	 * nom bizarre
 	 */
-	ArrayList<FigureGeom> figures;
+	private ArrayList<FigureGeom> figures;
 	
 	/**
 	 * Constructeur de ListeFigures
@@ -49,5 +49,13 @@ public class ListFigures extends Observable{
 		figures.set(numfigure, figure);
 		setChanged();
 		notifyObservers();
+	}
+
+	public ArrayList<FigureGeom> getFigures() {
+		return figures;
+	}
+
+	public void setFigures(ArrayList<FigureGeom> figures) {
+		this.figures = figures;
 	}
 }

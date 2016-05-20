@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
@@ -27,6 +26,7 @@ public class VueGraphique extends JPanel implements Observer {
 	 *Constructeur vide pour l'instant, sert a l'instanciation
 	 */
 	public VueGraphique() {
+		setBackground(Color.white);
 	}
 
 	/* (non-Javadoc)
@@ -48,14 +48,19 @@ public class VueGraphique extends JPanel implements Observer {
 		g.setColor(Color.black);
 
 		if(this.listeFigures != null)
-			for (int i = 0; i < this.listeFigures.figures.size(); i++) {
-				FigureGeom tr = this.listeFigures.figures.get(i);
-
-				if (tr != null) {
+			for (int i = 0; i < this.listeFigures.getFigures().size(); i++) {
+				FigureGeom tr = this.listeFigures.getFigures().get(i);
+				if (tr instanceof UnTrait){
 					g.drawLine((int)tr.getP1().getX(), (int)tr.getP1().getY(),
 							(int)tr.getP2().getX(), (int)tr.getP2().getY()); 
 					if(tr.selectOn)
 						drawVertex(g, tr);
+				}
+				if (tr instanceof UnTriangle ){
+					UnTriangle trait = (UnTriangle) tr ;					
+					int [] X = {(int)trait.getP1().getX(), (int)trait.getP2().getX(), (int)trait.getP3().getX()};
+					int [] Y = {(int)trait.getP1().getY(), (int)trait.getP2().getY(), (int)trait.getP3().getY()};
+					g.drawPolygon(X, Y, 3);	
 				}
 			}
 	}
