@@ -3,6 +3,10 @@ import java.util.ArrayList;
 
 
 public class UnQuelconque extends UnPolygone{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ArrayList<Point> listPoints;
 	int nbPoint ;
 		

@@ -3,6 +3,10 @@ import java.awt.Point;
 
 public class UnTriangle extends UnPolygone{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Point p3 ;
 	
 	public UnTriangle(Point p1, Point p2, Point p3) {

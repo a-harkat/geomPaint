@@ -7,6 +7,10 @@ import javax.swing.JPanel;
 
 public class VueGraphique extends JPanel implements Observer {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ListFigures lsTraits;
 	
 	public VueGraphique() {
