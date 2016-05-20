@@ -1,5 +1,7 @@
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
+
 import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputAdapter;
 
@@ -12,9 +14,11 @@ public class ControleurTrait extends MouseInputAdapter implements ControleurFigu
 
 	boolean select1;
 	boolean select2;
+	boolean selectAll;
 	boolean dessiner;
 	boolean selectionner;
 	boolean newAdded;
+	Point departDeplt;
 	/**
 	 * 
 	 */
@@ -22,7 +26,7 @@ public class ControleurTrait extends MouseInputAdapter implements ControleurFigu
 	ListFigures lsFigures;
 
 	Point firstPt = null;
-	FigureGeom traitTmp;
+	UnTrait traitTmp;
 	FigureGeom selecTmp;
 	int currIndex;
 	
@@ -51,6 +55,27 @@ public class ControleurTrait extends MouseInputAdapter implements ControleurFigu
 			selecTmp.setLine(selecTmp.getP1(), p);
 			lsFigures.setFigure(currIndex, selecTmp);
 		}
+		
+		if(selectionner && !select1 && !select2 && selectAll) {
+			if(departDeplt == null)
+				departDeplt = e.getPoint();
+			
+			if(selecTmp != null) {
+			
+				int diffP1X = (int)(e.getX() - departDeplt.getX()) + (int)selecTmp.getX1();
+				int diffP1Y = (int)(e.getY() - departDeplt.getY()) + (int)selecTmp.getY1();
+				Point2D p1 = new Point(diffP1X, diffP1Y);
+				
+				int diffP2X = (int)(e.getX() - departDeplt.getX()) + (int)selecTmp.getX2();
+				int diffP2Y = (int)(e.getY() - departDeplt.getY()) + (int)selecTmp.getY2();
+				Point2D p2 = new Point(diffP2X, diffP2Y);
+	
+				selecTmp.setLine(p1, p2);
+				selecTmp.selectOn = true;
+				lsFigures.setFigure(currIndex, selecTmp);
+				departDeplt = e.getPoint();
+			}
+		}
 	}
 
 	public void mouseMoved(MouseEvent e){
@@ -75,21 +100,33 @@ public class ControleurTrait extends MouseInputAdapter implements ControleurFigu
 			for (i = 0; i < lsFigures.figures.size(); i++) {
 				selecTmp = lsFigures.figures.get(i);
 				if(traitSelect(selecTmp, e)) {
-					System.out.println("i am selected");
+					if(!selecTmp.selectOn)
+						selecTmp.selectOn = true;
+					else
+						selecTmp.selectOn = false;
+					
+					lsFigures.setFigure(i, selecTmp);
 					break;
 				}
 			}
-			currIndex = i;
+			if(i < lsFigures.figures.size())
+				currIndex = i;
+			
+			if(lsFigures.figures.size() != 0) {
 
-			if(((UnTrait) selecTmp).selectionP1(ptEvt, TOLER)) {
-				select1 = true;
-			}
-			else if(((UnTrait) selecTmp).selectionP2(ptEvt, TOLER)) {
-				select2 = true;
-			}
-			else {
-				select1 = false;
-				select2 = false;
+				if(((UnTrait) selecTmp).selectionP1(ptEvt, TOLER)) {
+					select1 = true;
+				}
+				else if(((UnTrait) selecTmp).selectionP2(ptEvt, TOLER)) {
+					select2 = true;
+				}
+				else if(traitSelect(selecTmp, e))
+					selectAll = true;
+				else {
+					select1 = false;
+					select2 = false;
+					selectAll = false;
+				}
 			}
 		}
 	}
@@ -97,6 +134,8 @@ public class ControleurTrait extends MouseInputAdapter implements ControleurFigu
 	public void mouseReleased(MouseEvent e){
 		select1 = false;
 		select2 = false;
+		selectAll = false;
+		departDeplt = null;
 
 		if(dessiner) {
 			traitTmp = null;

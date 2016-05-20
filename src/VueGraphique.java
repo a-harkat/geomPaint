@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
@@ -20,6 +21,7 @@ public class VueGraphique extends JPanel implements Observer {
 	 *Liste des figures
 	 */
 	private ListFigures listeFigures;
+	public static final int VERTEX_SIZE = 6;
 
 	/**
 	 *Constructeur vide pour l'instant, sert a l'instanciation
@@ -52,7 +54,17 @@ public class VueGraphique extends JPanel implements Observer {
 				if (tr != null) {
 					g.drawLine((int)tr.getP1().getX(), (int)tr.getP1().getY(),
 							(int)tr.getP2().getX(), (int)tr.getP2().getY()); 
+					if(tr.selectOn)
+						drawVertex(g, tr);
 				}
 			}
+	}
+	
+	public void drawVertex(Graphics g, FigureGeom fg) {
+		
+		int vrtx = VERTEX_SIZE;
+		
+		g.drawRect((int)fg.getX1()-vrtx/2, (int)fg.getY1()-vrtx/2, vrtx, vrtx);
+		g.drawRect((int)fg.getX2()-vrtx/2, (int)fg.getY2()-vrtx/2, vrtx, vrtx);
 	}
 }
