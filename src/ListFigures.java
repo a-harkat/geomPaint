@@ -7,26 +7,46 @@ import java.util.Observable;
  * @version 1
  */
 public class ListFigures extends Observable{
+	
+	/**
+	 * nom bizarre
+	 */
 	ArrayList<FigureGeom> traits;
-
+	
+	/**
+	 * Constructeur de Liste Figures
+	 */
 	public ListFigures() {
 		traits = new ArrayList<>();
 	}
-
-	public void addFigure(FigureGeom t) {
-		traits.add(t);
+	
+	/**
+	 * Methode pour ajouter une figure a la liste
+	 * @param figure a ajouter
+	 */
+	public void addFigure(FigureGeom figure) {
+		traits.add(figure);
 		setChanged();
 		notifyObservers();
 	}
-
-	public void removeFigure(int i) {
-		traits.remove(i);
+	
+	/**
+	 * Methode pour supprimer une figure de la liste 
+	 * @param numfigure , numero de la figure a supprimer
+	 */
+	public void removeFigure(int numfigure) {
+		traits.remove(numfigure);
 		setChanged();
 		notifyObservers();
 	}
-
-	public void setFigure(int i, FigureGeom t) {
-		traits.set(i, t);
+	
+	/**
+	 * Setter de figure, remplace une figure dans la liste
+	 * @param numfigure, numero de la figure a remplacer
+	 * @param figure qui va remplacer l'ancienne
+	 */
+	public void setFigure(int numfigure, FigureGeom figure) {
+		traits.set(numfigure, figure);
 		setChanged();
 		notifyObservers();
 	}

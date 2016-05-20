@@ -7,7 +7,11 @@ import javax.swing.JFrame;
  * @version 1
  */
 public class Principale {
-
+	
+	/**
+	 * Main du programme
+	 * @param args les arguments pouvant etre recuperer 
+	 */
 	public static void main(String[] args) {
 
 		ListFigures trs = new ListFigures();

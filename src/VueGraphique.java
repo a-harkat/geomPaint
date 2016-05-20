@@ -12,28 +12,42 @@ import javax.swing.JPanel;
 public class VueGraphique extends JPanel implements Observer {
 
 	/**
-	 * 
+	 *Sert a la serialisation
 	 */
 	private static final long serialVersionUID = 1L;
-	ListFigures lsTraits;
 
+	/**
+	 *Liste des figures
+	 */
+	private ListFigures listeFigures;
+
+	/**
+	 *Constructeur vide pour l'instant, sert a l'instanciation
+	 */
 	public VueGraphique() {
 	}
 
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
 
-		lsTraits = (ListFigures)arg0;
+		this.listeFigures = (ListFigures)arg0;
 		repaint();
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(Color.black);
 
-		if(lsTraits != null)
-			for (int i = 0; i < lsTraits.traits.size(); i++) {
-				FigureGeom tr = lsTraits.traits.get(i);
+		if(this.listeFigures != null)
+			for (int i = 0; i < this.listeFigures.traits.size(); i++) {
+				FigureGeom tr = this.listeFigures.traits.get(i);
 
 				if (tr != null) {
 					g.drawLine((int)tr.getP1().getX(), (int)tr.getP1().getY(),
