@@ -16,7 +16,7 @@ public class Principale {
 
 		ListFigures trs = new ListFigures();
 		VueGraphique vg = new VueGraphique();
-		ControleurGraph cg = new ControleurGraph(trs);
+		ControleurTrait cg = new ControleurTrait(trs);
 
 		trs.addObserver(vg);
 		vg.addMouseMotionListener(cg);

@@ -8,13 +8,16 @@ import javax.swing.event.MouseInputAdapter;
  * @author Groupe 2
  * @version 1
  */
-public class ControleurGraph extends MouseInputAdapter{
+public class ControleurTrait extends MouseInputAdapter implements ControleurFigure{
 
 	boolean select1;
 	boolean select2;
 	boolean dessiner;
 	boolean selectionner;
 	boolean newAdded;
+	/**
+	 * 
+	 */
 	public static final int TOLER = 5;
 	ListFigures lsFigures;
 
@@ -23,7 +26,11 @@ public class ControleurGraph extends MouseInputAdapter{
 	FigureGeom selecTmp;
 	int currIndex;
 	
-	public ControleurGraph(ListFigures trs) {
+	/**
+	 * Constructeur de ControleurTrait
+	 * @param trs
+	 */
+	public ControleurTrait(ListFigures trs) {
 		lsFigures = trs;
 		select1 = false;
 		select2 = false;
@@ -113,6 +120,10 @@ public class ControleurGraph extends MouseInputAdapter{
 
 	}
 
+	/**
+	 * methode bascule entre
+	 * modes dessiner et selectionner
+	 */
 	public void basculerFonct() {
 		if (selectionner) {
 			dessiner = true;
@@ -126,6 +137,11 @@ public class ControleurGraph extends MouseInputAdapter{
 		}
 	}
 
+	/**
+	 * @param t
+	 * @param e
+	 * @return true sinon false
+	 */
 	public boolean traitSelect(FigureGeom t, MouseEvent e) {		
 		if(t.ptSegDist(e.getX(), e.getY()) <= TOLER)
 			return true;

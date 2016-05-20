@@ -14,7 +14,7 @@ public class ListFigures extends Observable{
 	ArrayList<FigureGeom> figures;
 	
 	/**
-	 * Constructeur de Liste Figures
+	 * Constructeur de ListeFigures
 	 */
 	public ListFigures() {
 		figures = new ArrayList<>();
@@ -42,7 +42,7 @@ public class ListFigures extends Observable{
 	
 	/**
 	 * Setter de figure, remplace une figure dans la liste
-	 * @param numfigure, numero de la figure a remplacer
+	 * @param numfigure numero de la figure a remplacer
 	 * @param figure qui va remplacer l'ancienne
 	 */
 	public void setFigure(int numfigure, FigureGeom figure) {
