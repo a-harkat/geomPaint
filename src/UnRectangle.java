@@ -1,6 +1,10 @@
 import java.awt.Point;
 
-
+/**
+ * Classe qui represente un Rectangle
+ * @author Groupe 2
+ * @version 1
+ */
 public class UnRectangle extends FigureGeom {
 
 	/**

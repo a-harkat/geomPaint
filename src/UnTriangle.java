@@ -1,6 +1,10 @@
 import java.awt.Point;
 
-
+/**
+ * Classe qui represente un Triangle
+ * @author Groupe 2
+ * @version 1
+ */
 public class UnTriangle extends UnPolygone{
 
 	/**
@@ -8,7 +12,7 @@ public class UnTriangle extends UnPolygone{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Point p3 ;
-	
+
 	public UnTriangle(Point p1, Point p2, Point p3) {
 		super(p1, p2);
 		this.setP3(p3) ;

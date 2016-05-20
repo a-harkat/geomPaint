@@ -1,6 +1,10 @@
 import java.awt.Point;
 
-
+/**
+ * Classe qui represente un Polygone
+ * @author Groupe 2
+ * @version 1
+ */
 public abstract class UnPolygone extends FigureGeom {
 
 	/**
