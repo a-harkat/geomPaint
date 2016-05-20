@@ -1,9 +1,9 @@
 import java.awt.Point;
 import java.awt.geom.Line2D;
 
-public class Trait extends Line2D.Double{
+public class UnTrait extends FigureGeom{
 	
-	public Trait(Point p1, Point p2) {
+	public UnTrait(Point p1, Point p2) {
 		super(p1, p2);
 	}
 	

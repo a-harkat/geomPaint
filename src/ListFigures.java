@@ -1,26 +1,26 @@
 import java.util.ArrayList;
 import java.util.Observable;
 
-public class ListTrait extends Observable{
-	ArrayList<Trait> traits;
+public class ListFigures extends Observable{
+	ArrayList<FigureGeom> traits;
 	
-	public ListTrait() {
+	public ListFigures() {
 		traits = new ArrayList<>();
 	}
 	
-	public void addTrait(Trait t) {
+	public void addFigure(FigureGeom t) {
 		traits.add(t);
 	    setChanged();
 	    notifyObservers();
 	}
 	
-	public void removeTrait(int i) {
+	public void removeFigure(int i) {
 		traits.remove(i);
 	    setChanged();
 	    notifyObservers();
 	}
 	
-	public void setTrait(int i, Trait t) {
+	public void setFigure(int i, FigureGeom t) {
 		traits.set(i, t);
 	    setChanged();
 	    notifyObservers();

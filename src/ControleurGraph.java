@@ -11,15 +11,15 @@ public class ControleurGraph extends MouseInputAdapter{
 	boolean selectionner;
 	boolean newAdded;
 	public static final int TOLER = 5;
-	ListTrait lsTraits;
+	ListFigures lsFigures;
 	
 	Point firstPt = null;
-	Trait traitTmp;
-	Trait selecTmp;
+	FigureGeom traitTmp;
+	FigureGeom selecTmp;
 	int currIndex;
 
-	public ControleurGraph(ListTrait trs) {
-		lsTraits = trs;
+	public ControleurGraph(ListFigures trs) {
+		lsFigures = trs;
 		select1 = false;
 		select2 = false;
 		dessiner = true;
@@ -32,22 +32,22 @@ public class ControleurGraph extends MouseInputAdapter{
 		
 		if(select1) {
 			selecTmp.setLine(p, selecTmp.getP2());
-			lsTraits.setTrait(currIndex, selecTmp);
+			lsFigures.setFigure(currIndex, selecTmp);
 		}
 		
 		if(select2) {
 			selecTmp.setLine(selecTmp.getP1(), p);
-			lsTraits.setTrait(currIndex, selecTmp);
+			lsFigures.setFigure(currIndex, selecTmp);
 		}
 
 		if(dessiner) {
-			traitTmp = new Trait(firstPt, e.getPoint());
+			traitTmp = new UnTrait(firstPt, e.getPoint());
 			if(!newAdded) {
-				lsTraits.addTrait(traitTmp);
+				lsFigures.addFigure(traitTmp);
 				newAdded = true;
 			}
 			else {
-				lsTraits.setTrait(lsTraits.traits.size()-1, traitTmp);
+				lsFigures.setFigure(lsFigures.traits.size()-1, traitTmp);
 			}
 		}
 	}
@@ -58,8 +58,8 @@ public class ControleurGraph extends MouseInputAdapter{
 		
 		if(selectionner) {
 			int i;
-			for (i = 0; i < lsTraits.traits.size(); i++) {
-			selecTmp = lsTraits.traits.get(i);
+			for (i = 0; i < lsFigures.traits.size(); i++) {
+			selecTmp = lsFigures.traits.get(i);
 				if(traitSelect(selecTmp, e)) {
 					System.out.println("i am selected");
 					break;
@@ -67,10 +67,10 @@ public class ControleurGraph extends MouseInputAdapter{
 			}
 			currIndex = i;
 			
-			if(selecTmp.selectionP1(ptEvt, TOLER)) {
+			if(((UnTrait) selecTmp).selectionP1(ptEvt, TOLER)) {
 				select1 = true;
 			}
-			else if(selecTmp.selectionP2(ptEvt, TOLER)) {
+			else if(((UnTrait) selecTmp).selectionP2(ptEvt, TOLER)) {
 				select2 = true;
 			}
 			else {
@@ -116,7 +116,7 @@ public class ControleurGraph extends MouseInputAdapter{
 		}
 	}
 	
-	public boolean traitSelect(Trait t, MouseEvent e) {		
+	public boolean traitSelect(FigureGeom t, MouseEvent e) {		
 		if(t.ptSegDist(e.getX(), e.getY()) <= TOLER)
 			return true;
 		else return false;

@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 public class VueGraphique extends JPanel implements Observer {
 	
-	ListTrait lsTraits;
+	ListFigures lsTraits;
 	
 	public VueGraphique() {
 	}
@@ -15,7 +15,7 @@ public class VueGraphique extends JPanel implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 
-		lsTraits = (ListTrait)arg0;
+		lsTraits = (ListFigures)arg0;
 		repaint();
 	}
 	
@@ -25,7 +25,7 @@ public class VueGraphique extends JPanel implements Observer {
 		
 		if(lsTraits != null)
 		for (int i = 0; i < lsTraits.traits.size(); i++) {
-			Trait tr = lsTraits.traits.get(i);
+			FigureGeom tr = lsTraits.traits.get(i);
 			
 			if (tr != null) {
 				g.drawLine((int)tr.getP1().getX(), (int)tr.getP1().getY(),

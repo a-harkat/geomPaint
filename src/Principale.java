@@ -5,7 +5,7 @@ public class Principale {
 	
 	public static void main(String[] args) {
 		
-		ListTrait trs = new ListTrait();
+		ListFigures trs = new ListFigures();
 		VueGraphique vg = new VueGraphique();
 		ControleurGraph cg = new ControleurGraph(trs);
 		
