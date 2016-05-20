@@ -39,8 +39,10 @@ public class ControleurGraph extends MouseInputAdapter{
 			selecTmp.setLine(selecTmp.getP1(), p);
 			lsFigures.setFigure(currIndex, selecTmp);
 		}
-
-		if(dessiner) {
+	}
+	
+	public void mouseMoved(MouseEvent e){
+		if(dessiner && firstPt != null) {
 			traitTmp = new UnTrait(firstPt, e.getPoint());
 			if(!newAdded) {
 				lsFigures.addFigure(traitTmp);
@@ -77,19 +79,12 @@ public class ControleurGraph extends MouseInputAdapter{
 				select1 = false;
 				select2 = false;
 			}
-		}
-		
-		if (dessiner) {	
-			if(firstPt == null)
-				firstPt = new Point(e.getPoint());
-		}
-		
+		}	
 	}
 	
 	public void mouseReleased(MouseEvent e){
 		select1 = false;
 		select2 = false;
-		firstPt = null;
 		
 		if(dessiner) {
 			traitTmp = null;
@@ -101,6 +96,16 @@ public class ControleurGraph extends MouseInputAdapter{
 		if (SwingUtilities.isRightMouseButton(e)) {
 			basculerFonct();
 		}
+		
+		if (SwingUtilities.isLeftMouseButton(e)) {
+			if (dessiner) {	
+				if(firstPt == null)
+					firstPt = new Point(e.getPoint());
+				else
+					firstPt = null;
+			}
+		}
+
 	}
 	
 	public void basculerFonct() {
