@@ -18,14 +18,30 @@ public class Conteneur extends JPanel{
 	 *Sert a la serialisation
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	/**
+	 * Constructeur du Conteneur, il se deroule ainsi
+	 * On definit le layout du conteneur
+	 * On creer les differents Menus 
+	 * On creer les Vues et les modeles
+	 * On ajoute les Vues et Menu
+	 * On lie les Modeles et les Vues (observers)
+	 * On ajoute les listeneurs aux boutons
+	 */
 	public Conteneur() {
-		MenuGauche mg = new MenuGauche(Color.blue);
+		this.setLayout(new BorderLayout());
+		
+		MenuGauche mg = new MenuGauche(Color.black);
+		MenuBas mb = new MenuBas(Color.black);
+		MenuDroit md = new MenuDroit(Color.black);
 		ListFigures trs = new ListFigures();	
 		VueGraphique vg = new VueGraphique();
-		this.setLayout(new BorderLayout());		 
+		
 		this.add(mg,BorderLayout.WEST);
+		this.add(mb,BorderLayout.SOUTH);
+		this.add(md,BorderLayout.EAST);
 		this.add(vg,BorderLayout.CENTER);
+		
 		trs.addObserver(vg);
 	
 		

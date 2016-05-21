@@ -4,6 +4,12 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
+/**
+ * Classe qui represente le menu Gauche et qui contient
+ * les boutons c'est un JPanel
+ * @author Groupe 2
+ * @version 1
+ */
 public class MenuGauche extends Menu {
 
 	/**
