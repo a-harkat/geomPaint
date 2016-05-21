@@ -3,18 +3,18 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 /**
- * Classe contenant le JPanel du menu de l'interface
+ * Classe abstraite Menu qui sert de base a la creation
+ * des differents menu du Jpanel
  * @author Groupe 2
  * @version 1
  */
 
 public abstract class Menu extends JPanel{
-
+	
 	/**
-	 *Sert a la serialisation  
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 	/**
 	 *Contient la liste des boutons du menu
 	 */
