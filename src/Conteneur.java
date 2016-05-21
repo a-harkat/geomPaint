@@ -34,12 +34,14 @@ public class Conteneur extends JPanel{
 		MenuGauche mg = new MenuGauche(Color.black);
 		MenuBas mb = new MenuBas(Color.black);
 		MenuDroit md = new MenuDroit(Color.black);
+		MenuHaut mh = new MenuHaut(Color.black);
 		ListFigures trs = new ListFigures();	
 		VueGraphique vg = new VueGraphique();
 		
 		this.add(mg,BorderLayout.WEST);
 		this.add(mb,BorderLayout.SOUTH);
 		this.add(md,BorderLayout.EAST);
+		this.add(mh,BorderLayout.NORTH);
 		this.add(vg,BorderLayout.CENTER);
 		
 		trs.addObserver(vg);
