@@ -13,7 +13,7 @@ public abstract class FigureGeom extends Line2D.Double {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private boolean selectOn = false;
+	boolean selectOn = false;
 	
 	/**
 	 * Constructeur de Figure geometrique
