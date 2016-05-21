@@ -1,0 +1,101 @@
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+/**
+ * Classe contenant le JPanel du menu de l'interface
+ * @author Groupe 2
+ * @version 1
+ */
+
+public abstract class Menu extends JPanel{
+
+	/**
+	 *Sert a la serialisation  
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 *Contient la liste des boutons du menu
+	 */
+	private ArrayList<JComponent> liste_b;	
+	
+	/**
+	 *Constructeur du JPanel menu
+	 *@param fond couleur du background
+	 */
+	public Menu(Color fond) {
+		this.liste_b = new ArrayList<JComponent>();
+		this.setBackground(fond);
+	}
+	
+	/**
+	 * Getteur de la liste des boutons du menu
+	 * @return liste_b
+	 */
+	public ArrayList<JComponent> getListe_b() {
+		return liste_b;
+	}
+	
+	/**
+	 * Setteur de la liste des boutons du menu
+	 * @param new_liste_b la nouvelle liste
+	 */
+	public void setListe_bd(ArrayList<JComponent> new_liste_b) {
+		this.liste_b = new_liste_b;
+	}
+	
+	/**
+	 * Getteur d'un boutton du menu
+	 * @param numero Integer, numero du bouton voulu
+	 * @return le boutton voulu
+	 */
+	public JComponent getBouttonM(int numero) {
+		return this.liste_b.get(numero);
+	}
+	
+	/**
+	 * Setteur d'un boutton du menu
+	 * @param numero le numero du boutton a remplacer
+	 * @param new_boutton le boutton a ajouter
+	 */
+	public void setBouttonM(int numero, JComponent new_boutton) {
+		this.liste_b.set(numero, new_boutton);
+	}
+	
+	/**
+	 * Methode qui permet de changer la couleur de fond du menu
+	 * @param new_col la nouvelle couleur 
+	 */
+	public void setColFondM(Color new_col) {
+		this.setBackground(new_col);
+	}
+	
+	/**
+	 * Methode qui permet d'ajouter un boutton au menu
+	 * @param new_boutton le boutton a ajouter
+	 */
+	public void ajouterBouttonM(JComponent new_boutton) {
+		this.liste_b.add(new_boutton);
+		this.add(new_boutton);
+	}
+	
+	/**
+	 * Methode qui permet de supprimer un boutton au menu
+	 * @param num_boutton le numero du boutton a supprimer
+	 */
+	public void supprimerBouttonM(int num_boutton) {
+		this.remove(this.liste_b.get(num_boutton));
+		this.liste_b.remove(num_boutton);
+	}
+	
+	/**
+	 * Methode qui permet d'ajouter au JPanel 
+	 * la liste des boutons
+	 */
+	public void ajouterBouttonPanelM() {
+		for (JComponent bout : this.liste_b) {
+			this.add(bout);
+		}
+	}
+}
