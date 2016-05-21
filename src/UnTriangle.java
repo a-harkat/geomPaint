@@ -1,4 +1,5 @@
 import java.awt.Point;
+import java.awt.geom.Point2D;
 
 /**
  * Classe qui represente un Triangle
@@ -11,7 +12,7 @@ public class UnTriangle extends UnPolygone{
 	 *Sert a la serialisation
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	private final static int tolerance = 5;
 	/**
 	 *Represente le troisieme point
 	 */
@@ -26,6 +27,40 @@ public class UnTriangle extends UnPolygone{
 	public UnTriangle(Point p1, Point p2, Point p3) {
 		super(p1, p2);
 		this.setP3(p3) ;
+	}
+	
+	/**
+	 * retourne si un point est dans triangle triangle
+	 */
+	public boolean isInsideTriangle(Point2D p)
+    {	  
+		double x1 = this.getP1().getX() ;
+		double x2 = this.getP2().getX();
+		double x3 = this.getP3().getX() ;
+		double y1 = this.getP1().getY() ;
+		double y2 = this.getP2().getY();
+		double y3 = this.getP3().getY() ;
+		double ABC = Math.abs (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2));
+		double ABP = Math.abs (x1 * (y2 - p.getY()) + x2 * (p.getY() - y1) + p.getX() * (y1 - y2));
+		double APC = Math.abs (x1 * (p.getY() - y3) + p.getX() * (y3 - y1) + x3 * (y1 - p.getY()));
+		double PBC = Math.abs (p.getX() * (y2 - y3) + x2 * (y3 - p.getY()) + x3 * (p.getY() - y2));
+        return  ABP + APC + PBC == ABC;
+    }
+	
+	/**
+	 * retourne si un point est dans la zone de tolérance d'un autre point
+	 */
+	public boolean tolerance (Point2D p) {
+		return isInsideCercle(p,this.getP1()) || isInsideCercle(p,this.getP2()) || isInsideCercle(p,this.getP3()) ;		   
+	}	
+	
+	/**
+	 * retourne si un point est dans le cercle qui a pour centre un point donné
+	 */
+	public boolean isInsideCercle (Point2D p1, Point2D p2) {
+		double dx = p1.getX()- p2.getX();
+	   double dy = p1.getY()- p2.getY();
+	   return dx * dx + dy * dy <= tolerance * tolerance;
 	}
 	
 	/**

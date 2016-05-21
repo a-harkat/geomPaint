@@ -13,7 +13,7 @@ public abstract class FigureGeom extends Line2D.Double {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	boolean selectOn = false;
+	private boolean selectOn = false;
 	
 	/**
 	 * Constructeur de Figure geometrique
@@ -22,5 +22,13 @@ public abstract class FigureGeom extends Line2D.Double {
 	 */
 	public FigureGeom(Point p1, Point p2) {
 		super(p1, p2) ;
+	}
+
+	public boolean isSelectOn() {
+		return selectOn;
+	}
+
+	public void setSelectOn(boolean selectOn) {
+		this.selectOn = selectOn;
 	}
 }

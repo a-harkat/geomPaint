@@ -53,23 +53,27 @@ public class VueGraphique extends JPanel implements Observer {
 				if (tr instanceof UnTrait){
 					g.drawLine((int)tr.getP1().getX(), (int)tr.getP1().getY(),
 							(int)tr.getP2().getX(), (int)tr.getP2().getY()); 
-					if(tr.selectOn)
-						drawVertex(g, tr);
+					
 				}
 				if (tr instanceof UnTriangle ){
-					UnTriangle trait = (UnTriangle) tr ;					
-					int [] X = {(int)trait.getP1().getX(), (int)trait.getP2().getX(), (int)trait.getP3().getX()};
-					int [] Y = {(int)trait.getP1().getY(), (int)trait.getP2().getY(), (int)trait.getP3().getY()};
+					UnTriangle triangle = (UnTriangle) tr ;					
+					int [] X = {(int)triangle.getP1().getX(), (int)triangle.getP2().getX(), (int)triangle.getP3().getX()};
+					int [] Y = {(int)triangle.getP1().getY(), (int)triangle.getP2().getY(), (int)triangle.getP3().getY()};
 					g.drawPolygon(X, Y, 3);	
 				}
+				if(tr.isSelectOn())
+					drawVertex(g, tr);
 			}
 	}
 	
-	public void drawVertex(Graphics g, FigureGeom fg) {
-		
-		int vrtx = VERTEX_SIZE;
-		
+	public void drawVertex(Graphics g, FigureGeom fg) {		
+		int vrtx = VERTEX_SIZE;		
 		g.drawRect((int)fg.getX1()-vrtx/2, (int)fg.getY1()-vrtx/2, vrtx, vrtx);
 		g.drawRect((int)fg.getX2()-vrtx/2, (int)fg.getY2()-vrtx/2, vrtx, vrtx);
+		
+		if (fg instanceof UnTriangle ){ 
+			UnTriangle triangle = (UnTriangle) fg ;
+			g.drawRect((int)triangle.getP3().getX()-vrtx/2, (int)triangle.getP3().getY()-vrtx/2, vrtx, vrtx);
+		}
 	}
 }
