@@ -85,8 +85,8 @@ public class VueGraphique extends JPanel implements Observer {
 	
 	public void drawVertex(Graphics g, FigureGeom fg) {		
 		int vrtx = VERTEX_SIZE;		
-		g.drawRect((int)fg.getX1()-vrtx/2, (int)fg.getY1()-vrtx/2, vrtx, vrtx);
-		g.drawRect((int)fg.getX2()-vrtx/2, (int)fg.getY2()-vrtx/2, vrtx, vrtx);
+		g.drawRect((int)fg.getP1().getX()-vrtx/2, (int)fg.getP1().getY()-vrtx/2, vrtx, vrtx);
+		g.drawRect((int)fg.getP2().getX()-vrtx/2, (int)fg.getP2().getY()-vrtx/2, vrtx, vrtx);
 		
 		if (fg instanceof UnTriangle ){ 
 			UnTriangle triangle = (UnTriangle) fg ;

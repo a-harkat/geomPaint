@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  * Classe Conteneur, contient les differents JPanel ainsi que les 
@@ -45,53 +46,45 @@ public class Conteneur extends JPanel{
 		this.add(mh,BorderLayout.NORTH);
 		this.add(vg,BorderLayout.CENTER);
 		trs.addObserver(vg);
+		
+		ControleurFigure cgt = new ControleurFigure(trs);
+		vg.addMouseMotionListener(cgt);
+		vg.addMouseListener(cgt); 
 		 
 	
 		((JButton)mg.getBouttonM(0)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				MouseListener[] mouseListeners = vg.getMouseListeners();
-				for (MouseListener mouseListener : mouseListeners) {
-					vg.removeMouseListener(mouseListener);
-				}
-				ControleurTrait ctr = new ControleurTrait(trs);
-				vg.addMouseMotionListener(ctr);
-				vg.addMouseListener(ctr);
+				cgt.setCercleOn(false);
+				cgt.setRectangleOn(false);
+				cgt.setTriangleOn(false);
+				cgt.setTraitOn(true);
 			}							
 		});
 		
 		((JButton)mg.getBouttonM(1)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				MouseListener[] mouseListeners = vg.getMouseListeners();
-				for (MouseListener mouseListener : mouseListeners) {
-					vg.removeMouseListener(mouseListener);
-				}
-				ControleurCercle cg = new ControleurCercle(trs);
-				vg.addMouseMotionListener(cg);
-				vg.addMouseListener(cg);
+				cgt.setCercleOn(true);
+				cgt.setRectangleOn(false);
+				cgt.setTriangleOn(false);
+				cgt.setTraitOn(false);
 			}							
 		});
 		
 		((JButton)mg.getBouttonM(2)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				MouseListener[] mouseListeners = vg.getMouseListeners();
-				for (MouseListener mouseListener : mouseListeners) {
-					vg.removeMouseListener(mouseListener);
-				}
-				ControleurRectangle cgt = new ControleurRectangle(trs);
-				vg.addMouseMotionListener(cgt);
-				vg.addMouseListener(cgt); 
+				cgt.setCercleOn(false);
+				cgt.setRectangleOn(true);
+				cgt.setTriangleOn(false);
+				cgt.setTraitOn(false);
 			}							
 		});	
 		
 		((JButton)mg.getBouttonM(3)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				MouseListener[] mouseListeners = vg.getMouseListeners();
-				for (MouseListener mouseListener : mouseListeners) {
-					vg.removeMouseListener(mouseListener);
-				}
-				ControleurTriangle cgt = new ControleurTriangle(trs);
-				vg.addMouseMotionListener(cgt);
-				vg.addMouseListener(cgt); 
+				cgt.setCercleOn(false);
+				cgt.setRectangleOn(false);
+				cgt.setTriangleOn(true);
+				cgt.setTraitOn(false); 
 			}							
 		});	
 		
@@ -101,14 +94,18 @@ public class Conteneur extends JPanel{
 		});
 		
 		((JButton)mg.getBouttonM(5)).addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				MouseListener[] mouseListeners = vg.getMouseListeners();
-				for (MouseListener mouseListener : mouseListeners) {
-					vg.removeMouseListener(mouseListener);
-				}
-				ControleurEdition ced = new ControleurEdition(trs);
-				vg.addMouseMotionListener(ced);
-				vg.addMouseListener(ced);		            		
+			public void actionPerformed(ActionEvent e){				
+					if (cgt.isDessiner()) {
+						cgt.setDessiner(false);
+						cgt.toggleMode (true);
+						System.out.println("mode édition");
+					}
+					else {
+						cgt.setDessiner(true);
+						cgt.toggleMode (false);
+						System.out.println("mode déssin");
+					}
+						            		
 			}							
 		});
 	}

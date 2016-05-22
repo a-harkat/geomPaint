@@ -48,9 +48,9 @@ public class UnTriangle extends UnPolygone{
     }
 	
 	/**
-	 * retourne si un point est dans la zone de tolï¿½rance d'un autre point
+	 * retourne si un point est dans la zone de tolérance d'un autre point
 	 */
-	public boolean tolerance (Point2D p) {
+	public boolean toleranceTriangle (Point p) {
 		return isInToleranceZone(p,this.getP1()) || isInToleranceZone(p,this.getP2()) || isInToleranceZone(p,this.getP3()) ;		   
 	}	
 	/**
@@ -73,27 +73,35 @@ public class UnTriangle extends UnPolygone{
 		return (!(this.isInToleranceZone(p1, this.getP3())));
 	}
 	
-	/**
-	 * Selectionneur du deuxieme point
-	 * @param p point a selectionner 
-	 * @param tolerance marge appliquee
-	 * @return slct selectionne ou non
-	 */
-	public boolean selectionP3(Point p, int tolerance) {
-		boolean slct = false;
-		int distance = distance(getP3(), p);
-		if (distance < tolerance) slct = true;
-		return slct;
+	public void editerTriangle (Point p1, Point p2){
+		if (this.isInToleranceZone(p1, this.getP1())) 
+			if (this.noPoint2(p2) && this.noPoint3(p2)) 
+				this.setP1(p2);
+		if (this.isInToleranceZone(p1, this.getP2()))
+			if (this.noPoint1(p2) && this.noPoint3(p2)) 
+				this.setP2(p2);
+		if (this.isInToleranceZone(p1, this.getP3()))
+			if (this.noPoint1(p2) && this.noPoint2(p2)) 
+				this.setP3(p2);
 	}
 	
-	/**
-	 * Renvoie la distance entre deux points
-	 * @param p1 point 1
-	 * @param p2 point 2
-	 * @return la distance entre les deux points
-	 */
-	public int distance(Point p1, Point p2){
-		return super.distance(p1, p2);
+	public void deplacerTriangle (Point p1, Point p2){
+		int xp1 = (int)this.getP1().getX() ;
+		int xp2 = (int)this.getP2().getX();
+		int xp3 = (int)this.getP3().getX() ;
+		int yp1 = (int)this.getP1().getY() ;
+		int yp2 = (int)this.getP2().getY();
+		int yp3 = (int)this.getP3().getY() ;
+		int x = (int) p1.getX();
+		int y = (int) p1.getY();
+		int nx = (int) (p2.getX()-x) ;
+		int ny = (int) (p2.getY()-y) ;
+		Point np1 = new Point( xp1+nx, yp1+ny);
+		Point np2 = new Point( xp2+nx, yp2+ny);
+		Point np3 = new Point( xp3+nx, yp3+ny);
+		this.setP1(np1);
+		this.setP2(np2);
+		this.setP3(np3);
 	}
 
 }

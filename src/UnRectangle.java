@@ -21,7 +21,7 @@ public class UnRectangle extends FigureGeom {
 	 */
 	public UnRectangle(Point p1, Point p2) {
 		super(p1, p2);
-		// TODO Auto-generated constructor stub
+
 	}
 	
 	public boolean insideRectangle(Point p1) 
@@ -35,5 +35,6 @@ public class UnRectangle extends FigureGeom {
 		Rectangle r = new Rectangle(x, y,width, height );
 		return r.contains((int)p1.getX(), (int)p1.getY());
 	}
-
+	
+			
 }
