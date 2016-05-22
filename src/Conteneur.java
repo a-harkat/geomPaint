@@ -54,6 +54,7 @@ public class Conteneur extends JPanel{
 	
 		((JButton)mg.getBouttonM(0)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				cgt.effacerPoints();
 				cgt.setCercleOn(false);
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(false);
@@ -63,6 +64,7 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(1)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				cgt.effacerPoints();
 				cgt.setCercleOn(true);
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(false);
@@ -72,6 +74,7 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(2)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				cgt.effacerPoints();
 				cgt.setCercleOn(false);
 				cgt.setRectangleOn(true);
 				cgt.setTriangleOn(false);
@@ -81,6 +84,7 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(3)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				cgt.effacerPoints();
 				cgt.setCercleOn(false);
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(true);
@@ -94,7 +98,8 @@ public class Conteneur extends JPanel{
 		});
 		
 		((JButton)mg.getBouttonM(5)).addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){				
+			public void actionPerformed(ActionEvent e){	
+					cgt.effacerPoints();
 					if (cgt.isDessiner()) {
 						cgt.setDessiner(false);
 						cgt.toggleMode (true);

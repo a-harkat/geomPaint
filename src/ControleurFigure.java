@@ -251,4 +251,12 @@ public class ControleurFigure extends MouseInputAdapter {
 	public void setDessiner(boolean dessiner) {
 		this.dessiner = dessiner;
 	}
+	/**
+	 * methode qui éfface les point lors du clique sur un bouton
+	 */
+	public void effacerPoints() {
+		if (p1 != null) p1 = null;
+		if (p2 != null) p2 = null;
+		if (p3 != null) p3 = null;
+	}
 }
