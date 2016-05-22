@@ -15,10 +15,6 @@ public class ControleurEdition extends MouseInputAdapter implements ControleurFi
 	boolean select2;
 	boolean selectAll;
 	Point departDeplt;
-	/**
-	 * 
-	 */
-	public static final int TOLER = 5;
 	ListFigures lsFigures;
 	FigureGeom selecTmp;
 	int currIndex;	
@@ -41,13 +37,13 @@ public class ControleurEdition extends MouseInputAdapter implements ControleurFi
 			lsFigures.setFigure(currIndex, selecTmp);
 		}
 
-		if(select2) {
+		else if(select2) {
 			selecTmp.selectOn = true;
 			selecTmp.setLine(selecTmp.getP1(), e.getPoint());
 			lsFigures.setFigure(currIndex, selecTmp);
 		}
 		
-		if(!select1 && !select2 && selectAll) {
+		else if(!select1 && !select2 && selectAll) {
 			selecTmp.selectOn = true;
 			if(departDeplt == null)
 				departDeplt = e.getPoint();
@@ -115,10 +111,10 @@ public class ControleurEdition extends MouseInputAdapter implements ControleurFi
 			if (selecTmp instanceof UnTrait || 
 				selecTmp instanceof UnRectangle ||
 				selecTmp instanceof UnCercle ) {
-				if(selecTmp.selectionP1(e.getPoint(), TOLER)) {
+				if(selecTmp.selectionP1(e.getPoint(), FigureGeom.TOLERANCE)) {
 					select1 = true;
 				}
-				else if(selecTmp.selectionP2(e.getPoint(), TOLER)) {
+				else if(selecTmp.selectionP2(e.getPoint(), FigureGeom.TOLERANCE)) {
 					select2 = true;
 				}
 				else if(selecTmp instanceof UnTrait && traitSelect(selecTmp, e))
@@ -154,7 +150,7 @@ public class ControleurEdition extends MouseInputAdapter implements ControleurFi
 	 */
 	public boolean traitSelect(FigureGeom t, MouseEvent e) {		
 		boolean slct = false;
-		if(t.ptSegDist(e.getX(), e.getY()) <= TOLER)
+		if(t.ptSegDist(e.getX(), e.getY()) <= FigureGeom.TOLERANCE)
 			slct = true;
 		return slct;
 	}
@@ -166,7 +162,9 @@ public class ControleurEdition extends MouseInputAdapter implements ControleurFi
 	 */
 	public boolean cercleSelect(FigureGeom c, MouseEvent e) {
 		boolean slct = false;
-		if(((UnCercle)c).insideCercle(e.getPoint()))
+		if(((UnCercle)c).insideCercle(e.getPoint()) ||
+			c.selectionP1(e.getPoint(), FigureGeom.TOLERANCE) ||
+			c.selectionP2(e.getPoint(), FigureGeom.TOLERANCE))
 			slct = true;
 		return slct;
 	}
@@ -178,7 +176,9 @@ public class ControleurEdition extends MouseInputAdapter implements ControleurFi
 	 */
 	public boolean rectangleSelect(FigureGeom r, MouseEvent e) {
 		boolean slct = false;
-		if(((UnRectangle)r).insideRectangle(e.getPoint()))
+		if(((UnRectangle)r).insideRectangle(e.getPoint()) ||
+			r.selectionP1(e.getPoint(), FigureGeom.TOLERANCE) ||
+			r.selectionP2(e.getPoint(), FigureGeom.TOLERANCE))
 			slct = true;
 		return slct;
 	}

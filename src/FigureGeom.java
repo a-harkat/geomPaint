@@ -13,7 +13,10 @@ public abstract class FigureGeom extends Line2D.Double {
 	 *Sert a la serialisation
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final int tolerance = 5;
+	/**
+	 * Tolerance d'accrochage au sommet
+	 */
+	public static final int TOLERANCE = 5;
 	boolean selectOn = false;
 	
 	/**
@@ -52,24 +55,37 @@ public abstract class FigureGeom extends Line2D.Double {
 	}
 	
 	/**
-	 * retourne si un point est dans la zone de tol�rance d'un autre point
+	 * retourne si un point est dans la zone de tolerance d'un autre point
+	 * @param p le point a verifier
+	 * @return true ou false
 	 */
 	public boolean tolerance (Point2D p) {
 		return isInToleranceZone(p,this.getP1()) || isInToleranceZone(p,this.getP2());		   
 	}	
 	
 	/**
-	 * retourne si un point est dans le cercle qui a pour centre un point donn�
+	 * retourne si un point est dans le cercle qui a pour centre un point donne
+	 * @param p1 
+	 * @param p2 
+	 * @return true ou false
 	 */
 	public boolean isInToleranceZone (Point2D p1, Point2D p2) {
 		double dx = p1.getX()- p2.getX();
 	   double dy = p1.getY()- p2.getY();
-	   return dx * dx + dy * dy <= tolerance * tolerance;
+	   return dx * dx + dy * dy <= TOLERANCE * TOLERANCE;
 	}
 	
+	/**
+	 * @param p1
+	 * @return true ou false
+	 */
 	public boolean noPoint1 (Point p1) {
 		return  (!(this.isInToleranceZone(p1, this.getP1())));	    	
 	}
+	/**
+	 * @param p1
+	 * @return true ou false
+	 */
 	public boolean noPoint2 (Point p1) {		    
 		return (!(this.isInToleranceZone(p1, this.getP2())));
 	}
