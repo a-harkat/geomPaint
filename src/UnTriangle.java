@@ -48,7 +48,7 @@ public class UnTriangle extends UnPolygone{
     }
 	
 	/**
-	 * retourne si un point est dans la zone de tolérance d'un autre point
+	 * retourne si un point est dans la zone de tolï¿½rance d'un autre point
 	 */
 	public boolean tolerance (Point2D p) {
 		return isInToleranceZone(p,this.getP1()) || isInToleranceZone(p,this.getP2()) || isInToleranceZone(p,this.getP3()) ;		   
@@ -71,6 +71,29 @@ public class UnTriangle extends UnPolygone{
 	
 	public boolean noPoint3 (Point p1) {		    
 		return (!(this.isInToleranceZone(p1, this.getP3())));
+	}
+	
+	/**
+	 * Selectionneur du deuxieme point
+	 * @param p point a selectionner 
+	 * @param tolerance marge appliquee
+	 * @return slct selectionne ou non
+	 */
+	public boolean selectionP3(Point p, int tolerance) {
+		boolean slct = false;
+		int distance = distance(getP3(), p);
+		if (distance < tolerance) slct = true;
+		return slct;
+	}
+	
+	/**
+	 * Renvoie la distance entre deux points
+	 * @param p1 point 1
+	 * @param p2 point 2
+	 * @return la distance entre les deux points
+	 */
+	public int distance(Point p1, Point p2){
+		return super.distance(p1, p2);
 	}
 
 }

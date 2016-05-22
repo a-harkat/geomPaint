@@ -13,6 +13,7 @@ public class ControleurEdition extends MouseInputAdapter implements ControleurFi
 
 	boolean select1;
 	boolean select2;
+	boolean select3;
 	boolean selectAll;
 	Point departDeplt;
 	ListFigures lsFigures;
@@ -36,14 +37,17 @@ public class ControleurEdition extends MouseInputAdapter implements ControleurFi
 			selecTmp.setLine(e.getPoint(), selecTmp.getP2());
 			lsFigures.setFigure(currIndex, selecTmp);
 		}
-
 		else if(select2) {
 			selecTmp.selectOn = true;
 			selecTmp.setLine(selecTmp.getP1(), e.getPoint());
 			lsFigures.setFigure(currIndex, selecTmp);
 		}
-		
-		else if(!select1 && !select2 && selectAll) {
+		else if(selecTmp instanceof UnTriangle && select3) {
+			selecTmp.selectOn = true;
+			((UnTriangle)selecTmp).setP3(e.getPoint());
+			lsFigures.setFigure(currIndex, selecTmp);
+		}
+		else if(selectAll) {
 			selecTmp.selectOn = true;
 			if(departDeplt == null)
 				departDeplt = e.getPoint();
@@ -57,6 +61,13 @@ public class ControleurEdition extends MouseInputAdapter implements ControleurFi
 				int diffP2X = (int)(e.getX() - departDeplt.getX()) + (int)selecTmp.getX2();
 				int diffP2Y = (int)(e.getY() - departDeplt.getY()) + (int)selecTmp.getY2();
 				Point2D p2 = new Point(diffP2X, diffP2Y);
+				
+				if(selecTmp instanceof UnTriangle) {
+					int diffP3X = (int)(e.getX() - departDeplt.getX()) + (int)((UnTriangle)selecTmp).getP3().x;
+					int diffP3Y = (int)(e.getY() - departDeplt.getY()) + (int)((UnTriangle)selecTmp).getP3().y;
+					Point p3 = new Point(diffP3X, diffP3Y);
+					((UnTriangle)selecTmp).setP3(p3);
+				}
 	
 				selecTmp.setLine(p1, p2);
 				selecTmp.selectOn = true;
@@ -97,6 +108,11 @@ public class ControleurEdition extends MouseInputAdapter implements ControleurFi
 				}	
 			}
 			else if(selecTmp instanceof UnTriangle){
+				if(triangleSelect(selecTmp, e)) {
+					basculerSelection();
+					lsFigures.setFigure(i, selecTmp);
+					break;
+				}
 				
 			}
 			else if(selecTmp instanceof UnQuelconque){
@@ -107,7 +123,7 @@ public class ControleurEdition extends MouseInputAdapter implements ControleurFi
 		if(i < lsFigures.getFigures().size())
 			currIndex = i;
 		
-		if(lsFigures.getFigures().size() != 0) {
+		if(lsFigures.getFigures().size() != 0) { // ce bloque est a ameliorer
 			if (selecTmp instanceof UnTrait || 
 				selecTmp instanceof UnRectangle ||
 				selecTmp instanceof UnCercle ) {
@@ -129,12 +145,26 @@ public class ControleurEdition extends MouseInputAdapter implements ControleurFi
 					selectAll = false;
 				}
 			}
+			else if(selecTmp instanceof UnTriangle) {
+				if(selecTmp.selectionP1(e.getPoint(), FigureGeom.TOLERANCE)) {
+					select1 = true;
+				}
+				else if(selecTmp.selectionP2(e.getPoint(), FigureGeom.TOLERANCE)) {
+					select2 = true;
+				}
+				else if(((UnTriangle)selecTmp).selectionP3(e.getPoint(), FigureGeom.TOLERANCE)) {
+					select3 = true;
+				}
+				else if(triangleSelect(selecTmp, e))
+					selectAll = true;
+			}
 		}
 	}
 
 	public void mouseReleased(MouseEvent e){
 		select1 = false;
 		select2 = false;
+		select3 = false;
 		selectAll = false;
 		departDeplt = null;
 	}
@@ -179,6 +209,21 @@ public class ControleurEdition extends MouseInputAdapter implements ControleurFi
 		if(((UnRectangle)r).insideRectangle(e.getPoint()) ||
 			r.selectionP1(e.getPoint(), FigureGeom.TOLERANCE) ||
 			r.selectionP2(e.getPoint(), FigureGeom.TOLERANCE))
+			slct = true;
+		return slct;
+	}
+	
+	/**
+	 * @param t triangle a tester
+	 * @param e l'evenement de selection
+	 * @return slct true sinon false
+	 */
+	public boolean triangleSelect(FigureGeom t, MouseEvent e) {
+		boolean slct = false;
+		if(((UnTriangle)t).isInsideTriangle(e.getPoint()) ||
+			t.selectionP1(e.getPoint(), FigureGeom.TOLERANCE) ||
+			t.selectionP2(e.getPoint(), FigureGeom.TOLERANCE) ||
+			((UnTriangle)t).selectionP3(e.getPoint(), FigureGeom.TOLERANCE))
 			slct = true;
 		return slct;
 	}
