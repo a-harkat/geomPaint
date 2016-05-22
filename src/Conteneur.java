@@ -48,69 +48,67 @@ public class Conteneur extends JPanel{
 	
 		
 		mg.getTrait().addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-            	MouseListener[] mouseListeners = vg.getMouseListeners();
-            	for (MouseListener mouseListener : mouseListeners) {
-            		vg.removeMouseListener(mouseListener);
-            	}
-            	ControleurTrait ctr = new ControleurTrait(trs);
-    			vg.addMouseMotionListener(ctr);
-    			vg.addMouseListener(ctr);         			            		
-            }							
-        });
+			public void actionPerformed(ActionEvent e){
+				MouseListener[] mouseListeners = vg.getMouseListeners();
+				for (MouseListener mouseListener : mouseListeners) {
+					vg.removeMouseListener(mouseListener);
+				}
+				ControleurTrait ctr = new ControleurTrait(trs);
+				vg.addMouseMotionListener(ctr);
+				vg.addMouseListener(ctr);
+			}							
+		});
 		
 		mg.getCercle().addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-            	MouseListener[] mouseListeners = vg.getMouseListeners();
-            	for (MouseListener mouseListener : mouseListeners) {
-            		vg.removeMouseListener(mouseListener);
-            	}
-            	ControleurCercle cg = new ControleurCercle(trs);
-    			vg.addMouseMotionListener(cg);
-    			vg.addMouseListener(cg);         			            		
-            }							
-        });
+			public void actionPerformed(ActionEvent e){
+				MouseListener[] mouseListeners = vg.getMouseListeners();
+				for (MouseListener mouseListener : mouseListeners) {
+					vg.removeMouseListener(mouseListener);
+				}
+				ControleurCercle cg = new ControleurCercle(trs);
+				vg.addMouseMotionListener(cg);
+				vg.addMouseListener(cg);
+			}							
+		});
 		
 		mg.getTriangle().addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-            	MouseListener[] mouseListeners = vg.getMouseListeners();
-            	for (MouseListener mouseListener : mouseListeners) {
-            		vg.removeMouseListener(mouseListener);
-            	}
-            	ControleurTriangle cgt = new ControleurTriangle(trs);
-    			vg.addMouseMotionListener(cgt);
-    			vg.addMouseListener(cgt); 
-            	       			            		
-            }							
-        });	
+			public void actionPerformed(ActionEvent e){
+				MouseListener[] mouseListeners = vg.getMouseListeners();
+				for (MouseListener mouseListener : mouseListeners) {
+					vg.removeMouseListener(mouseListener);
+				}
+				ControleurTriangle cgt = new ControleurTriangle(trs);
+				vg.addMouseMotionListener(cgt);
+				vg.addMouseListener(cgt); 
+			}							
+		});	
 		
 		mg.getRectangle().addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-            	MouseListener[] mouseListeners = vg.getMouseListeners();
-            	for (MouseListener mouseListener : mouseListeners) {
-            		vg.removeMouseListener(mouseListener);
-            	}
-            	ControleurRectangle cgt = new ControleurRectangle(trs);
-    			vg.addMouseMotionListener(cgt);
-    			vg.addMouseListener(cgt); 
-            	       			            		
-            }							
-        });	
+			public void actionPerformed(ActionEvent e){
+				MouseListener[] mouseListeners = vg.getMouseListeners();
+				for (MouseListener mouseListener : mouseListeners) {
+					vg.removeMouseListener(mouseListener);
+				}
+				ControleurRectangle cgt = new ControleurRectangle(trs);
+				vg.addMouseMotionListener(cgt);
+				vg.addMouseListener(cgt); 
+			}							
+		});	
 		mg.getQuelconque().addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-            }				
-        });
+			public void actionPerformed(ActionEvent e){
+			}				
+		});
 		
 		mg.getEdition().addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-            	MouseListener[] mouseListeners = vg.getMouseListeners();
-            	for (MouseListener mouseListener : mouseListeners) {
-            		vg.removeMouseListener(mouseListener);
-            	}
-            	ControleurEdition ced = new ControleurEdition(trs);
-    			vg.addMouseMotionListener(ced);
-    			vg.addMouseListener(ced);		            		
-            }							
-        });
+			public void actionPerformed(ActionEvent e){
+				MouseListener[] mouseListeners = vg.getMouseListeners();
+				for (MouseListener mouseListener : mouseListeners) {
+					vg.removeMouseListener(mouseListener);
+				}
+				ControleurEdition ced = new ControleurEdition(trs);
+				vg.addMouseMotionListener(ced);
+				vg.addMouseListener(ced);		            		
+			}							
+		});
 	}
 }
