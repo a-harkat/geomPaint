@@ -30,11 +30,14 @@ public class ControleurTriangle extends MouseInputAdapter implements ControleurF
 	public void mouseDragged(MouseEvent e){		
 		if (edition && !dessiner) {	
 			if (triangle.isInToleranceZone(pointEditer, triangle.getP1())) 
-				triangle.setLine(e.getPoint(), triangle.getP2());
+				if (triangle.noPoint2(e.getPoint()) && triangle.noPoint3(e.getPoint())) 
+					triangle.setLine(e.getPoint(), triangle.getP2());
 			if (triangle.isInToleranceZone(pointEditer, triangle.getP2()))
-				triangle.setLine(triangle.getP1(), e.getPoint());
+				if (triangle.noPoint1(e.getPoint()) && triangle.noPoint3(e.getPoint())) 
+					triangle.setLine(triangle.getP1(), e.getPoint());
 			if (triangle.isInToleranceZone(pointEditer, triangle.getP3()))
-				triangle.setP3(e.getPoint());
+				if (triangle.noPoint1(e.getPoint()) && triangle.noPoint2(e.getPoint())) 
+					triangle.setP3(e.getPoint());
 			lsFigures.setFigure(index, triangle);
 			pointEditer = e.getPoint() ;
 		}			

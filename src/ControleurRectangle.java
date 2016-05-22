@@ -4,7 +4,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputAdapter;
 
 /**
- * Classe qui sert de controleur graphique pour les triangles
+ * Classe qui sert de controleur graphique pour les rectangle
  * @author Groupe 2
  * @version 1
  */
@@ -18,7 +18,7 @@ public class ControleurRectangle extends MouseInputAdapter implements Controleur
 	ListFigures lsFigures;
 	
 	/**
-	 * Constructeur de ControleurTriangle
+	 * Constructeur de ControleurRectangle
 	 * @param trs
 	 */
 	
@@ -30,9 +30,11 @@ public class ControleurRectangle extends MouseInputAdapter implements Controleur
 	public void mouseDragged(MouseEvent e){		
 		if (edition && !dessiner) {	
 			if (rectangle.isInToleranceZone(pointEditer, rectangle.getP1()))
-				rectangle.setLine(e.getPoint(),rectangle.getP2());
+				if (rectangle.noPoint2(e.getPoint())) 
+					rectangle.setLine(e.getPoint(),rectangle.getP2());
 			if (rectangle.isInToleranceZone(pointEditer, rectangle.getP2()))
-				rectangle.setLine(rectangle.getP1(), e.getPoint());
+				if (rectangle.noPoint1(e.getPoint())) 
+					rectangle.setLine(rectangle.getP1(), e.getPoint());
 			lsFigures.setFigure(index, rectangle);
 			pointEditer = e.getPoint() ;
 		}			

@@ -13,7 +13,7 @@ public abstract class FigureGeom extends Line2D.Double {
 	 *Sert a la serialisation
 	 */
 	private static final long serialVersionUID = 1L;
-	private final static int tolerance = 5;
+	private static final int tolerance = 5;
 	boolean selectOn = false;
 	
 	/**
@@ -47,5 +47,12 @@ public abstract class FigureGeom extends Line2D.Double {
 		double dx = p1.getX()- p2.getX();
 	   double dy = p1.getY()- p2.getY();
 	   return dx * dx + dy * dy <= tolerance * tolerance;
+	}
+	
+	public boolean noPoint1 (Point p1) {
+		return  (!(this.isInToleranceZone(p1, this.getP1()))) ;	    	
+	}
+	public boolean noPoint2 (Point p1) {		    
+		return (!(this.isInToleranceZone(p1, this.getP2())));
 	}
 }

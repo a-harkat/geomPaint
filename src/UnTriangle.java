@@ -68,5 +68,9 @@ public class UnTriangle extends UnPolygone{
 	public void setP3(Point p3) {
 		this.p3 = p3;
 	}
+	
+	public boolean noPoint3 (Point p1) {		    
+		return (!(this.isInToleranceZone(p1, this.getP3())));
+	}
 
 }
