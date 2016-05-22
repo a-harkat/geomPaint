@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.JLabel;
 
 /**
@@ -29,7 +31,12 @@ public class MenuHaut extends Menu {
 	 */
 	private void generateBoutton() {
 		JLabel statut_prog = new JLabel("les messages a afficher");
+		statut_prog.setForeground(Color.yellow);
+		statut_prog.setFont(new Font("TimesRoman", Font.ITALIC, 16));
 		this.ajouterBouttonM(statut_prog);
 	}
-
+	
+	public void changerTexteMH(String new_texte) {
+		((JLabel)this.getBouttonM(0)).setText(new_texte);
+	}
 }

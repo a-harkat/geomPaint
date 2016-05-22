@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -46,8 +47,7 @@ public class Conteneur extends JPanel{
 		trs.addObserver(vg);
 		 
 	
-		
-		mg.getTrait().addActionListener(new ActionListener(){
+		((JButton)mg.getBouttonM(0)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				MouseListener[] mouseListeners = vg.getMouseListeners();
 				for (MouseListener mouseListener : mouseListeners) {
@@ -59,7 +59,7 @@ public class Conteneur extends JPanel{
 			}							
 		});
 		
-		mg.getCercle().addActionListener(new ActionListener(){
+		((JButton)mg.getBouttonM(1)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				MouseListener[] mouseListeners = vg.getMouseListeners();
 				for (MouseListener mouseListener : mouseListeners) {
@@ -71,7 +71,19 @@ public class Conteneur extends JPanel{
 			}							
 		});
 		
-		mg.getTriangle().addActionListener(new ActionListener(){
+		((JButton)mg.getBouttonM(2)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				MouseListener[] mouseListeners = vg.getMouseListeners();
+				for (MouseListener mouseListener : mouseListeners) {
+					vg.removeMouseListener(mouseListener);
+				}
+				ControleurRectangle cgt = new ControleurRectangle(trs);
+				vg.addMouseMotionListener(cgt);
+				vg.addMouseListener(cgt); 
+			}							
+		});	
+		
+		((JButton)mg.getBouttonM(3)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				MouseListener[] mouseListeners = vg.getMouseListeners();
 				for (MouseListener mouseListener : mouseListeners) {
@@ -83,23 +95,12 @@ public class Conteneur extends JPanel{
 			}							
 		});	
 		
-		mg.getRectangle().addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				MouseListener[] mouseListeners = vg.getMouseListeners();
-				for (MouseListener mouseListener : mouseListeners) {
-					vg.removeMouseListener(mouseListener);
-				}
-				ControleurRectangle cgt = new ControleurRectangle(trs);
-				vg.addMouseMotionListener(cgt);
-				vg.addMouseListener(cgt); 
-			}							
-		});	
-		mg.getQuelconque().addActionListener(new ActionListener(){
+		((JButton)mg.getBouttonM(4)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 			}				
 		});
 		
-		mg.getEdition().addActionListener(new ActionListener(){
+		((JButton)mg.getBouttonM(5)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				MouseListener[] mouseListeners = vg.getMouseListeners();
 				for (MouseListener mouseListener : mouseListeners) {

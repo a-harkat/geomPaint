@@ -1,4 +1,6 @@
 import java.awt.Color;
+
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
@@ -23,6 +25,7 @@ public class MenuDroit extends Menu {
 	public MenuDroit(Color fond) {
 		super(fond);
 		
+		this.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.generateBoutton();
 	}

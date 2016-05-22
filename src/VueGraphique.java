@@ -4,8 +4,6 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
 
-import com.sun.javafx.geom.Rectangle;
-
 /**
  * Classe qui sert de vue Graphique
  * @author Groupe 2
@@ -28,7 +26,7 @@ public class VueGraphique extends JPanel implements Observer {
 	 *Constructeur vide pour l'instant, sert a l'instanciation
 	 */
 	public VueGraphique() {
-		setBackground(Color.white);
+		setBackground(new Color(245,255,250));
 	}
 
 	/* (non-Javadoc)
