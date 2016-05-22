@@ -16,6 +16,10 @@ public class MenuGauche extends Menu {
 	 *Sert a la serialisation
 	 */
 	private static final long serialVersionUID = 1L;
+	private JButton cercle;
+	private JButton rectangle;
+	private JButton triangle;
+	private JButton quelconque;
 	
 	/**
 	 * Constructeur du JPanel menu Gauche
@@ -35,15 +39,47 @@ public class MenuGauche extends Menu {
 	 * boutons du menu Gauche
 	 */
 	private void generateBoutton() {
-		JButton cercle = new JButton("Cercle");
-		JButton carre = new JButton("Carre");
-		JButton triangle = new JButton("Triangle");
-		JButton quelconque = new JButton("Quelconque");
+		setCercle(new JButton("Cercle"));
+		setRectangle(new JButton("Rectangle"));
+		setTriangle(new JButton("Triangle"));
+		setQuelconque(new JButton("Quelconque"));
 		
-		this.ajouterBouttonM(cercle);
-		this.ajouterBouttonM(carre);
-		this.ajouterBouttonM(triangle);
-		this.ajouterBouttonM(quelconque);
+		this.ajouterBouttonM(getCercle());
+		this.ajouterBouttonM(getRectangle());
+		this.ajouterBouttonM(getTriangle());
+		this.ajouterBouttonM(getQuelconque());
+	}
+
+	public JButton getCercle() {
+		return cercle;
+	}
+
+	public void setCercle(JButton cercle) {
+		this.cercle = cercle;
+	}
+
+	public JButton getRectangle() {
+		return rectangle;
+	}
+
+	public void setRectangle(JButton carre) {
+		this.rectangle = carre;
+	}
+
+	public JButton getTriangle() {
+		return triangle;
+	}
+
+	public void setTriangle(JButton triangle) {
+		this.triangle = triangle;
+	}
+
+	public JButton getQuelconque() {
+		return quelconque;
+	}
+
+	public void setQuelconque(JButton quelconque) {
+		this.quelconque = quelconque;
 	}
 
 }

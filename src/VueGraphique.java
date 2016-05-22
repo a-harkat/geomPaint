@@ -4,6 +4,8 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
 
+import com.sun.javafx.geom.Rectangle;
+
 /**
  * Classe qui sert de vue Graphique
  * @author Groupe 2
@@ -60,6 +62,23 @@ public class VueGraphique extends JPanel implements Observer {
 					int [] X = {(int)triangle.getP1().getX(), (int)triangle.getP2().getX(), (int)triangle.getP3().getX()};
 					int [] Y = {(int)triangle.getP1().getY(), (int)triangle.getP2().getY(), (int)triangle.getP3().getY()};
 					g.drawPolygon(X, Y, 3);	
+				}
+				if (tr instanceof UnCercle ){
+					UnCercle Cercle = (UnCercle) tr ;
+					int r = (int) (Cercle.distance(Cercle.getP1(),Cercle.getP2())) ;
+					int x =(int) Cercle.getP1().getX();
+					int y =(int) Cercle.getP1().getY();
+					g.drawOval(x-r,y-r,r*2,r*2);
+				}
+				if (tr instanceof UnRectangle ){
+					UnRectangle rectangle = (UnRectangle) tr;
+					int x = (int) rectangle.getP1().getX() ;
+					int y = (int) rectangle.getP1().getY() ;
+					int width = (int) Math.abs(rectangle.getP1().getX() - rectangle.getP2().getX());
+					int height = (int) Math.abs(rectangle.getP1().getY() - rectangle.getP2().getY());
+					if (y>rectangle.getP2().getY()) y = y - height;
+					if (x>rectangle.getP2().getX())	x = x - width ;		
+					g.drawRect(x, y, width, height );
 				}
 				if(tr.isSelectOn())
 					drawVertex(g, tr);

@@ -9,12 +9,12 @@ import javax.swing.event.MouseInputAdapter;
  * @version 1
  */
 
-public class ControleurTriangle extends MouseInputAdapter implements ControleurFigure{
+public class ControleurRectangle extends MouseInputAdapter implements ControleurFigure{
 	
 	boolean edition, deplacement, dessiner ;
 	int index ;
-	Point p1, p2, p3, pointEditer, pointDeplacer ;
-	UnTriangle triangle ;
+	Point p1, p2, pointEditer, pointDeplacer ;
+	UnRectangle rectangle ;
 	ListFigures lsFigures;
 	
 	/**
@@ -22,59 +22,53 @@ public class ControleurTriangle extends MouseInputAdapter implements ControleurF
 	 * @param trs
 	 */
 	
-	public ControleurTriangle(ListFigures trs) {
+	public ControleurRectangle(ListFigures trs) {
 		lsFigures = trs ;	
 		dessiner = true ;
 	}
 
 	public void mouseDragged(MouseEvent e){		
 		if (edition && !dessiner) {	
-			if (triangle.isInToleranceZone(pointEditer, triangle.getP1())) 
-				triangle.setLine(e.getPoint(), triangle.getP2());
-			if (triangle.isInToleranceZone(pointEditer, triangle.getP2()))
-				triangle.setLine(triangle.getP1(), e.getPoint());
-			if (triangle.isInToleranceZone(pointEditer, triangle.getP3()))
-				triangle.setP3(e.getPoint());
-			lsFigures.setFigure(index, triangle);
+			if (rectangle.isInToleranceZone(pointEditer, rectangle.getP1()))
+				rectangle.setLine(e.getPoint(),rectangle.getP2());
+			if (rectangle.isInToleranceZone(pointEditer, rectangle.getP2()))
+				rectangle.setLine(rectangle.getP1(), e.getPoint());
+			lsFigures.setFigure(index, rectangle);
 			pointEditer = e.getPoint() ;
 		}			
 		if (deplacement && !dessiner) {	
-			int xp1 = (int)triangle.getP1().getX() ;
-			int xp2 = (int)triangle.getP2().getX();
-			int xp3 = (int)triangle.getP3().getX() ;
-			int yp1 = (int)triangle.getP1().getY() ;
-			int yp2 = (int)triangle.getP2().getY();
-			int yp3 = (int)triangle.getP3().getY() ;
+			int xp1 = (int)rectangle.getP1().getX() ;
+			int xp2 = (int)rectangle.getP2().getX();
+			int yp1 = (int)rectangle.getP1().getY() ;
+			int yp2 = (int)rectangle.getP2().getY();
 			int x = (int) pointDeplacer.getX();
 			int y = (int) pointDeplacer.getY();
 			int nx = e.getX()-x ;
 			int ny = e.getY()-y ;
 			Point np1 = new Point( xp1+nx, yp1+ny);
 			Point np2 = new Point( xp2+nx, yp2+ny);
-			Point np3 = new Point( xp3+nx, yp3+ny);
-			triangle.setLine(np1,np2);
-			triangle.setP3(np3);
-			lsFigures.setFigure(index, triangle);
+			rectangle.setLine(np1,np2);
+			lsFigures.setFigure(index, rectangle);
 			pointDeplacer = e.getPoint() ;			
 		}
 	}
 	
 	public void mousePressed(MouseEvent e){
-			if (indexRectEditer(e.getPoint()) != -1 && ! dessiner){
+			if (indexCercleEditer(e.getPoint()) != -1 && ! dessiner){
 				edition = true ;
-				index = indexRectEditer(e.getPoint());
+				index = indexCercleEditer(e.getPoint());
 				pointEditer = e.getPoint() ;
 				lsFigures.getFigures().get(index).setSelectOn(true);
-				if (lsFigures.getFigures().get(index) instanceof UnTriangle) 
-					triangle = (UnTriangle)lsFigures.getFigures().get(index);
+				if (lsFigures.getFigures().get(index) instanceof UnRectangle) 
+					rectangle = (UnRectangle)lsFigures.getFigures().get(index);
 			}		
-			else if (indexRectDeplacer(e.getPoint()) != -1 && ! dessiner){
+			else if (indexCercleDeplacer(e.getPoint()) != -1 && ! dessiner){
 				deplacement = true ;			
-				index = indexRectDeplacer(e.getPoint());
+				index = indexCercleDeplacer(e.getPoint());
 				pointDeplacer = e.getPoint() ;
 				lsFigures.getFigures().get(index).setSelectOn(true);
-				if (lsFigures.getFigures().get(index) instanceof UnTriangle) 
-					triangle = (UnTriangle)lsFigures.getFigures().get(index);
+				if (lsFigures.getFigures().get(index) instanceof UnRectangle) 
+					rectangle = (UnRectangle)lsFigures.getFigures().get(index);
 			}
 	}
 	
@@ -102,37 +96,35 @@ public class ControleurTriangle extends MouseInputAdapter implements ControleurF
 				p1 = new Point (e.getPoint()) ;		
 			else if (p2 == null) 
 				p2 = new Point (e.getPoint()) ;
-			else if (p3 == null) 
-				p3 = new Point (e.getPoint()) ;
-			if (p3 != null){
-				triangle = new UnTriangle(p1,p2,p3);
-				lsFigures.addFigure(triangle);
+			
+			if (p2 != null){
+				rectangle = new UnRectangle(p1,p2);
+				lsFigures.addFigure(rectangle);
 				p1 = null ;
 				p2 = null ;
-				p3 = null ;
 			}
 		}
 	}
 		
-	public int indexRectEditer (Point p){
+	public int indexCercleEditer (Point p){
 		int index = -1 ;
 		for (int i = 0; i < lsFigures.getFigures().size(); i++) {
-			if (lsFigures.getFigures().get(i) instanceof UnTriangle)
-				triangle = (UnTriangle)lsFigures.getFigures().get(i);
-			if (triangle != null)
-				if (triangle.tolerance(p))
+			if (lsFigures.getFigures().get(i) instanceof UnRectangle)
+				rectangle = (UnRectangle)lsFigures.getFigures().get(i);
+			if (rectangle != null)
+				if (rectangle.tolerance(p))
 					 index = i ;			
 			}
 		return index ;
 	}
 	
-	public int indexRectDeplacer (Point p){
+	public int indexCercleDeplacer (Point p){
 		int index = -1 ;
 		for (int i = 0; i < lsFigures.getFigures().size(); i++) {
-			if (lsFigures.getFigures().get(i) instanceof UnTriangle)
-				triangle = (UnTriangle)lsFigures.getFigures().get(i);
-			if (triangle != null)
-				if (triangle.isInsideTriangle(p))
+			if (lsFigures.getFigures().get(i) instanceof UnRectangle)
+				rectangle = (UnRectangle)lsFigures.getFigures().get(i);
+			if (rectangle != null)
+				if (rectangle.insideRectangle(p))
 				 index = i ;					
 		}
 		return index ;
@@ -140,12 +132,11 @@ public class ControleurTriangle extends MouseInputAdapter implements ControleurF
 	
 	public void toggleMode (boolean b){
 		for (int i = 0; i < lsFigures.getFigures().size(); i++) {
-			if (lsFigures.getFigures().get(i) instanceof UnTriangle)
+			if (lsFigures.getFigures().get(i) instanceof UnRectangle)
 				lsFigures.getFigures().get(i).setSelectOn(b);
 			lsFigures.setFigure(i,lsFigures.getFigures().get(i));					
 		}
 		p1 = null ;
 		p2 = null ;
-		p3 = null ;
 	}
 }

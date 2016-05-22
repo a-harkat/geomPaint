@@ -43,23 +43,23 @@ public class Conteneur extends JPanel{
 		this.add(md,BorderLayout.EAST);
 		this.add(mh,BorderLayout.NORTH);
 		this.add(vg,BorderLayout.CENTER);
-		
 		trs.addObserver(vg);
+		 
 	
 		
-		/** mg.getButtonTrait().addActionListener(new ActionListener(){
+		mg.getCercle().addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
             	MouseListener[] mouseListeners = vg.getMouseListeners();
             	for (MouseListener mouseListener : mouseListeners) {
             		vg.removeMouseListener(mouseListener);
             	}
-            	ControleurTrait cg = new ControleurTrait(trs);
+            	ControleurCercle cg = new ControleurCercle(trs);
     			vg.addMouseMotionListener(cg);
     			vg.addMouseListener(cg);         			            		
             }							
         });	
 		
-		mg.getButtonTriangle().addActionListener(new ActionListener(){
+		mg.getTriangle().addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
             	MouseListener[] mouseListeners = vg.getMouseListeners();
             	for (MouseListener mouseListener : mouseListeners) {
@@ -70,6 +70,23 @@ public class Conteneur extends JPanel{
     			vg.addMouseListener(cgt); 
             	       			            		
             }							
-        });	*/
+        });	
+		
+		mg.getRectangle().addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+            	MouseListener[] mouseListeners = vg.getMouseListeners();
+            	for (MouseListener mouseListener : mouseListeners) {
+            		vg.removeMouseListener(mouseListener);
+            	}
+            	ControleurRectangle cgt = new ControleurRectangle(trs);
+    			vg.addMouseMotionListener(cgt);
+    			vg.addMouseListener(cgt); 
+            	       			            		
+            }							
+        });	
+		mg.getQuelconque().addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+            }				
+        });	
 	}
 }

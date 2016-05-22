@@ -12,7 +12,7 @@ public class UnTriangle extends UnPolygone{
 	 *Sert a la serialisation
 	 */
 	private static final long serialVersionUID = 1L;
-	private final static int tolerance = 5;
+	
 	/**
 	 *Represente le troisieme point
 	 */
@@ -51,18 +51,8 @@ public class UnTriangle extends UnPolygone{
 	 * retourne si un point est dans la zone de tolérance d'un autre point
 	 */
 	public boolean tolerance (Point2D p) {
-		return isInsideCercle(p,this.getP1()) || isInsideCercle(p,this.getP2()) || isInsideCercle(p,this.getP3()) ;		   
+		return isInToleranceZone(p,this.getP1()) || isInToleranceZone(p,this.getP2()) || isInToleranceZone(p,this.getP3()) ;		   
 	}	
-	
-	/**
-	 * retourne si un point est dans le cercle qui a pour centre un point donné
-	 */
-	public boolean isInsideCercle (Point2D p1, Point2D p2) {
-		double dx = p1.getX()- p2.getX();
-	   double dy = p1.getY()- p2.getY();
-	   return dx * dx + dy * dy <= tolerance * tolerance;
-	}
-	
 	/**
 	 * Getteur du troisieme point
 	 * @return p3
