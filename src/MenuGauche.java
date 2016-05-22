@@ -16,10 +16,12 @@ public class MenuGauche extends Menu {
 	 *Sert a la serialisation
 	 */
 	private static final long serialVersionUID = 1L;
+	private JButton trait;
 	private JButton cercle;
 	private JButton rectangle;
 	private JButton triangle;
 	private JButton quelconque;
+	private JButton edition;
 	
 	/**
 	 * Constructeur du JPanel menu Gauche
@@ -39,17 +41,29 @@ public class MenuGauche extends Menu {
 	 * boutons du menu Gauche
 	 */
 	private void generateBoutton() {
+		setTrait(new JButton("Trait"));
 		setCercle(new JButton("Cercle"));
 		setRectangle(new JButton("Rectangle"));
 		setTriangle(new JButton("Triangle"));
 		setQuelconque(new JButton("Quelconque"));
+		setEdition(new JButton("Edition"));
 		
+		this.ajouterBouttonM(getTrait());
 		this.ajouterBouttonM(getCercle());
 		this.ajouterBouttonM(getRectangle());
 		this.ajouterBouttonM(getTriangle());
 		this.ajouterBouttonM(getQuelconque());
+		this.ajouterBouttonM(getEdition());
 	}
 
+	public JButton getTrait() {
+		return trait;
+	}
+
+	public void setTrait(JButton trait) {
+		this.trait = trait;
+	}
+	
 	public JButton getCercle() {
 		return cercle;
 	}
@@ -80,6 +94,14 @@ public class MenuGauche extends Menu {
 
 	public void setQuelconque(JButton quelconque) {
 		this.quelconque = quelconque;
+	}
+	
+	public JButton getEdition() {
+		return edition;
+	}
+
+	public void setEdition(JButton edition) {
+		this.edition = edition;
 	}
 
 }

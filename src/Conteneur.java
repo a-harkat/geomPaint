@@ -47,6 +47,18 @@ public class Conteneur extends JPanel{
 		 
 	
 		
+		mg.getTrait().addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+            	MouseListener[] mouseListeners = vg.getMouseListeners();
+            	for (MouseListener mouseListener : mouseListeners) {
+            		vg.removeMouseListener(mouseListener);
+            	}
+            	ControleurTrait ctr = new ControleurTrait(trs);
+    			vg.addMouseMotionListener(ctr);
+    			vg.addMouseListener(ctr);         			            		
+            }							
+        });
+		
 		mg.getCercle().addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
             	MouseListener[] mouseListeners = vg.getMouseListeners();
@@ -57,7 +69,7 @@ public class Conteneur extends JPanel{
     			vg.addMouseMotionListener(cg);
     			vg.addMouseListener(cg);         			            		
             }							
-        });	
+        });
 		
 		mg.getTriangle().addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -87,6 +99,18 @@ public class Conteneur extends JPanel{
 		mg.getQuelconque().addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
             }				
-        });	
+        });
+		
+		mg.getEdition().addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+            	MouseListener[] mouseListeners = vg.getMouseListeners();
+            	for (MouseListener mouseListener : mouseListeners) {
+            		vg.removeMouseListener(mouseListener);
+            	}
+            	ControleurEdition ced = new ControleurEdition(trs);
+    			vg.addMouseMotionListener(ced);
+    			vg.addMouseListener(ced);		            		
+            }							
+        });
 	}
 }
