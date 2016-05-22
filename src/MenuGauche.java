@@ -2,6 +2,7 @@ import java.awt.Color;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -35,12 +36,20 @@ public class MenuGauche extends Menu {
 	 * boutons du menu Gauche
 	 */
 	private void generateBoutton() {
-		JButton trait = new JButton("Trait");
-		JButton cercle = new JButton("Cercle");
-		JButton rectangle = new JButton("Rectangle");
-		JButton triangle = new JButton("Triangle");
-		JButton quelconque = new JButton("Quelconque");
-		JButton edition = new JButton("Edition");
+		ImageIcon img_trait = new ImageIcon("src/images/trait.png", "trait");
+		ImageIcon img_cercle = new ImageIcon("src/images/cercle.png", "cercle");
+		ImageIcon img_rectangle = new ImageIcon("src/images/rectangle.png", "rectangle");
+		ImageIcon img_triangle = new ImageIcon("src/images/triangle.png", "triangle");
+		ImageIcon img_quelconque = new ImageIcon("src/images/quelconque.png", "quelconque");
+		ImageIcon img_edition = new ImageIcon("src/images/edition.png", "edition");
+		
+		
+		JButton trait = new JButton(img_trait);
+		JButton cercle = new JButton(img_cercle);
+		JButton rectangle = new JButton(img_rectangle);
+		JButton triangle = new JButton(img_triangle);
+		JButton quelconque = new JButton(img_quelconque);
+		JButton edition = new JButton(img_edition);
 		
 		this.ajouterBouttonM(trait);
 		this.ajouterBouttonM(cercle);
