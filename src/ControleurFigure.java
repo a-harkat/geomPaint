@@ -30,7 +30,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	
 	public ControleurFigure(ListFigures trs) {
 		lsFigures = trs ;	
-		setDessiner(true) ;
+		setDessiner(false) ;
 	}
 
 	public void mouseDragged(MouseEvent e){		
@@ -88,14 +88,14 @@ public class ControleurFigure extends MouseInputAdapter {
 				index = indexEditer(e.getPoint());
 				pointEditer = e.getPoint() ;
 				figure = lsFigures.getFigures().get(index);
-				//if (! figure.isSelectOn())  {figure.setSelectOn(true) ; System.out.println("alume depe");}
+				if (! figure.isSelectOn())  {figure.setSelectOn(true) ; System.out.println("alume depe");}
 			}		
 			else if (indexDeplacer(e.getPoint()) != -1 && ! isDessiner()){
 				deplacement = true ;			
 				index = indexDeplacer(e.getPoint());
 				pointEditer = e.getPoint() ;
 				figure = lsFigures.getFigures().get(index);
-				//if (! figure.isSelectOn()) {figure.setSelectOn(true) ; System.out.println("alume dep"); allumeDep = true;}
+
 			}
 	}
 	
@@ -144,10 +144,10 @@ public class ControleurFigure extends MouseInputAdapter {
 		else if (indexDeplacer(e.getPoint()) != -1 && ! isDessiner()){			
 			index = indexDeplacer(e.getPoint());
 			figure = lsFigures.getFigures().get(index);		
-			if (figure.isSelectOn())
+			if (figure.isSelectOn()){
 					figure.setSelectOn(false);
-					
-			else figure.setSelectOn(true);
+					System.out.println("etein clique");}
+			else {figure.setSelectOn(true);System.out.println("alume clique");}
 			lsFigures.setFigure(index, figure) ;				
 		}
 	}
