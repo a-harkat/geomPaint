@@ -11,7 +11,7 @@ import javax.swing.event.MouseInputAdapter;
 
 public class ControleurFigure extends MouseInputAdapter {
 	
-	boolean edition, deplacement, allumeDep ;
+	boolean edition, deplacement ;
 	private boolean dessiner;
 	private boolean rectangleOn ;
 	private boolean cercleOn;
@@ -30,7 +30,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	
 	public ControleurFigure(ListFigures trs) {
 		lsFigures = trs ;	
-		setDessiner(true) ;
+		setDessiner(false) ;
 	}
 
 	public void mouseDragged(MouseEvent e){		
@@ -80,6 +80,7 @@ public class ControleurFigure extends MouseInputAdapter {
 				}
 			pointEditer = e.getPoint() ;					
 		}
+		if (! figure.isSelectOn())  figure.setSelectOn(true) ; 
 	}
 	
 	public void mousePressed(MouseEvent e){
@@ -87,15 +88,13 @@ public class ControleurFigure extends MouseInputAdapter {
 				edition = true ;
 				index = indexEditer(e.getPoint());
 				pointEditer = e.getPoint() ;
-				figure = lsFigures.getFigures().get(index);
-				//if (! figure.isSelectOn())  {figure.setSelectOn(true) ; System.out.println("alume depe");}
+				figure = lsFigures.getFigures().get(index);				
 			}		
 			else if (indexDeplacer(e.getPoint()) != -1 && ! isDessiner()){
 				deplacement = true ;			
 				index = indexDeplacer(e.getPoint());
 				pointEditer = e.getPoint() ;
 				figure = lsFigures.getFigures().get(index);
-				//if (! figure.isSelectOn()) {figure.setSelectOn(true) ; System.out.println("alume dep"); allumeDep = true;}
 			}
 	}
 	
@@ -145,8 +144,7 @@ public class ControleurFigure extends MouseInputAdapter {
 			index = indexDeplacer(e.getPoint());
 			figure = lsFigures.getFigures().get(index);		
 			if (figure.isSelectOn())
-					figure.setSelectOn(false);
-					
+					figure.setSelectOn(false);				
 			else figure.setSelectOn(true);
 			lsFigures.setFigure(index, figure) ;				
 		}
