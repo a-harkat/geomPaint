@@ -1,5 +1,6 @@
 import java.awt.Color;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -29,8 +30,10 @@ public class MenuBas extends Menu {
 	 * boutons du menu bas
 	 */
 	private void generateBoutton() {
+		ImageIcon sup = new ImageIcon("src/images/poubelle.png", "poubelle");
+		
 		JButton undo = new JButton("UNDO");
-		JButton suprimer = new JButton("Supprimer");
+		JButton suprimer = new JButton(sup);
 		JButton colorier = new JButton("Colorier");
 		
 		undo.setToolTipText("revenir en arriere");
