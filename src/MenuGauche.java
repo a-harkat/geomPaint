@@ -1,9 +1,13 @@
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JSlider;
 
 /**
  * Classe qui represente le menu Gauche et qui contient
@@ -43,20 +47,80 @@ public class MenuGauche extends Menu {
 		ImageIcon img_quelconque = new ImageIcon("src/images/quelconque.png", "quelconque");
 		ImageIcon img_edition = new ImageIcon("src/images/edition.png", "edition");
 		
-		
+		JButton couleur = new JButton("Couleur actuelle");
+		couleur.setAlignmentX(Component.CENTER_ALIGNMENT);
+		couleur.setMinimumSize(new Dimension(154,40));
+		couleur.setMaximumSize(new Dimension(154,40));
+		couleur.setPreferredSize(new Dimension(154,40));
 		JButton trait = new JButton(img_trait);
+		trait.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JButton cercle = new JButton(img_cercle);
+		cercle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JButton rectangle = new JButton(img_rectangle);
+		rectangle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JButton triangle = new JButton(img_triangle);
+		triangle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JButton quelconque = new JButton(img_quelconque);
+		quelconque.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JButton edition = new JButton(img_edition);
+		edition.setAlignmentX(Component.CENTER_ALIGNMENT);
+		JSlider nb_poly = this.generate_mg_jsli();
 		
+		this.ajouterBouttonM(couleur);
+		this.ajouterBouttonM(edition);
 		this.ajouterBouttonM(trait);
-		this.ajouterBouttonM(cercle);
 		this.ajouterBouttonM(rectangle);
 		this.ajouterBouttonM(triangle);
+		this.ajouterBouttonM(cercle);
 		this.ajouterBouttonM(quelconque);
-		this.ajouterBouttonM(edition);
+		this.ajouterBouttonM(nb_poly);
+		
 	}
-
+	
+	/**
+	 *Methode qui genere un Jslider, creer pour allerger le code 
+	 * @return b_type le bouton type
+	 */
+	private JSlider generate_mg_jsli() {
+		JSlider b_type = new JSlider();
+		b_type.setMaximum(8);
+	    b_type.setMinimum(3);
+	    b_type.setValue(1);
+	    b_type.setPaintTicks(true);
+	    b_type.setPaintLabels(true);
+	    b_type.setMajorTickSpacing(1);
+	    b_type.setFont(new Font("TimesRoman", Font.BOLD, 15));
+	    b_type.setMinimumSize(new Dimension(154,40));
+	    b_type.setMaximumSize(new Dimension(154,40));
+	    b_type.setPreferredSize(new Dimension(154,40));
+	    b_type.setBackground(new Color(96, 96, 96));
+	    b_type.setAlignmentX(Component.CENTER_ALIGNMENT);
+	    b_type.setToolTipText("nombre de points pour le polygone");
+	    
+	    return b_type;
+	}
+	
+	/**
+	 *Methode qui retourne le nombre de points du Slider
+	 * @return nombre de points selectionner
+	 */
+	public int get_nb_points_poly(){
+		return ((JSlider) this.getBouttonM(6)).getValue();
+	}
+	
+	/**
+	 *Methode pour definir la nouvelle couleur actuelle 
+	 * @param new_col
+	 */
+	public void set_col_actuelle(Color new_col){
+		this.getBouttonM(0).setBackground(new_col);
+	}
+	
+	/**
+	 *Methode pour savoir la couleur selectionnee
+	 * @return couleur actuelle
+	 */
+	public Color get_col_actuelle(){
+		return this.getBouttonM(0).getBackground();
+	}
 }

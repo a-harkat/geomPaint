@@ -30,13 +30,16 @@ public class MenuBas extends Menu {
 	 */
 	private void generateBoutton() {
 		JButton undo = new JButton("UNDO");
-		JButton dupliquer = new JButton("Dup");
+		JButton suprimer = new JButton("Supprimer");
+		JButton colorier = new JButton("Colorier");
 		
 		undo.setToolTipText("revenir en arriere");
-		dupliquer.setToolTipText("dupliquer un objet");
+		suprimer.setToolTipText("suprimer un objet");
+		colorier.setToolTipText("colorier un objet");
 		
+		this.ajouterBouttonM(colorier);
 		this.ajouterBouttonM(undo);
-		this.ajouterBouttonM(dupliquer);
+		this.ajouterBouttonM(suprimer);
 	}
 
 }
