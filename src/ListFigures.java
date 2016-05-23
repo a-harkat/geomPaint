@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 
 /**
@@ -36,6 +37,29 @@ public class ListFigures extends Observable{
 	 */
 	public void removeFigure(int numfigure) {
 		figures.remove(numfigure);
+		setChanged();
+		notifyObservers();
+	}
+	
+	/**
+	 * Methode pour supprimer toutes les figures de la liste 
+	 */
+	public void removeAll() {
+		figures.clear();
+		setChanged();
+		notifyObservers();
+	}
+	
+	/**
+	 * Methode pour supprimer les figures selectionées de la liste 
+	 */
+	public void removeSelected() {
+		Iterator<FigureGeom> iterator = this.getFigures().iterator();
+		while ( iterator.hasNext() ) {
+			FigureGeom figure = iterator.next();
+			if (figure.isSelectOn()) 
+		        iterator.remove();
+		    }
 		setChanged();
 		notifyObservers();
 	}

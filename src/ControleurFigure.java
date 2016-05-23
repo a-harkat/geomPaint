@@ -1,5 +1,7 @@
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.util.ListIterator;
+
 import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputAdapter;
 
@@ -225,20 +227,14 @@ public class ControleurFigure extends MouseInputAdapter {
 	 *Suprime la figure sélectionnée
 	 */	
 	public void deleteSelected (){
-		FigureGeom fg ;
-		for (int i = 0; i < lsFigures.getFigures().size(); i++) {			
-			fg = lsFigures.getFigures().get(i);		
-			if (fg.isSelectOn()) lsFigures.removeFigure (i);	
-		}
+		lsFigures.removeSelected();
 		effacerPoints();
 	}
 	/**
 	 *Suprime toutes les figures
 	 */	
-	public void deleteAll (){
-		for (int i = 0; i < lsFigures.getFigures().size(); i++) {							
-				lsFigures.removeFigure (i);	
-		}
+	public void deleteAll (){			
+		lsFigures.removeAll();	
 		effacerPoints();
 	}
 
