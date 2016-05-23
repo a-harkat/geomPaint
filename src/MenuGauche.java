@@ -105,7 +105,7 @@ public class MenuGauche extends Menu {
 	 * @return nombre de points selectionner
 	 */
 	public int get_nb_points_poly(){
-		return ((JSlider) this.getBouttonM(6)).getValue();
+		return ((JSlider) this.getBouttonM(7)).getValue();
 	}
 	
 	/**
