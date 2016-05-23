@@ -73,9 +73,9 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(2)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cgt.effacerPoints();
 				cgt.toggleMode (false);
 				cgt.setDessiner(true);
+				cgt.effacerPoints();			
 				cgt.setCercleOn(false);
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(false);
@@ -87,9 +87,9 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(3)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cgt.toggleMode (false);
+				cgt.toggleMode(false);
 				cgt.setDessiner(true);
-				cgt.effacerPoints();
+				cgt.effacerPoints();				
 				cgt.setCercleOn(false);
 				cgt.setRectangleOn(true);
 				cgt.setTriangleOn(false);
@@ -101,8 +101,9 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(4)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cgt.setDessiner(true);
 				cgt.toggleMode (false);
+				cgt.setDessiner(true);
+				cgt.effacerPoints();				
 				cgt.setCercleOn(false);
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(true);
@@ -114,9 +115,9 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(5)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){	
-				cgt.setDessiner(true);
 				cgt.toggleMode (false);
-				cgt.effacerPoints();
+				cgt.setDessiner(true);
+				cgt.effacerPoints();				
 				cgt.setCercleOn(true);
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(false);
@@ -128,8 +129,9 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(6)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cgt.setDessiner(true);
 				cgt.toggleMode (false);
+				cgt.setDessiner(true);
+				cgt.effacerPoints();				
 				cgt.setCercleOn(false);
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(false);
@@ -143,7 +145,13 @@ public class Conteneur extends JPanel{
 		((JButton)mb.getBouttonM(1)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				cgt.deleteLast ();
-				mh.changerTexteMH("Figure effacee");
+				mh.changerTexteMH("Derniere figure effacee");
+			}				
+		});
+		((JButton)mb.getBouttonM(2)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cgt.deleteSelected ();
+				mh.changerTexteMH("Figures effacee");
 			}				
 		});
 	}
