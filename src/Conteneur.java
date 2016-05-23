@@ -136,8 +136,9 @@ public class Conteneur extends JPanel{
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(false);
 				cgt.setTraitOn(false); 
-				cgt.setPolygoneOn(true);
+				cgt.setPolygoneOn(true);				
 				int nb = mg.get_nb_points_poly();
+				cgt.setNbPointPolygone(nb);
 				mh.changerTexteMH("Tracez un polygone : nombre de points choisis : " + nb);
 			}				
 		});
@@ -150,7 +151,7 @@ public class Conteneur extends JPanel{
 		});
 		((JButton)mb.getBouttonM(2)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cgt.deleteSelected ();
+				cgt.deleteAll ();
 				mh.changerTexteMH("Figure(s) effacee");
 			}				
 		});
