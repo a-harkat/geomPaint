@@ -1,8 +1,5 @@
 import java.awt.Point;
 import java.awt.event.MouseEvent;
-import java.util.ListIterator;
-
-import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputAdapter;
 
 /**
@@ -160,7 +157,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * Retourne l'index de la figure selectionée pour editer
+	 * Retourne l'index de la figure selectionï¿½e pour editer
 	 */	
 	public int indexEditer (Point p){
 		int index = -1 ;
@@ -176,7 +173,7 @@ public class ControleurFigure extends MouseInputAdapter {
 		return index ;
 	}
 	/**
-	 * Retourne l'index de la figure selectionée pour déplacer
+	 * Retourne l'index de la figure selectionï¿½e pour dï¿½placer
 	 */	
 	public int indexDeplacer (Point p){
 		int index = -1 ;
@@ -198,7 +195,7 @@ public class ControleurFigure extends MouseInputAdapter {
 		return index ;
 	}
 	/**
-	 * active ou désactive la selection de toutes les figures
+	 * active ou dï¿½sactive la selection de toutes les figures
 	 */	
 	public void toggleMode (boolean b){
 		for (int i = 0; i < lsFigures.getFigures().size(); i++) {			
@@ -208,7 +205,7 @@ public class ControleurFigure extends MouseInputAdapter {
 		effacerPoints();
 	}
 	/**
-	 * Suprime le dernier élément ajouté
+	 * Suprime le dernier ï¿½lï¿½ment ajoutï¿½
 	 */	
 	public void deleteLast (){
 		if (lsFigures.getFigures().size() > 0) 
@@ -216,7 +213,7 @@ public class ControleurFigure extends MouseInputAdapter {
 		effacerPoints();
 	}
 	/**
-	 * methode qui éfface les point lors du clique sur un bouton
+	 * methode qui ï¿½fface les point lors du clique sur un bouton
 	 */
 	public void effacerPoints() {
 		if (p1 != null) p1 = null;
@@ -224,7 +221,7 @@ public class ControleurFigure extends MouseInputAdapter {
 		if (p3 != null) p3 = null;
 	}
 	/**
-	 *Suprime la figure sélectionnée
+	 *Suprime la figure sï¿½lectionnï¿½e
 	 */	
 	public void deleteSelected (){
 		lsFigures.removeSelected();

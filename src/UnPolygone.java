@@ -7,11 +7,7 @@ import java.awt.Point;
  */
 public abstract class UnPolygone extends FigureGeom {
 
-	/**
-	 *Sert a la serialisation
-	 */
-	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * Constructeur de Polygone
 	 * @param p1 point 1 

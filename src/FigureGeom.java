@@ -1,6 +1,5 @@
 import java.awt.Point;
-import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
+
 
 /**
  * Classe qui represente les figures geometriques
@@ -9,10 +8,6 @@ import java.awt.geom.Point2D;
  */
 public abstract class FigureGeom  {
 
-	/**
-	 *Sert a la serialisation
-	 */
-	private static final long serialVersionUID = 1L;
 	private static final int tolerance = 5;
 	private Point P1, P2 ;
 	boolean selectOn = false;

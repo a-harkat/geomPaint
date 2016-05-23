@@ -1,7 +1,4 @@
 import java.awt.Point;
-import java.awt.geom.Line2D;
-
-import com.sun.javafx.geom.Rectangle;
 
 /**
  * Classe qui sert a dessiner les traits A REVOIR  !
@@ -9,11 +6,6 @@ import com.sun.javafx.geom.Rectangle;
  * @version 1
  */
 public class UnTrait extends FigureGeom{
-
-	/**
-	 *Sert a la serialisation
-	 */
-	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * Constructeur de Trait 

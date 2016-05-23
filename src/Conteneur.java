@@ -2,12 +2,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JColorChooser;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 /**
  * Classe Conteneur, contient les differents JPanel ainsi que les 
@@ -151,7 +151,14 @@ public class Conteneur extends JPanel{
 		((JButton)mb.getBouttonM(2)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				cgt.deleteSelected ();
-				mh.changerTexteMH("Figures effacee");
+				mh.changerTexteMH("Figure(s) effacee");
+			}				
+		});
+		
+		((JCheckBox)mh.getBouttonM(1)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				boolean etat = ((AbstractButton) e.getSource()).getModel().isSelected();
+				mg.changeicons(etat);
 			}				
 		});
 	}

@@ -10,11 +10,6 @@ import com.sun.javafx.geom.Rectangle;
 public class UnRectangle extends FigureGeom {
 
 	/**
-	 *Sert a la serialisation
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
 	 * Constructeur de Rectangle
 	 * @param p1 point 1
 	 * @param p2 point 2

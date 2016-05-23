@@ -9,11 +9,6 @@ import java.awt.geom.Point2D;
 public class UnCercle extends FigureGeom {
 
 	/**
-	 *Sert a la serialisation
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
 	 * Constructeur de Cercle
 	 * @param p1 point 1 centre
 	 * @param p2 point 2 rayon

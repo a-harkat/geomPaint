@@ -8,10 +8,6 @@ import java.util.ArrayList;
  */
 public class UnQuelconque extends UnPolygone{
 	
-	/**
-	 *Sert a la serialisation
-	 */
-	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * Contient la liste des points de la figure 
