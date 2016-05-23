@@ -32,35 +32,35 @@ public class ControleurFigure extends MouseInputAdapter {
 	/**
 	 * Listener souris Dragged
 	 */
-	public void mouseDragged(MouseEvent e){		
-		if (edition && !isDessiner()) {
-			editerFigure(e.getPoint());
+	public void mouseDragged(MouseEvent e){	
+		if (!isDessiner()){
+			if (edition ) {
+				editerFigure(e.getPoint());
+			}			
+			else if (deplacement) {								
+				deplacerFigure(e.getPoint());				
+			}
 			pointEditer = e.getPoint() ;
-			if (! figure.isSelectOn())  figure.setSelectOn(true) ; 
-		}			
-		else if (deplacement && !isDessiner()) {								
-			deplacerFigure(e.getPoint());
-			pointEditer = e.getPoint() ;	
-			if (! figure.isSelectOn())  figure.setSelectOn(true) ; 
-		}		
+			if (! figure.isSelectOn())  figure.setSelectOn(true) ;
+		}
 	}
 	
 	/**
 	 * Listener souris Pressed
 	 */
 	public void mousePressed(MouseEvent e){
-		if (indexEditer(e.getPoint()) != -1 && ! isDessiner()){
-			edition = true ;
-			index = indexEditer(e.getPoint());
-			pointEditer = e.getPoint() ;
-			figure = lsFigures.getFigures().get(index);				
-		}		
-		else if (indexDeplacer(e.getPoint()) != -1 && ! isDessiner()){
-			deplacement = true ;			
-			index = indexDeplacer(e.getPoint());
+		 if (! isDessiner()){
+			if (indexEditer(e.getPoint()) != -1 ){
+				edition = true ;
+				index = indexEditer(e.getPoint());
+			}		
+			else if (indexDeplacer(e.getPoint()) != -1){
+				deplacement = true ;			
+				index = indexDeplacer(e.getPoint());
+			}
 			pointEditer = e.getPoint() ;
 			figure = lsFigures.getFigures().get(index);
-		}
+		 }
 	}
 	
 	/**
@@ -95,7 +95,7 @@ public class ControleurFigure extends MouseInputAdapter {
 				ajouterQueconque(e.getPoint());				
 			}
 		}
-		else if (indexDeplacer(e.getPoint()) != -1 && ! isDessiner()){			
+		else if (indexDeplacer(e.getPoint()) != -1){			
 			index = indexDeplacer(e.getPoint());
 			figure = lsFigures.getFigures().get(index);		
 			if (figure.isSelectOn())
@@ -133,8 +133,7 @@ public class ControleurFigure extends MouseInputAdapter {
 			UnQuelconque quelconque = (UnQuelconque) lsFigures.getFigures().get(index);
 			quelconque.deplacerQuelconque(pointEditer,  p);
 			lsFigures.setFigure(index, quelconque);
-		}
-		
+		}		
 	}
 	
 	/**
