@@ -55,62 +55,76 @@ public class Conteneur extends JPanel{
 		((JButton)mg.getBouttonM(0)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				cgt.effacerPoints();
+				cgt.toggleMode (false);
+				cgt.setDessiner(true);
 				cgt.setCercleOn(false);
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(false);
 				cgt.setTraitOn(true);
+				cgt.setPolygoneOn(false); 
 			}							
 		});
 		
 		((JButton)mg.getBouttonM(1)).addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent e){	
+				cgt.setDessiner(true);
+				cgt.toggleMode (false);
 				cgt.effacerPoints();
 				cgt.setCercleOn(true);
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(false);
 				cgt.setTraitOn(false);
+				cgt.setPolygoneOn(false); 
 			}							
 		});
 		
 		((JButton)mg.getBouttonM(2)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				cgt.toggleMode (false);
+				cgt.setDessiner(true);
 				cgt.effacerPoints();
 				cgt.setCercleOn(false);
 				cgt.setRectangleOn(true);
 				cgt.setTriangleOn(false);
 				cgt.setTraitOn(false);
+				cgt.setPolygoneOn(false); 
 			}							
 		});	
 		
 		((JButton)mg.getBouttonM(3)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cgt.effacerPoints();
+				cgt.setDessiner(true);
+				cgt.toggleMode (false);
 				cgt.setCercleOn(false);
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(true);
-				cgt.setTraitOn(false); 
+				cgt.setTraitOn(false);
+				cgt.setPolygoneOn(false); 
 			}							
 		});	
 		
 		((JButton)mg.getBouttonM(4)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				cgt.setDessiner(true);
+				cgt.toggleMode (false);
+				cgt.setCercleOn(false);
+				cgt.setRectangleOn(false);
+				cgt.setTriangleOn(false);
+				cgt.setTraitOn(false); 
+				cgt.setPolygoneOn(true); 
+			}				
+		});
+		
+		((JButton)mb.getBouttonM(0)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cgt.deleteLast ();
 			}				
 		});
 		
 		((JButton)mg.getBouttonM(5)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){	
-					cgt.effacerPoints();
-					if (cgt.isDessiner()) {
-						cgt.setDessiner(false);
-						cgt.toggleMode (true);
-						System.out.println("mode édition");
-					}
-					else {
-						cgt.setDessiner(true);
-						cgt.toggleMode (false);
-						System.out.println("mode déssin");
-					}
-						            		
+				cgt.effacerPoints();
+				cgt.setDessiner(false);								            		
 			}							
 		});
 	}

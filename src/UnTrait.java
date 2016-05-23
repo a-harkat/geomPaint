@@ -36,7 +36,7 @@ public class UnTrait extends FigureGeom{
 		double dxl = x2 - x1;
 		double dyl = y2 - y1;
 		double cross = dxc * dyl - dyc * dxl;
-		if (Math.abs(cross) > 10000)
+		if (Math.abs(cross) > 2500)
 			  return false;
 		if (Math.abs(dxl) >= Math.abs(dyl)){
 			  return dxl > 0 ? 

@@ -11,12 +11,13 @@ import javax.swing.event.MouseInputAdapter;
 
 public class ControleurFigure extends MouseInputAdapter {
 	
-	boolean edition, deplacement ;
+	boolean edition, deplacement, allumeDep ;
 	private boolean dessiner;
 	private boolean rectangleOn ;
 	private boolean cercleOn;
 	private boolean triangleOn;
 	private boolean traitOn;
+	private boolean polygoneOn;
 	int index ;
 	Point p1, p2, p3, pointEditer ;	
 	FigureGeom figure ;
@@ -87,56 +88,70 @@ public class ControleurFigure extends MouseInputAdapter {
 				index = indexEditer(e.getPoint());
 				pointEditer = e.getPoint() ;
 				figure = lsFigures.getFigures().get(index);
+				//if (! figure.isSelectOn())  {figure.setSelectOn(true) ; System.out.println("alume depe");}
 			}		
 			else if (indexDeplacer(e.getPoint()) != -1 && ! isDessiner()){
 				deplacement = true ;			
 				index = indexDeplacer(e.getPoint());
 				pointEditer = e.getPoint() ;
-				figure = lsFigures.getFigures().get(index);				
+				figure = lsFigures.getFigures().get(index);
+				//if (! figure.isSelectOn()) {figure.setSelectOn(true) ; System.out.println("alume dep"); allumeDep = true;}
 			}
 	}
 	
 	public void mouseReleased(MouseEvent e){
 		edition = false ;
 		deplacement = false;
-		pointEditer = null;		
+		pointEditer = null;	
 	}
 	
 	public void mouseClicked(MouseEvent e) {
 		if (isDessiner())  {			
 			if (p1 == null) 
-				p1 = new Point (e.getPoint()) ;		
-			else if (p2 == null) {
-				p2 = new Point (e.getPoint()) ;											
-				if (isRectangleOn()) {       			
+				p1 = new Point (e.getPoint()) ;	
+			else if (p2 == null){ 				
+				p2 = new Point (e.getPoint()) ;	
+										
+				if (isRectangleOn()){					
 					UnRectangle rt = new UnRectangle(p1,p2);
 					lsFigures.addFigure(rt);
-					p1 = null ;
-					p2 = null ;
+					effacerPoints();
 				}
-				else if (isCercleOn()) {       				
+				
+				else if (isCercleOn()){		
 					UnCercle cl = new UnCercle(p1,p2);
 					lsFigures.addFigure(cl);
-					p1 = null ;
-					p2 = null ;
+					effacerPoints();
 				}
-				else if (isTraitOn()) {     			
+						
+				else if (isTraitOn()){		
 					UnTrait tr = new UnTrait(p1,p2);
-					lsFigures.addFigure(tr);	
-					p1 = null ;
-					p2 = null ;
-				}									
-			}	
-			else if (isTriangleOn() && p3 == null) {								
-				p3 = new Point (e.getPoint()) ;
-				UnTriangle triangle = new UnTriangle(p1,p2,p3);
-				lsFigures.addFigure(triangle);	
-				p1 = null ;
-				p2 = null ;
-				p3 = null ;
-			}	
+					lsFigures.addFigure(tr);
+					effacerPoints();
+				}	
+		}
+			
+			else if (p3 == null){
+				p3 = new Point (e.getPoint()) ;			
+				if (isTriangleOn() && p3 != null) {
+					UnTriangle triangle = new UnTriangle(p1,p2,p3);
+					lsFigures.addFigure(triangle);	
+					effacerPoints();
+				}
+			}
+		}
+	
+		else if (indexDeplacer(e.getPoint()) != -1 && ! isDessiner()){			
+			index = indexDeplacer(e.getPoint());
+			figure = lsFigures.getFigures().get(index);		
+			if (figure.isSelectOn())
+					figure.setSelectOn(false);
+					
+			else figure.setSelectOn(true);
+			lsFigures.setFigure(index, figure) ;				
 		}
 	}
+	
 		
 	public int indexEditer (Point p){
 		int index = -1 ;
@@ -170,16 +185,20 @@ public class ControleurFigure extends MouseInputAdapter {
 					index = i ;	
 		}
 		return index ;
-	}	
+	}
 	
 	public void toggleMode (boolean b){
 		for (int i = 0; i < lsFigures.getFigures().size(); i++) {			
 			lsFigures.getFigures().get(i).setSelectOn(b);
 			lsFigures.setFigure(i,lsFigures.getFigures().get(i));					
 		}
-		p1 = null ;
-		p2 = null ;
-		p3 = null ;
+		effacerPoints();
+	}
+	
+	public void deleteLast (){
+		if (lsFigures.getFigures().size() > 0) 
+			lsFigures.removeFigure (lsFigures.getFigures().size() - 1);		
+		effacerPoints();
 	}
 
 	/**
@@ -258,5 +277,19 @@ public class ControleurFigure extends MouseInputAdapter {
 		if (p1 != null) p1 = null;
 		if (p2 != null) p2 = null;
 		if (p3 != null) p3 = null;
+	}
+
+	/**
+	 * @return the polygoneOn
+	 */
+	public boolean isPolygoneOn() {
+		return polygoneOn;
+	}
+
+	/**
+	 * @param polygoneOn the polygoneOn to set
+	 */
+	public void setPolygoneOn(boolean polygoneOn) {
+		this.polygoneOn = polygoneOn;
 	}
 }
