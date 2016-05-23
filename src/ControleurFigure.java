@@ -11,7 +11,7 @@ import javax.swing.event.MouseInputAdapter;
 
 public class ControleurFigure extends MouseInputAdapter {
 	
-	boolean edition, deplacement, allumeDep ;
+	boolean edition, deplacement ;
 	private boolean dessiner;
 	private boolean rectangleOn ;
 	private boolean cercleOn;
