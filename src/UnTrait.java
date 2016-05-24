@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Point;
 
 /**
@@ -12,8 +13,8 @@ public class UnTrait extends FigureGeom{
 	 * @param p1 point 1
 	 * @param p2 point 2
 	 */
-	public UnTrait(Point p1, Point p2) {
-		super(p1, p2);
+	public UnTrait(Point p1, Point p2, Color border) {
+		super(p1, p2, border);
 	}
 	
 	public boolean insideTrait(Point p) {

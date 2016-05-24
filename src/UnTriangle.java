@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
@@ -19,8 +20,8 @@ public class UnTriangle extends UnPolygone{
 	 * @param p2
 	 * @param p3
 	 */
-	public UnTriangle(Point p1, Point p2, Point p3) {
-		super(p1, p2);
+	public UnTriangle(Point p1, Point p2, Point p3, Color border) {
+		super(p1, p2, border);
 		this.setP3(p3) ;
 	}
 	

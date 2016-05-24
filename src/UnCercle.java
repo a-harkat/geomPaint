@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
@@ -13,8 +14,8 @@ public class UnCercle extends FigureGeom {
 	 * @param p1 point 1 centre
 	 * @param p2 point 2 rayon
 	 */
-	public UnCercle(Point p1, Point p2) {
-		super(p1, p2);		
+	public UnCercle(Point p1, Point p2, Color border) {
+		super(p1, p2, border);		
 	}
 	
 	public boolean insideCercle (Point2D p1) {

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Polygon;
 
@@ -21,8 +22,8 @@ public class UnQuelconque extends UnPolygone{
 	 * @param p2 point 2 
 	 * @param lp liste des points 
 	 */
-	public UnQuelconque(Point p1, Point p2, Point[] p) {
-		super(p1, p2);
+	public UnQuelconque(Point p1, Point p2, Point[] p, Color border) {
+		super(p1, p2, border);
 		listPoints = p ;	
 
 	}

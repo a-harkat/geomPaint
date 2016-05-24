@@ -45,11 +45,11 @@ public class VueGraphique extends JPanel implements Observer {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(Color.black);
 
 		if(this.listeFigures != null)
 			for (int i = 0; i < this.listeFigures.getFigures().size(); i++) {
 				FigureGeom tr = this.listeFigures.getFigures().get(i);
+				g.setColor(tr.getBorder_color());
 				if (tr instanceof UnTrait){
 					g.drawLine((int)tr.getP1().getX(), (int)tr.getP1().getY(),
 							(int)tr.getP2().getX(), (int)tr.getP2().getY()); 

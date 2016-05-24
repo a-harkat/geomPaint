@@ -28,7 +28,8 @@ public abstract class FigureGeom  {
 	 * @param p1 point 1
 	 * @param p2 point 2
 	 */
-	public FigureGeom(Point p1, Point p2) {
+	public FigureGeom(Point p1, Point p2, Color border) {
+		border_color = border;
 		P1 = p1 ;
 		P2 = p2 ;
 	}
