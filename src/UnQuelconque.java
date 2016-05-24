@@ -33,4 +33,15 @@ public class UnQuelconque extends UnPolygone{
 		super(p1, p2);
 		this.listPoints = lp ;
 	}
+	
+	/**
+	 * Méthode qui va permettre de
+	 * récupérer la liste des points
+	 * du polygone
+	 * @return ArrayList<Point> Liste
+	 * des points du polygone quelconque
+	 */
+	public ArrayList<Point> getListPoint() {
+		return this.listPoints;
+	}
 }

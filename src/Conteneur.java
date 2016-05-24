@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.util.Observer;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +24,10 @@ public class Conteneur extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	/**
+	 * Liste des figures
+	 */
+	private ListFigures listFig;
+	/**
 	 * Constructeur du Conteneur, il se deroule ainsi
 	 * On definit le layout du conteneur
 	 * On creer les differents Menus 
@@ -39,7 +44,7 @@ public class Conteneur extends JPanel{
 		MenuBas mb = new MenuBas(Color.black);
 		MenuDroit md = new MenuDroit(Color.black);
 		MenuHaut mh = new MenuHaut(Color.black);
-		ListFigures trs = new ListFigures();	
+		this.listFig = new ListFigures();	
 		VueGraphique vg = new VueGraphique();
 		
 		this.add(mg,BorderLayout.WEST);
@@ -47,9 +52,9 @@ public class Conteneur extends JPanel{
 		this.add(md,BorderLayout.EAST);
 		this.add(mh,BorderLayout.NORTH);
 		this.add(vg,BorderLayout.CENTER);
-		trs.addObserver(vg);
+		this.listFig.addObserver(vg);
 		
-		ControleurFigure cgt = new ControleurFigure(trs);
+		ControleurFigure cgt = new ControleurFigure(this.listFig);
 		vg.addMouseMotionListener(cgt);
 		vg.addMouseListener(cgt); 
 		 
@@ -146,5 +151,16 @@ public class Conteneur extends JPanel{
 				mh.changerTexteMH("Figure effacee");
 			}				
 		});
+	}
+	
+	/**
+	 * Méthode qui va permettre
+	 * de lier une vue textuelle à notre
+	 * liste de figures
+	 * @param o Observer Vue à
+	 * associer
+	 */
+	public void ajoutObserver (Observer o) {
+		this.listFig.addObserver(o);
 	}
 }
