@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Point;
 
 import com.sun.javafx.geom.Rectangle;
@@ -14,8 +15,8 @@ public class UnRectangle extends FigureGeom {
 	 * @param p1 point 1
 	 * @param p2 point 2
 	 */
-	public UnRectangle(Point p1, Point p2) {
-		super(p1, p2);
+	public UnRectangle(Point p1, Point p2, Color border) {
+		super(p1, p2, border);
 
 	}
 	

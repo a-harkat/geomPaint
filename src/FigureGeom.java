@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Point;
 
 
@@ -10,23 +11,25 @@ public abstract class FigureGeom  {
 
 	private static final int tolerance = 5;
 	private Point P1, P2 ;
-	boolean selectOn = false;
+	private boolean selectOn = false;
 	
-	public boolean isSelectOn() {
-		return selectOn;
-	}
+	/**
+	 * Couleur de la bordure de la figure 
+	 */
+	private Color border_color;
 
-	public void setSelectOn(boolean selectOn) {
-		this.selectOn = selectOn;
-	}
-
+	/**
+	 *Couleur pleine de la figure
+	 */
+	private Color full_color;
 	
 	/**
 	 * Constructeur de Figure geometrique
 	 * @param p1 point 1
 	 * @param p2 point 2
 	 */
-	public FigureGeom(Point p1, Point p2) {
+	public FigureGeom(Point p1, Point p2, Color border) {
+		border_color = border;
 		P1 = p1 ;
 		P2 = p2 ;
 	}
@@ -145,6 +148,46 @@ public abstract class FigureGeom  {
 		Point np2 = new Point( xp2+nx, yp2+ny);
 		this.setP1(np1);
 		this.setP2(np2);
+	}
+	
+	/**
+	 * Getteur de la couleur de la bordure de la figure
+	 * @return Color de la bordure
+	 */
+	public Color getBorder_color() {
+		return border_color;
+	}
+	
+	/**
+	 * Setteur de la couleur de la bordure de la figure
+	 * @param new_border_color
+	 */
+	public void setBorder_color(Color new_border_color) {
+		this.border_color = new_border_color;
+	}
+	
+	/**
+	 * Getteur de la couleur pleine de la figure
+	 * @return Color pleine de la figure
+	 */
+	public Color getFull_color() {
+		return full_color;
+	}
+	
+	/**
+	 * Setteur de la couleur pleine de la figure
+	 * @param new_full_color
+	 */
+	public void setFull_color(Color new_full_color) {
+		this.full_color = new_full_color;
+	}
+	
+	public boolean isSelectOn() {
+		return selectOn;
+	}
+
+	public void setSelectOn(boolean selectOn) {
+		this.selectOn = selectOn;
 	}
 	
 }

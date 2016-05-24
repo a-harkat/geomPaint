@@ -131,11 +131,15 @@ public class MenuGauche extends Menu {
 	 */
 	public void changeicons(boolean etat) {
 		if (!etat) {
+			ImageIcon img_edition = new ImageIcon("src/images/edition.png", "edition");
+			ImageIcon img_trait = new ImageIcon("src/images/trait.png", "trait");
 			ImageIcon img_cercle = new ImageIcon("src/images/cercle.png", "cercle");
 			ImageIcon img_rectangle = new ImageIcon("src/images/rectangle.png", "rectangle");
 			ImageIcon img_triangle = new ImageIcon("src/images/triangle.png", "triangle");
 			ImageIcon img_quelconque = new ImageIcon("src/images/quelconque.png", "quelconque");
-		
+			
+			((AbstractButton) this.getBouttonM(1)).setIcon(img_edition);
+			((AbstractButton) this.getBouttonM(2)).setIcon(img_trait);
 			((AbstractButton) this.getBouttonM(3)).setIcon(img_rectangle);
 			((AbstractButton) this.getBouttonM(4)).setIcon(img_triangle);
 			((AbstractButton) this.getBouttonM(5)).setIcon(img_cercle);
@@ -143,11 +147,15 @@ public class MenuGauche extends Menu {
 
 		}
 		else {
+			ImageIcon img_edition = new ImageIcon("src/images/edition2.png", "edition");
+			ImageIcon img_trait = new ImageIcon("src/images/trait2.png", "trait");
 			ImageIcon img_cercle = new ImageIcon("src/images/cercle2.png", "cercle");
 			ImageIcon img_rectangle = new ImageIcon("src/images/rectangle2.png", "rectangle");
 			ImageIcon img_triangle = new ImageIcon("src/images/triangle2.png", "triangle");
 			ImageIcon img_quelconque = new ImageIcon("src/images/quelconque2.png", "quelconque");
 		
+			((AbstractButton) this.getBouttonM(1)).setIcon(img_edition);
+			((AbstractButton) this.getBouttonM(2)).setIcon(img_trait);
 			((AbstractButton) this.getBouttonM(3)).setIcon(img_rectangle);
 			((AbstractButton) this.getBouttonM(4)).setIcon(img_triangle);
 			((AbstractButton) this.getBouttonM(5)).setIcon(img_cercle);
