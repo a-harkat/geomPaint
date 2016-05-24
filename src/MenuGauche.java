@@ -94,7 +94,6 @@ public class MenuGauche extends Menu {
 	    b_type.setMinimumSize(new Dimension(154,40));
 	    b_type.setMaximumSize(new Dimension(154,40));
 	    b_type.setPreferredSize(new Dimension(154,40));
-	    b_type.setBackground(new Color(96, 96, 96));
 	    b_type.setAlignmentX(Component.CENTER_ALIGNMENT);
 	    b_type.setToolTipText("nombre de points pour le polygone");
 	    

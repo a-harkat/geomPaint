@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.util.Observer;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -44,10 +45,15 @@ public class Conteneur extends JPanel{
 	 * Menu gauche, menu bas menu droite
 	 */
 	public Conteneur() {
-		this.setMenu_color(Color.BLACK);
+		this.setMenu_color(new Color(127, 143, 166));
 		this.setLayout(new BorderLayout());
 		
 		MenuGauche mg = new MenuGauche(this.menu_color);
+		for(Component bouton : mg.getListe_b()){
+			bouton.setBackground(this.menu_color);
+			if (bouton instanceof JButton)
+			((AbstractButton) bouton).setBorderPainted(false);
+		}
 		MenuBas mb = new MenuBas(this.menu_color);
 		MenuDroit md = new MenuDroit(this.menu_color);
 		MenuHaut mh = new MenuHaut(this.menu_color);
@@ -70,7 +76,7 @@ public class Conteneur extends JPanel{
 			public void actionPerformed(ActionEvent e){	
 				mh.changerTexteMH("choisissez votre couleur");
 				Color couleur = JColorChooser.showDialog
-						(null, "choisissez votre couleur", Color.WHITE);
+						(null, "Choisissez votre couleur", menu_color);
 						mg.set_col_actuelle(couleur);
 						mh.changerTexteMH("couleur choisi : " + couleur);
 			}						
