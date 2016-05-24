@@ -27,6 +27,12 @@ public class Conteneur extends JPanel{
 	 * Liste des figures
 	 */
 	private ListFigures listFig;
+	
+	/**
+	 * Couleur du menu
+	 */
+	private Color menu_color;
+	
 	/**
 	 * Constructeur du Conteneur, il se deroule ainsi
 	 * On definit le layout du conteneur
@@ -38,12 +44,13 @@ public class Conteneur extends JPanel{
 	 * Menu gauche, menu bas menu droite
 	 */
 	public Conteneur() {
+		this.setMenu_color(Color.BLACK);
 		this.setLayout(new BorderLayout());
 		
-		MenuGauche mg = new MenuGauche(Color.black);
-		MenuBas mb = new MenuBas(Color.black);
-		MenuDroit md = new MenuDroit(Color.black);
-		MenuHaut mh = new MenuHaut(Color.black);
+		MenuGauche mg = new MenuGauche(this.menu_color);
+		MenuBas mb = new MenuBas(this.menu_color);
+		MenuDroit md = new MenuDroit(this.menu_color);
+		MenuHaut mh = new MenuHaut(this.menu_color);
 		this.listFig = new ListFigures();	
 		VueGraphique vg = new VueGraphique();
 		
@@ -53,7 +60,7 @@ public class Conteneur extends JPanel{
 		this.add(mh,BorderLayout.NORTH);
 		this.add(vg,BorderLayout.CENTER);
 		this.listFig.addObserver(vg);
-		ControleurText.listFig.addObserver(vg);
+		//ControleurText.listFig.addObserver(vg);
 		
 		ControleurFigure cgt = new ControleurFigure(this.listFig);
 		vg.addMouseMotionListener(cgt);
@@ -169,12 +176,27 @@ public class Conteneur extends JPanel{
 			}				
 		});
 	}
+	/**
+	 * Getteur de la couleur du menu
+	 * @return couleur du menu
+	 */
+	public Color getMenu_color() {
+		return this.menu_color;
+	}
 	
 	/**
-	 * Méthode qui va permettre
-	 * de lier une vue textuelle à notre
+	 * Setteur de la couleur du menu
+	 * @param menu_color
+	 */
+	public void setMenu_color(Color new_menu_color) {
+		this.menu_color = new_menu_color;
+	}
+
+	/**
+	 * Mï¿½thode qui va permettre
+	 * de lier une vue textuelle ï¿½ notre
 	 * liste de figures
-	 * @param o Observer Vue à
+	 * @param o Observer Vue ï¿½
 	 * associer
 	 */
 	public void ajoutObserver (Observer o) {
