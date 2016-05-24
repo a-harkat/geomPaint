@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 
@@ -30,7 +31,9 @@ public class ControleurText {
 	 * entrees par l utilisateur en
 	 * console
 	 */
-	private static ListFigures listFig;
+	public static ListFigures listFig;
+	
+	private static final Color BORDER = Color.red;
 	
 	/**
 	 * Méthode principale qui va permettre
@@ -133,7 +136,7 @@ public class ControleurText {
 			try {
 				Point p1 = listPoint.get(0);
 				Point p2 = listPoint.get(1);
-				UnTrait trait = new UnTrait(p1, p2);
+				UnTrait trait = new UnTrait(p1, p2, ControleurText.BORDER);
 				ControleurText.listFig.addFigure(trait);
 			} catch (IndexOutOfBoundsException ioobe) {
 				System.out.println("Création du trait impossible");
@@ -157,7 +160,7 @@ public class ControleurText {
 			try {
 				Point p1 = listPoint.get(0);
 				Point p2 = listPoint.get(1);
-				UnCercle cercle = new UnCercle(p1, p2);
+				UnCercle cercle = new UnCercle(p1, p2, ControleurText.BORDER);
 				ControleurText.listFig.addFigure(cercle);
 			} catch (IndexOutOfBoundsException ioobe) {
 				System.out.println("Création du cercle impossible");
@@ -181,7 +184,7 @@ public class ControleurText {
 			try {
 				Point p1 = listPoint.get(0);
 				Point p2 = listPoint.get(1);
-				UnRectangle rectangle = new UnRectangle(p1, p2);
+				UnRectangle rectangle = new UnRectangle(p1, p2, ControleurText.BORDER);
 				ControleurText.listFig.addFigure(rectangle);
 			} catch (IndexOutOfBoundsException ioobe) {
 				System.out.println("Création du rectangle impossible");
@@ -206,7 +209,7 @@ public class ControleurText {
 				Point p1 = listPoint.get(0);
 				Point p2 = listPoint.get(1);
 				Point p3 = listPoint.get(2);
-				UnTriangle triangle = new UnTriangle(p1, p2, p3);
+				UnTriangle triangle = new UnTriangle(p1, p2, p3, ControleurText.BORDER);
 				ControleurText.listFig.addFigure(triangle);
 			} catch (IndexOutOfBoundsException ioobe) {
 				System.out.println("Création du triangle impossible");
@@ -244,7 +247,7 @@ public class ControleurText {
 						iteration ++;
 					}
 				}
-				UnQuelconque quelconque = new UnQuelconque(p1, p2, tab);
+				UnQuelconque quelconque = new UnQuelconque(p1, p2, tab, ControleurText.BORDER);
 				ControleurText.listFig.addFigure(quelconque);
 			} catch (IndexOutOfBoundsException ioobe) {
 				System.out.println("Création de la forme quelconque"

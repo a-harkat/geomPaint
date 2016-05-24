@@ -53,6 +53,7 @@ public class Conteneur extends JPanel{
 		this.add(mh,BorderLayout.NORTH);
 		this.add(vg,BorderLayout.CENTER);
 		this.listFig.addObserver(vg);
+		ControleurText.listFig.addObserver(vg);
 		
 		ControleurFigure cgt = new ControleurFigure(this.listFig);
 		vg.addMouseMotionListener(cgt);
