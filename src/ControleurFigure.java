@@ -14,6 +14,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	private boolean triangleOn;
 	private boolean traitOn;
 	private boolean polygoneOn;
+	private boolean newfigure;
 	int index ;
 	private int nbPointPolygone ;
 	Point p1, p2, p3, p4, p5, p6, p7, p8, pointEditer ;	
@@ -43,13 +44,131 @@ public class ControleurFigure extends MouseInputAdapter {
 			pointEditer = e.getPoint() ;
 			if (! figure.isSelectOn())  figure.setSelectOn(true) ;
 		}
+		else if (isDessiner())  {
+			if (p1 != null && p2 == null){
+				if (isRectangleOn()){
+					UnRectangle rt = new UnRectangle(p1,e.getPoint());
+					if(!newfigure) {
+						lsFigures.addFigure(rt);
+						newfigure = true;
+					}
+					lsFigures.setFigure(lsFigures.getFigures().size()-1, rt);
+				}
+				else if (isCercleOn()){
+					UnCercle cl = new UnCercle(p1,e.getPoint());
+					if(!newfigure) {
+						lsFigures.addFigure(cl);
+						newfigure = true;
+					}
+					lsFigures.setFigure(lsFigures.getFigures().size()-1, cl);
+				}
+				else if (isTraitOn()){
+					UnTrait tr = new UnTrait(p1,e.getPoint());
+					if(!newfigure) {
+						lsFigures.addFigure(tr);
+						newfigure = true;
+					}
+					lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
+				}
+				else if (isTriangleOn()){
+					UnTrait tr = new UnTrait(p1,e.getPoint());
+					if(!newfigure) {
+						lsFigures.addFigure(tr);
+						newfigure = true;
+					}
+					lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
+				}
+			}
+			else if (p1 != null && p2 != null && p3 == null){		
+				if (isTriangleOn()) {
+					UnTriangle triangle = new UnTriangle(p1,p2,e.getPoint());
+					if(!newfigure) {
+						lsFigures.removeFigure(lsFigures.getFigures().size()-1);
+						lsFigures.addFigure(triangle);
+						newfigure = true;
+					}
+					lsFigures.setFigure(lsFigures.getFigures().size()-1, triangle);
+				}
+			}
+		}
 	}
 	
+	
+	public void mouseMoved(MouseEvent e) {
+		if (isDessiner())  {
+			if (p1 != null && p2 == null){
+				if (isRectangleOn()){
+					UnRectangle rt = new UnRectangle(p1,e.getPoint());
+					if(!newfigure) {
+						lsFigures.addFigure(rt);
+						newfigure = true;
+					}
+					lsFigures.setFigure(lsFigures.getFigures().size()-1, rt);
+				}
+				else if (isCercleOn()){
+					UnCercle cl = new UnCercle(p1,e.getPoint());
+					if(!newfigure) {
+						lsFigures.addFigure(cl);
+						newfigure = true;
+					}
+					lsFigures.setFigure(lsFigures.getFigures().size()-1, cl);
+				}
+				else if (isTraitOn()){
+					UnTrait tr = new UnTrait(p1,e.getPoint());
+					if(!newfigure) {
+						lsFigures.addFigure(tr);
+						newfigure = true;
+					}
+					lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
+				}
+				else if (isTriangleOn()){
+					UnTrait tr = new UnTrait(p1,e.getPoint());
+					if(!newfigure) {
+						lsFigures.addFigure(tr);
+						newfigure = true;
+					}
+					lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
+				}
+			}
+			else if (p1 != null && p2 != null && p3 == null){		
+				if (isTriangleOn()) {
+					UnTriangle triangle = new UnTriangle(p1,p2,e.getPoint());
+					if(!newfigure) {
+						lsFigures.removeFigure(lsFigures.getFigures().size()-1);
+						lsFigures.addFigure(triangle);
+						newfigure = true;
+					}
+					lsFigures.setFigure(lsFigures.getFigures().size()-1, triangle);
+				}
+			}
+		}
+	}
+
 	/**
 	 * Listener souris Pressed
 	 */
 	public void mousePressed(MouseEvent e){
-		 if (! isDessiner()){
+		newfigure = false;
+		if (isDessiner()) {			
+			if (p1 == null) 
+				p1 = new Point (e.getPoint());
+			else if (p2 == null){ 
+				p2 = new Point (e.getPoint());	
+				ajouterFig2point();
+			}
+			else if (p3 == null){				
+				p3 = new Point (e.getPoint()) ;			
+				if (isTriangleOn()) {
+					UnTriangle triangle = new UnTriangle(p1,p2,p3);
+					lsFigures.setFigure(lsFigures.getFigures().size()-1, triangle);	
+					effacerPoints();
+				}
+			}
+			else if (polygoneOn){				
+				ajouterQueconque(e.getPoint());				
+			}
+		} 
+		else if (! isDessiner()){
 			if (indexEditer(e.getPoint()) != -1 ){
 				edition = true ;
 				index = indexEditer(e.getPoint());
@@ -76,26 +195,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	 * Listener souris Clicked
 	 */
 	public void mouseClicked(MouseEvent e) {
-		if (isDessiner())  {			
-			if (p1 == null) 
-				p1 = new Point (e.getPoint()) ;	
-			else if (p2 == null){ 
-				p2 = new Point (e.getPoint()) ;	
-				ajouterFig2point();
-			}
-			else if (p3 == null){				
-				p3 = new Point (e.getPoint()) ;			
-				if (isTriangleOn()) {
-					UnTriangle triangle = new UnTriangle(p1,p2,p3);
-					lsFigures.addFigure(triangle);	
-					effacerPoints();
-				}
-			}
-			else if (polygoneOn){				
-				ajouterQueconque(e.getPoint());				
-			}
-		}
-		else if (indexDeplacer(e.getPoint()) != -1){			
+		if ((!isDessiner()) && (indexDeplacer(e.getPoint()) != -1)){			
 			index = indexDeplacer(e.getPoint());
 			figure = lsFigures.getFigures().get(index);		
 			if (figure.isSelectOn())
@@ -106,7 +206,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * méthode qui déplace n'importe quelle figure par le mousseDragegd
+	 * m?thode qui d?place n'importe quelle figure par le mousseDragegd
 	 */
 	private void deplacerFigure(Point p) {
 		if (figure instanceof UnRectangle) {
@@ -137,7 +237,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * méthode qui édite n'importe quelle figure par le mousseDragegd
+	 * m?thode qui ?dite n'importe quelle figure par le mousseDragegd
 	 */
 	private void editerFigure(Point p) {
 		if (figure instanceof UnRectangle) {
@@ -168,22 +268,22 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * Ajoute une figure à deux point dans la liste de figures
+	 * Ajoute une figure ? deux point dans la liste de figures
 	 */		
 	private void ajouterFig2point() {				
 		if (isRectangleOn()){					
 			UnRectangle rt = new UnRectangle(p1,p2);
-			lsFigures.addFigure(rt);
+			lsFigures.setFigure(lsFigures.getFigures().size()-1, rt);
 			effacerPoints();
 		}
 		else if (isCercleOn()){		
 			UnCercle cl = new UnCercle(p1,p2);
-			lsFigures.addFigure(cl);
+			lsFigures.setFigure(lsFigures.getFigures().size()-1, cl);
 			effacerPoints();
 		}	
 		else if (isTraitOn()){		
 			UnTrait tr = new UnTrait(p1,p2);
-			lsFigures.addFigure(tr);
+			lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
 			effacerPoints();
 		}			
 	}
@@ -220,7 +320,9 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * Retourne l'index de la figure selectionée pour editer
+	 * Retourne l'index de la figure selectionee pour editer
+	 * @param p le point ou s'applique l'edition
+	 * @return index de la figure
 	 */
 	public int indexEditer (Point p){
 		int index = -1 ;
@@ -240,7 +342,9 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * Retourne l'index de la figure selectionée pour déplacer
+	 * Retourne l'index de la figure selection?e pour d?placer
+	 * @param p le point ou s'applique l'edition 
+	 * @return index de la figure
 	 */	
 	public int indexDeplacer (Point p){
 		int index = -1 ;
@@ -266,7 +370,8 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * active ou désactive la selection de toutes les figures
+	 * active ou desactive la selection de toutes les figures
+	 * @param b l'etat du nouveau mode
 	 */	
 	public void toggleMode (boolean b){
 		for (int i = 0; i < lsFigures.getFigures().size(); i++) {			
@@ -277,7 +382,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * Suprime le dernier élément ajouté
+	 * Suprime le dernier ?l?ment ajout?
 	 */	
 	public void deleteLast (){
 		if (lsFigures.getFigures().size() > 0) 
@@ -286,7 +391,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * methode qui éfface les point lors du clique sur un bouton
+	 * methode qui ?fface les point lors du clique sur un bouton
 	 */
 	public void effacerPoints() {
 		if (p1 != null) p1 = null;
@@ -300,7 +405,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 *Suprime la figure sélectionnée
+	 *Suprime la figure s?lectionn?e
 	 */	
 	public void deleteSelected (){
 		lsFigures.removeSelected();
