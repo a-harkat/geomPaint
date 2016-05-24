@@ -23,16 +23,6 @@ public abstract class FigureGeom  {
 	 */
 	private Color full_color;
 	
-	
-	public boolean isSelectOn() {
-		return selectOn;
-	}
-
-	public void setSelectOn(boolean selectOn) {
-		this.selectOn = selectOn;
-	}
-
-	
 	/**
 	 * Constructeur de Figure geometrique
 	 * @param p1 point 1
@@ -189,6 +179,14 @@ public abstract class FigureGeom  {
 	 */
 	public void setFull_color(Color new_full_color) {
 		this.full_color = new_full_color;
+	}
+	
+	public boolean isSelectOn() {
+		return selectOn;
+	}
+
+	public void setSelectOn(boolean selectOn) {
+		this.selectOn = selectOn;
 	}
 	
 }
