@@ -3,6 +3,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -49,9 +50,9 @@ public class MenuGauche extends Menu {
 		
 		JButton couleur = new JButton("Couleur actuelle");
 		couleur.setAlignmentX(Component.CENTER_ALIGNMENT);
-		couleur.setMinimumSize(new Dimension(154,40));
-		couleur.setMaximumSize(new Dimension(154,40));
-		couleur.setPreferredSize(new Dimension(154,40));
+		couleur.setMinimumSize(new Dimension(154,30));
+		couleur.setMaximumSize(new Dimension(154,30));
+		couleur.setPreferredSize(new Dimension(154,30));
 		JButton trait = new JButton(img_trait);
 		trait.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JButton cercle = new JButton(img_cercle);
@@ -89,7 +90,7 @@ public class MenuGauche extends Menu {
 	    b_type.setPaintTicks(true);
 	    b_type.setPaintLabels(true);
 	    b_type.setMajorTickSpacing(1);
-	    b_type.setFont(new Font("TimesRoman", Font.BOLD, 15));
+	    b_type.setFont(new Font("TimesRoman", Font.BOLD, 12));
 	    b_type.setMinimumSize(new Dimension(154,40));
 	    b_type.setMaximumSize(new Dimension(154,40));
 	    b_type.setPreferredSize(new Dimension(154,40));
@@ -122,5 +123,35 @@ public class MenuGauche extends Menu {
 	 */
 	public Color get_col_actuelle(){
 		return this.getBouttonM(0).getBackground();
+	}
+	
+	/**
+	 * Methode qui gere le changement des icones pour l'interface
+	 * @param etat 
+	 */
+	public void changeicons(boolean etat) {
+		if (!etat) {
+			ImageIcon img_cercle = new ImageIcon("src/images/cercle.png", "cercle");
+			ImageIcon img_rectangle = new ImageIcon("src/images/rectangle.png", "rectangle");
+			ImageIcon img_triangle = new ImageIcon("src/images/triangle.png", "triangle");
+			ImageIcon img_quelconque = new ImageIcon("src/images/quelconque.png", "quelconque");
+		
+			((AbstractButton) this.getBouttonM(3)).setIcon(img_rectangle);
+			((AbstractButton) this.getBouttonM(4)).setIcon(img_triangle);
+			((AbstractButton) this.getBouttonM(5)).setIcon(img_cercle);
+			((AbstractButton) this.getBouttonM(6)).setIcon(img_quelconque);
+
+		}
+		else {
+			ImageIcon img_cercle = new ImageIcon("src/images/cercle2.png", "cercle");
+			ImageIcon img_rectangle = new ImageIcon("src/images/rectangle2.png", "rectangle");
+			ImageIcon img_triangle = new ImageIcon("src/images/triangle2.png", "triangle");
+			ImageIcon img_quelconque = new ImageIcon("src/images/quelconque2.png", "quelconque");
+		
+			((AbstractButton) this.getBouttonM(3)).setIcon(img_rectangle);
+			((AbstractButton) this.getBouttonM(4)).setIcon(img_triangle);
+			((AbstractButton) this.getBouttonM(5)).setIcon(img_cercle);
+			((AbstractButton) this.getBouttonM(6)).setIcon(img_quelconque);
+		}
 	}
 }

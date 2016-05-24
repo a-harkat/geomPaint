@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
@@ -78,6 +80,22 @@ public class VueGraphique extends JPanel implements Observer {
 					if (x>rectangle.getP2().getX())	x = x - width ;		
 					g.drawRect(x, y, width, height );
 				}
+				if (tr instanceof UnQuelconque ){
+					UnQuelconque quelconque = (UnQuelconque) tr;
+					int taille = quelconque.getListPoints().length ;
+					int [] X = new int [taille+2];
+					X[0] = (int)quelconque.getP1().getX() ;
+					X[1] = (int)quelconque.getP2().getX();
+					int [] Y = new int [taille+2] ;
+					Y[0] = (int)quelconque.getP1().getY() ; 
+					Y[1] = (int)quelconque.getP2().getY();
+					
+					for (int j = 0; j< taille;j++){
+						X[j+2] = (int) quelconque.getListPoints()[j].getX();
+						Y[j+2] = (int) quelconque.getListPoints()[j].getY();
+					}
+					g.drawPolygon(X, Y, taille+2);	
+				}
 				if(tr.isSelectOn())
 					drawVertex(g, tr);
 			}
@@ -91,6 +109,12 @@ public class VueGraphique extends JPanel implements Observer {
 		if (fg instanceof UnTriangle ){ 
 			UnTriangle triangle = (UnTriangle) fg ;
 			g.drawRect((int)triangle.getP3().getX()-vrtx/2, (int)triangle.getP3().getY()-vrtx/2, vrtx, vrtx);
+		}
+		if (fg instanceof UnQuelconque ){ 
+			UnQuelconque quelconque = (UnQuelconque) fg ;
+			for (int j = 0; j< quelconque.getListPoints().length;j++){
+				g.drawRect((int)quelconque.getListPoints()[j].getX()-vrtx/2, (int)quelconque.getListPoints()[j].getY()-vrtx/2, vrtx, vrtx);
+			}
 		}
 	}
 }

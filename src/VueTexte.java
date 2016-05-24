@@ -97,13 +97,13 @@ public class VueTexte implements Observer {
 							+ (int) qc.getP2().getX()
 							+ ", y2 = "
 							+ (int) qc.getP2().getY());
-					ArrayList<Point> listPt = qc.getListPoint();
-					if (listPt.size() != 0) {
+					Point [] listPt = qc.getListPoints();
+					if (listPt.length != 0) {
 						/**
 						 * Représente le ième point
 						 */
 						int iteration = 3;
-						for (Point pt : qc.getListPoint()) {
+						for (Point pt : listPt) {
 							System.out.print(", x"
 									+ iteration
 									+ " = "

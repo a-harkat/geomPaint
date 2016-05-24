@@ -7,11 +7,6 @@ import java.awt.geom.Point2D;
  * @version 1
  */
 public class UnTriangle extends UnPolygone{
-
-	/**
-	 *Sert a la serialisation
-	 */
-	private static final long serialVersionUID = 1L;
 	
 	/**
 	 *Represente le troisieme point
@@ -48,7 +43,7 @@ public class UnTriangle extends UnPolygone{
     }
 	
 	/**
-	 * retourne si un point est dans la zone de tolérance d'un autre point
+	 * retourne si un point est dans la zone de tolï¿½rance d'un autre point
 	 */
 	public boolean toleranceTriangle (Point p) {
 		return isInToleranceZone(p,this.getP1()) || isInToleranceZone(p,this.getP2()) || isInToleranceZone(p,this.getP3()) ;		   

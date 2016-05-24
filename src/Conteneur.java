@@ -3,12 +3,12 @@ import java.util.Observer;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JColorChooser;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 /**
  * Classe Conteneur, contient les differents JPanel ainsi que les 
@@ -78,9 +78,9 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(2)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cgt.effacerPoints();
 				cgt.toggleMode (false);
 				cgt.setDessiner(true);
+				cgt.effacerPoints();			
 				cgt.setCercleOn(false);
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(false);
@@ -92,9 +92,9 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(3)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cgt.toggleMode (false);
+				cgt.toggleMode(false);
 				cgt.setDessiner(true);
-				cgt.effacerPoints();
+				cgt.effacerPoints();				
 				cgt.setCercleOn(false);
 				cgt.setRectangleOn(true);
 				cgt.setTriangleOn(false);
@@ -106,8 +106,9 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(4)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cgt.setDessiner(true);
 				cgt.toggleMode (false);
+				cgt.setDessiner(true);
+				cgt.effacerPoints();				
 				cgt.setCercleOn(false);
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(true);
@@ -119,9 +120,9 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(5)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){	
-				cgt.setDessiner(true);
 				cgt.toggleMode (false);
-				cgt.effacerPoints();
+				cgt.setDessiner(true);
+				cgt.effacerPoints();				
 				cgt.setCercleOn(true);
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(false);
@@ -133,14 +134,16 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(6)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cgt.setDessiner(true);
 				cgt.toggleMode (false);
+				cgt.setDessiner(true);
+				cgt.effacerPoints();				
 				cgt.setCercleOn(false);
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(false);
 				cgt.setTraitOn(false); 
-				cgt.setPolygoneOn(true);
+				cgt.setPolygoneOn(true);				
 				int nb = mg.get_nb_points_poly();
+				cgt.setNbPointPolygone(nb);
 				mh.changerTexteMH("Tracez un polygone : nombre de points choisis : " + nb);
 			}				
 		});
@@ -148,7 +151,20 @@ public class Conteneur extends JPanel{
 		((JButton)mb.getBouttonM(1)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				cgt.deleteLast ();
-				mh.changerTexteMH("Figure effacee");
+				mh.changerTexteMH("Derniere figure effacee");
+			}				
+		});
+		((JButton)mb.getBouttonM(2)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cgt.deleteAll ();
+				mh.changerTexteMH("Figure(s) effacee");
+			}				
+		});
+		
+		((JCheckBox)mh.getBouttonM(1)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				boolean etat = ((AbstractButton) e.getSource()).getModel().isSelected();
+				mg.changeicons(etat);
 			}				
 		});
 	}
