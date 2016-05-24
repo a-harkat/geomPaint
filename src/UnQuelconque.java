@@ -1,7 +1,5 @@
 import java.awt.Point;
 import java.awt.Polygon;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 
 /**
@@ -12,10 +10,6 @@ import java.util.Iterator;
 
 public class UnQuelconque extends UnPolygone{
 	
-	/**
-	 *Sert a la serialisation
-	 */
-	private static final long serialVersionUID = 1L;
 	/**
 	 * Contient la liste des points de la figure 
 	 */
@@ -33,8 +27,8 @@ public class UnQuelconque extends UnPolygone{
 
 	}
 	/**
-	 * Méthode qui va permettre de
-	 * récupérer la liste des points
+	 * Mï¿½thode qui va permettre de
+	 * rï¿½cupï¿½rer la liste des points
 	 * du polygone
 	 * @return Point [] Liste
 	 * des points du polygone quelconque
@@ -50,7 +44,7 @@ public class UnQuelconque extends UnPolygone{
 		this.listPoints = listPoints;
 	}
 	/**
-	 * methode qui édite (redimensionne) un triangle
+	 * methode qui ï¿½dite (redimensionne) un triangle
 	 */
 	public void editerQuelconque(Point p1, Point p2) {
 		
