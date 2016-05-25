@@ -26,12 +26,14 @@ public class ControleurFigure extends MouseInputAdapter {
 	Point p1, p2, p3, p4, p5, p6, p7, p8, pointEditer;	
 	FigureGeom figure ;
 	ListFigures lsFigures;
+	ListFigures lsFiguresDelet;
 	
 	/**
 	 * Constructeur de ControleurFigure
 	 */
 	public ControleurFigure() {
 		lsFigures = new ListFigures() ;	
+		lsFiguresDelet = new ListFigures() ;	
 		setDessiner(false);
 	}
 	
@@ -462,9 +464,24 @@ public class ControleurFigure extends MouseInputAdapter {
 	 * Suprime le dernier element ajoute
 	 */	
 	public void deleteLast (){
-		if (lsFigures.getFigures().size() > 0) 
-			lsFigures.removeFigure (lsFigures.getFigures().size() - 1);		
+		int taille = lsFigures.getFigures().size() ;	
+		if (taille > 0) {
+			lsFiguresDelet.addFigure(lsFigures.getFigures().get(taille-1) );		
+			lsFigures.removeFigure (taille-1);				
+			effacerPoints();
+		}
+	}
+	
+	/**
+	 * restore le dernier element efface
+	 */	
+	public void RestoreLast (){
+		int taille = lsFiguresDelet.getFigures().size() ;	
+		if (taille > 0) {
+		lsFigures.addFigure(lsFiguresDelet.getFigures().get(taille - 1) );		
+		lsFiguresDelet.removeFigure(taille - 1);		
 		effacerPoints();
+		}
 	}
 	
 	/**
