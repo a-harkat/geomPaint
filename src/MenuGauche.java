@@ -50,9 +50,9 @@ public class MenuGauche extends Menu {
 		
 		JButton couleur = new JButton("Couleur actuelle");
 		couleur.setAlignmentX(Component.CENTER_ALIGNMENT);
-		couleur.setMinimumSize(new Dimension(154,30));
-		couleur.setMaximumSize(new Dimension(154,30));
-		couleur.setPreferredSize(new Dimension(154,30));
+		couleur.setMinimumSize(new Dimension(104,30));
+		couleur.setMaximumSize(new Dimension(104,30));
+		couleur.setPreferredSize(new Dimension(104,30));
 		JButton trait = new JButton(img_trait);
 		trait.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JButton cercle = new JButton(img_cercle);
@@ -91,9 +91,9 @@ public class MenuGauche extends Menu {
 	    b_type.setPaintLabels(true);
 	    b_type.setMajorTickSpacing(1);
 	    b_type.setFont(new Font("TimesRoman", Font.BOLD, 12));
-	    b_type.setMinimumSize(new Dimension(154,40));
-	    b_type.setMaximumSize(new Dimension(154,40));
-	    b_type.setPreferredSize(new Dimension(154,40));
+	    b_type.setMinimumSize(new Dimension(104,40));
+	    b_type.setMaximumSize(new Dimension(104,40));
+	    b_type.setPreferredSize(new Dimension(104,40));
 	    b_type.setAlignmentX(Component.CENTER_ALIGNMENT);
 	    b_type.setToolTipText("nombre de points pour le polygone");
 	    

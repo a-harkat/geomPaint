@@ -66,7 +66,7 @@ public class Conteneur extends JPanel{
 	 * @param o Observer Vue a
 	 * associer
 	 * @param lf ListFigures Liste de
-	 * figures à associer à la vue
+	 * figures ï¿½ associer ï¿½ la vue
 	 */
 	public void ajoutObserver (Observer o, ListFigures lf) {
 		lf.addObserver(o);
@@ -87,23 +87,18 @@ public class Conteneur extends JPanel{
 		vg.addMouseListener(cf);
 	}
 	/**
-	 * Méthode qui va permettre de
-	 * préparer le JPanel en fonction d'une vue
+	 * Mï¿½thode qui va permettre de
+	 * prï¿½parer le JPanel en fonction d'une vue
 	 * graphique
-	 * @param vg Vue graphique à préparer
+	 * @param vg Vue graphique ï¿½ prï¿½parer
 	 * @param cf ControleurFigure Controleur
-	 * qui va gérer les figures
+	 * qui va gï¿½rer les figures
 	 */
 	public void preparationPanel(VueGraphique vg, ControleurFigure cf) {
 		this.setMenu_color(new Color(127, 143, 166));
 		this.setLayout(new BorderLayout());
 		
 		MenuGauche mg = new MenuGauche(this.menu_color);
-		for(Component bouton : mg.getListe_b()){
-			bouton.setBackground(this.menu_color);
-			if (bouton instanceof JButton)
-			((AbstractButton) bouton).setBorderPainted(false);
-		}
 		MenuBas mb = new MenuBas(this.menu_color);
 		MenuDroit md = new MenuDroit(this.menu_color);
 		MenuHaut mh = new MenuHaut(this.menu_color);
