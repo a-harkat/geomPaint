@@ -29,7 +29,7 @@ public class MenuHaut extends Menu {
 	 * boutons du menu haut
 	 */
 	private void generateBoutton() {
-		JLabel statut_prog = new JLabel("les messages a afficher");
+		JLabel statut_prog = new JLabel("Bienvenue !");
 		
 		statut_prog.setForeground(Color.yellow);
 		statut_prog.setFont(new Font("TimesRoman", Font.ITALIC, 16));

@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
@@ -37,18 +38,20 @@ public class MenuDroit extends Menu {
 	 * boutons du menu Droit
 	 */
 	private void generateBoutton() {
-		JCheckBox choix_type_bouton = new JCheckBox("changer boutons");
+		
+		JButton dup = new JButton("Duplication");
 		JButton clear = new JButton("clear all");
+		JCheckBox choix_type_bouton = new JCheckBox("changer boutons");
 		
-		this.ajouterBouttonM(choix_type_bouton);
+		this.ajouterBouttonM(dup);
 		this.ajouterBouttonM(clear);
+		this.ajouterBouttonM(choix_type_bouton);
 		
-		clear.setMinimumSize(new Dimension(140,30));
-		clear.setMaximumSize(new Dimension(140,30));
-		clear.setPreferredSize(new Dimension(140,30));
-		choix_type_bouton.setMinimumSize(new Dimension(140,30));
-		choix_type_bouton.setMaximumSize(new Dimension(140,30));
-		choix_type_bouton.setPreferredSize(new Dimension(140,30));
+		for(Component bouton : this.getListe_b()){
+			bouton.setMinimumSize(new Dimension(140,30));
+			bouton.setMaximumSize(new Dimension(140,30));
+			bouton.setPreferredSize(new Dimension(140,30));
+		}
 	}
 	
 	/**
