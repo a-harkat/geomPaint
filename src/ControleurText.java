@@ -1,8 +1,5 @@
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Point;
-
-import javax.swing.JFrame;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -24,43 +21,20 @@ public class ControleurText {
 	 * Scanner qui servira pour les diverses
 	 * methodes static de la classe
 	 */
-	private static Scanner sc;
+	private Scanner sc;
 	
 	/**
 	 * Liste qui contiendra les figures
 	 * entrees par l utilisateur en
 	 * console
 	 */
-	public static ListFigures listFig;
+	public ListFigures listFig;
 	
-	private static final Color BORDER = Color.red;
+	private final Color BORDER = Color.red;
 	
-	/**
-	 * Méthode principale qui va permettre
-	 * de tester l'algorithme du projet
-	 * @param args String [] Arguments non
-	 * utilisés
-	 */
-	public static void main (String [] args) {
-		ControleurText.sc = new Scanner (System.in);
-		ControleurText.listFig = new ListFigures();
-		VueTexte vt = new VueTexte();
-		Conteneur conteneur = new Conteneur();
-		conteneur.setPreferredSize(new Dimension(1500,800));
-		conteneur.ajoutObserver(vt);
-		JFrame fenetre=new JFrame("GeomPaint :D");
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenetre.setContentPane(conteneur); 
-		fenetre.pack();
-		fenetre.setVisible(true);
-		fenetre.setLocationRelativeTo(null);
-		String figure = "";
-		while (true) {
-			System.out.println("Entrez dans la console le type de figure souhaité"
-					+ " parmi triangle, cercle, quelconque, rectangle, trait");
-			figure = ControleurText.sc.nextLine();
-			ControleurText.gestionInputUser(figure);
-		}
+	public ControleurText () {
+		this.listFig = new ListFigures();
+		this.sc = new Scanner(System.in);
 	}
 	
 	/**
@@ -72,7 +46,7 @@ public class ControleurText {
 	 * En cas d entree non conforme d un
 	 * utilisateur
 	 */
-	public static void gestionInputUser(String entree) {
+	public void gestionInputUser(String entree) {
 		int nbPoint;
 		String choixNbPoint = "";
 		ArrayList<Point> listPoint;
@@ -80,23 +54,23 @@ public class ControleurText {
 			switch (entree.toLowerCase()) {
 			
 			case "triangle":
-				listPoint = ControleurText.creerPoints(3);
-				ControleurText.creerTriangle(listPoint);
+				listPoint = creerPoints(3);
+				creerTriangle(listPoint);
 				break;
 			case "cercle":
-				listPoint = ControleurText.creerPoints(2);
-				ControleurText.creerCercle(listPoint);
+				listPoint = creerPoints(2);
+				creerCercle(listPoint);
 				break;
 			case "quelconque":
 				System.out.println("Vous devez à présent"
 						+ " choisir le nombre de points");
-				choixNbPoint = ControleurText.sc.nextLine();
+				choixNbPoint = this.sc.nextLine();
 				if (choixNbPoint.length() != 0) {
 					try {
 						nbPoint = Integer.parseInt(choixNbPoint);
 						if (nbPoint >= 2) {
-							listPoint = ControleurText.creerPoints(nbPoint);
-							ControleurText.creerQuelconque(listPoint);
+							listPoint = creerPoints(nbPoint);
+							creerQuelconque(listPoint);
 						} else {
 							throw new NumberFormatException();
 						}
@@ -107,12 +81,12 @@ public class ControleurText {
 				}
 				break;
 			case "rectangle":
-				listPoint = ControleurText.creerPoints(2);
-				ControleurText.creerRectangle(listPoint);
+				listPoint = creerPoints(2);
+				creerRectangle(listPoint);
 				break;
 			case "trait":
-				listPoint = ControleurText.creerPoints(2);
-				ControleurText.creerTrait(listPoint);
+				listPoint = creerPoints(2);
+				creerTrait(listPoint);
 				break;
 			default:
 				System.out.println("La figure spécifiée ne peut être dessiner");
@@ -131,13 +105,13 @@ public class ControleurText {
 	 * l on essaie d atteindre non existante
 	 * d une liste ou d'un tableau
 	 */
-	public static void creerTrait(ArrayList<Point> listPoint) {
+	public void creerTrait(ArrayList<Point> listPoint) {
 		if (listPoint.size() != 0) {
 			try {
 				Point p1 = listPoint.get(0);
 				Point p2 = listPoint.get(1);
-				UnTrait trait = new UnTrait(p1, p2, ControleurText.BORDER);
-				ControleurText.listFig.addFigure(trait);
+				UnTrait trait = new UnTrait(p1, p2, BORDER);
+				this.listFig.addFigure(trait);
 			} catch (IndexOutOfBoundsException ioobe) {
 				System.out.println("Création du trait impossible");
 			}
@@ -155,13 +129,13 @@ public class ControleurText {
 	 * l on essaie d atteindre non existante
 	 * d une liste ou d'un tableau
 	 */
-	public static void creerCercle(ArrayList<Point> listPoint) {
+	public void creerCercle(ArrayList<Point> listPoint) {
 		if (listPoint.size() != 0) {
 			try {
 				Point p1 = listPoint.get(0);
 				Point p2 = listPoint.get(1);
-				UnCercle cercle = new UnCercle(p1, p2, ControleurText.BORDER);
-				ControleurText.listFig.addFigure(cercle);
+				UnCercle cercle = new UnCercle(p1, p2, BORDER);
+				listFig.addFigure(cercle);
 			} catch (IndexOutOfBoundsException ioobe) {
 				System.out.println("Création du cercle impossible");
 			}
@@ -179,13 +153,13 @@ public class ControleurText {
 	 * l on essaie d atteindre non existante
 	 * d une liste ou d'un tableau
 	 */
-	public static void creerRectangle(ArrayList<Point> listPoint) {
+	public void creerRectangle(ArrayList<Point> listPoint) {
 		if (listPoint.size() != 0) {
 			try {
 				Point p1 = listPoint.get(0);
 				Point p2 = listPoint.get(1);
-				UnRectangle rectangle = new UnRectangle(p1, p2, ControleurText.BORDER);
-				ControleurText.listFig.addFigure(rectangle);
+				UnRectangle rectangle = new UnRectangle(p1, p2, BORDER);
+				listFig.addFigure(rectangle);
 			} catch (IndexOutOfBoundsException ioobe) {
 				System.out.println("Création du rectangle impossible");
 			}
@@ -203,14 +177,14 @@ public class ControleurText {
 	 * l on essaie d atteindre non existante
 	 * d une liste ou d'un tableau
 	 */
-	public static void creerTriangle(ArrayList<Point> listPoint) {
+	public void creerTriangle(ArrayList<Point> listPoint) {
 		if (listPoint.size() != 0) {
 			try {
 				Point p1 = listPoint.get(0);
 				Point p2 = listPoint.get(1);
 				Point p3 = listPoint.get(2);
-				UnTriangle triangle = new UnTriangle(p1, p2, p3, ControleurText.BORDER);
-				ControleurText.listFig.addFigure(triangle);
+				UnTriangle triangle = new UnTriangle(p1, p2, p3, BORDER);
+				listFig.addFigure(triangle);
 			} catch (IndexOutOfBoundsException ioobe) {
 				System.out.println("Création du triangle impossible");
 			}
@@ -228,7 +202,7 @@ public class ControleurText {
 	 * l on essaie d atteindre non existante
 	 * d une liste ou d un tableau
 	 */
-	public static void creerQuelconque(ArrayList<Point> listPoint) {
+	public void creerQuelconque(ArrayList<Point> listPoint) {
 		if (listPoint.size() != 0) {
 			/**
 			 * Mettre un ArrayList
@@ -247,8 +221,8 @@ public class ControleurText {
 						iteration ++;
 					}
 				}
-				UnQuelconque quelconque = new UnQuelconque(p1, p2, tab, ControleurText.BORDER);
-				ControleurText.listFig.addFigure(quelconque);
+				UnQuelconque quelconque = new UnQuelconque(p1, p2, tab, BORDER);
+				listFig.addFigure(quelconque);
 			} catch (IndexOutOfBoundsException ioobe) {
 				System.out.println("Création de la forme quelconque"
 						+ " impossible");
@@ -269,7 +243,7 @@ public class ControleurText {
 	 * @return ArrayList<Point> Liste des
 	 * points crees
 	 */
-	public static ArrayList<Point> creerPoints (int nbPoint) {
+	public ArrayList<Point> creerPoints (int nbPoint) {
 		int x;
 		int y;
 		int iteration = 0;
@@ -287,10 +261,10 @@ public class ControleurText {
 					+ " entrer les coordonnées (x, y) de "
 					+ (nbPoint - iteration) 
 					+ " points");
-			coordonnee = ControleurText.sc.nextLine();
+			coordonnee = this.sc.nextLine();
 			try {
 				x = Integer.parseInt(coordonnee);
-				coordonnee = ControleurText.sc.nextLine();
+				coordonnee = this.sc.nextLine();
 				y = Integer.parseInt(coordonnee);
 				/**
 				 * Construction des points
@@ -309,5 +283,15 @@ public class ControleurText {
 			}
 		}
 		return listPoint;
+	}
+	
+	/**
+	 * Methode qui va renvoyer
+	 * la liste des figures
+	 * @return ListFigures Liste
+	 * des figures
+	 */
+	public ListFigures getListFigures () {
+		return this.listFig;
 	}
 }

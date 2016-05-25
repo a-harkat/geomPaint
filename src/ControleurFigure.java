@@ -24,11 +24,10 @@ public class ControleurFigure extends MouseInputAdapter {
 	ListFigures lsFigures;
 	
 	/**
-	 * Constructeur de ControleurRectangle
-	 * @param trs
+	 * Constructeur de ControleurFigure
 	 */
-	public ControleurFigure(ListFigures trs) {
-		lsFigures = trs ;	
+	public ControleurFigure() {
+		lsFigures = new ListFigures() ;	
 		setDessiner(false) ;
 	}
 	
@@ -167,7 +166,7 @@ public class ControleurFigure extends MouseInputAdapter {
 				}
 			}
 			else if (polygoneOn){				
-				ajouterQueconque(e.getPoint());				
+				ajouterQuelconque(e.getPoint());				
 			}
 		} 
 		else if (!isDessiner() && lsFigures.getFigures().size() != 0){
@@ -293,7 +292,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	/**
 	 * Ajoute un quelconque dans la liste de figures
 	 */	
-	private void ajouterQueconque(Point p) {
+	private void ajouterQuelconque(Point p) {
 		UnQuelconque pl = null;
 		if(p4 == null) {
 			p4 = new Point (p) ;
@@ -526,5 +525,15 @@ public class ControleurFigure extends MouseInputAdapter {
 	 */
 	public void setBorder_color(Color border_color) {
 		this.border_color = border_color;
+	}
+	
+	/**
+	 * Methode qui va renvoyer la
+	 * liste de figures
+	 * @return ListFigures Liste des
+	 * figures
+	 */
+	public ListFigures getListFigures() {
+		return lsFigures;
 	}
 }

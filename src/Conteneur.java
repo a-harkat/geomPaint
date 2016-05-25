@@ -25,11 +25,6 @@ public class Conteneur extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * Liste des figures
-	 */
-	private ListFigures listFig;
-	
-	/**
 	 * Couleur du menu
 	 */
 	private Color menu_color;
@@ -44,145 +39,10 @@ public class Conteneur extends JPanel{
 	 * On ajoute les listeneurs aux boutons dans l'ordre:
 	 * Menu gauche, menu bas menu droite
 	 */
-	public Conteneur() {
-		this.setMenu_color(new Color(127, 143, 166));
-		this.setLayout(new BorderLayout());
+	public Conteneur() {	 
 		
-		MenuGauche mg = new MenuGauche(this.menu_color);
-		for(Component bouton : mg.getListe_b()){
-			bouton.setBackground(this.menu_color);
-			if (bouton instanceof JButton)
-			((AbstractButton) bouton).setBorderPainted(false);
-		}
-		MenuBas mb = new MenuBas(this.menu_color);
-		MenuDroit md = new MenuDroit(this.menu_color);
-		MenuHaut mh = new MenuHaut(this.menu_color);
-		this.listFig = new ListFigures();	
-		VueGraphique vg = new VueGraphique();
-		
-		this.add(mg,BorderLayout.WEST);
-		this.add(mb,BorderLayout.SOUTH);
-		this.add(md,BorderLayout.EAST);
-		this.add(mh,BorderLayout.NORTH);
-		this.add(vg,BorderLayout.CENTER);
-		this.listFig.addObserver(vg);
-		ControleurText.listFig.addObserver(vg);
-		
-		ControleurFigure cgt = new ControleurFigure(this.listFig);
-		vg.addMouseMotionListener(cgt);
-		vg.addMouseListener(cgt);
-		 
-		((JButton)mg.getBouttonM(0)).addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){	
-				mh.changerTexteMH("choisissez votre couleur");
-				Color couleur = JColorChooser.showDialog
-						(null, "Choisissez votre couleur", menu_color);
-						mg.set_col_actuelle(couleur);
-						mh.changerTexteMH("couleur choisi : " + couleur);
-						cgt.setBorder_color(mg.get_col_actuelle());
-			}						
-		});
-		
-		((JButton)mg.getBouttonM(1)).addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){	
-				cgt.effacerPoints();
-				cgt.setDessiner(false);	
-				mh.changerTexteMH("Vous etes en mode selection");
-			}							
-		});
-		
-		((JButton)mg.getBouttonM(2)).addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				cgt.toggleMode (false);
-				cgt.setDessiner(true);
-				cgt.effacerPoints();			
-				cgt.setCercleOn(false);
-				cgt.setRectangleOn(false);
-				cgt.setTriangleOn(false);
-				cgt.setTraitOn(true);
-				cgt.setPolygoneOn(false);
-				mh.changerTexteMH("Tracez un trait");
-			}							
-		});
-		
-		((JButton)mg.getBouttonM(3)).addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				cgt.toggleMode(false);
-				cgt.setDessiner(true);
-				cgt.effacerPoints();				
-				cgt.setCercleOn(false);
-				cgt.setRectangleOn(true);
-				cgt.setTriangleOn(false);
-				cgt.setTraitOn(false);
-				cgt.setPolygoneOn(false);
-				mh.changerTexteMH("Tracez un rectangle : 2 points");
-			}							
-		});	
-		
-		((JButton)mg.getBouttonM(4)).addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				cgt.toggleMode (false);
-				cgt.setDessiner(true);
-				cgt.effacerPoints();				
-				cgt.setCercleOn(false);
-				cgt.setRectangleOn(false);
-				cgt.setTriangleOn(true);
-				cgt.setTraitOn(false);
-				cgt.setPolygoneOn(false);
-				mh.changerTexteMH("Tracez un triangle : 3 points");
-			}							
-		});	
-		
-		((JButton)mg.getBouttonM(5)).addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){	
-				cgt.toggleMode (false);
-				cgt.setDessiner(true);
-				cgt.effacerPoints();				
-				cgt.setCercleOn(true);
-				cgt.setRectangleOn(false);
-				cgt.setTriangleOn(false);
-				cgt.setTraitOn(false);
-				cgt.setPolygoneOn(false);
-				mh.changerTexteMH("Tracez un cercle : 2 points");
-			}							
-		});
-		
-		((JButton)mg.getBouttonM(6)).addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				cgt.toggleMode (false);
-				cgt.setDessiner(true);
-				cgt.effacerPoints();				
-				cgt.setCercleOn(false);
-				cgt.setRectangleOn(false);
-				cgt.setTriangleOn(false);
-				cgt.setTraitOn(false); 
-				cgt.setPolygoneOn(true);				
-				int nb = mg.get_nb_points_poly();
-				cgt.setNbPointPolygone(nb);
-				mh.changerTexteMH("Tracez un polygone : nombre de points choisis : " + nb);
-			}				
-		});
-		
-		((JButton)mb.getBouttonM(1)).addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				cgt.deleteLast ();
-				mh.changerTexteMH("Derniere figure effacee");
-			}				
-		});
-		((JButton)mb.getBouttonM(2)).addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				cgt.deleteAll ();
-				mh.changerTexteMH("Figure(s) effacee");
-			}				
-		});
-		
-		((JCheckBox)mh.getBouttonM(1)).addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				boolean etat = ((AbstractButton) e.getSource()).getModel().isSelected();
-				mg.changeicons(etat);
-			}				
-		});
 	}
+	
 	/**
 	 * Getteur de la couleur du menu
 	 * @return couleur du menu
@@ -205,8 +65,180 @@ public class Conteneur extends JPanel{
 	 * liste de figures
 	 * @param o Observer Vue a
 	 * associer
+	 * @param lf ListFigures Liste de
+	 * figures à associer à la vue
 	 */
-	public void ajoutObserver (Observer o) {
-		this.listFig.addObserver(o);
+	public void ajoutObserver (Observer o, ListFigures lf) {
+		lf.addObserver(o);
+	}
+	
+	/**
+	 * Methode qui va permettre
+	 * de definir un controleur
+	 * graphique pour le conteneur
+	 * @param cf ControleurFigure
+	 * Controleur graphique a definir
+	 * pour le conteneur
+	 * @param vg VueGraphique Vue
+	 * a controler
+	 */
+	public void setControlGraphic (ControleurFigure cf, VueGraphique vg) {
+		vg.addMouseMotionListener(cf);
+		vg.addMouseListener(cf);
+	}
+	/**
+	 * Méthode qui va permettre de
+	 * préparer le JPanel en fonction d'une vue
+	 * graphique
+	 * @param vg Vue graphique à préparer
+	 * @param cf ControleurFigure Controleur
+	 * qui va gérer les figures
+	 */
+	public void preparationPanel(VueGraphique vg, ControleurFigure cf) {
+		this.setMenu_color(new Color(127, 143, 166));
+		this.setLayout(new BorderLayout());
+		
+		MenuGauche mg = new MenuGauche(this.menu_color);
+		for(Component bouton : mg.getListe_b()){
+			bouton.setBackground(this.menu_color);
+			if (bouton instanceof JButton)
+			((AbstractButton) bouton).setBorderPainted(false);
+		}
+		MenuBas mb = new MenuBas(this.menu_color);
+		MenuDroit md = new MenuDroit(this.menu_color);
+		MenuHaut mh = new MenuHaut(this.menu_color);
+		
+		this.add(mg,BorderLayout.WEST);
+		this.add(mb,BorderLayout.SOUTH);
+		this.add(md,BorderLayout.EAST);
+		this.add(mh,BorderLayout.NORTH);
+		this.add(vg,BorderLayout.CENTER);
+		preparationBouton(mg, md, mh, mb, cf);
+	}
+	
+	/**
+	 * Methode qui va preparer les
+	 * differents menus et le controleur
+	 * des figures
+	 * @param mg MenuGauche
+	 * @param md MenuDroit
+	 * @param mh MenuHaut
+	 * @param mb MenuBas
+	 * @param cf ControleurFigure
+	 * Controleur qui va gerer les
+	 * figures
+	 */
+	public void preparationBouton(MenuGauche mg, MenuDroit md,
+			MenuHaut mh, MenuBas mb, ControleurFigure cf) {
+		((JButton)mg.getBouttonM(0)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){	
+				mh.changerTexteMH("choisissez votre couleur");
+				Color couleur = JColorChooser.showDialog
+						(null, "Choisissez votre couleur", menu_color);
+						mg.set_col_actuelle(couleur);
+						mh.changerTexteMH("couleur choisi : " + couleur);
+						cf.setBorder_color(mg.get_col_actuelle());
+			}						
+		});
+		
+		((JButton)mg.getBouttonM(1)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){	
+				cf.effacerPoints();
+				cf.setDessiner(false);	
+				mh.changerTexteMH("Vous etes en mode selection");
+			}							
+		});
+		
+		((JButton)mg.getBouttonM(2)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cf.toggleMode (false);
+				cf.setDessiner(true);
+				cf.effacerPoints();			
+				cf.setCercleOn(false);
+				cf.setRectangleOn(false);
+				cf.setTriangleOn(false);
+				cf.setTraitOn(true);
+				cf.setPolygoneOn(false);
+				mh.changerTexteMH("Tracez un trait");
+			}							
+		});
+		
+		((JButton)mg.getBouttonM(3)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cf.toggleMode(false);
+				cf.setDessiner(true);
+				cf.effacerPoints();				
+				cf.setCercleOn(false);
+				cf.setRectangleOn(true);
+				cf.setTriangleOn(false);
+				cf.setTraitOn(false);
+				cf.setPolygoneOn(false);
+				mh.changerTexteMH("Tracez un rectangle : 2 points");
+			}							
+		});	
+		
+		((JButton)mg.getBouttonM(4)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cf.toggleMode (false);
+				cf.setDessiner(true);
+				cf.effacerPoints();				
+				cf.setCercleOn(false);
+				cf.setRectangleOn(false);
+				cf.setTriangleOn(true);
+				cf.setTraitOn(false);
+				cf.setPolygoneOn(false);
+				mh.changerTexteMH("Tracez un triangle : 3 points");
+			}							
+		});	
+		
+		((JButton)mg.getBouttonM(5)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){	
+				cf.toggleMode (false);
+				cf.setDessiner(true);
+				cf.effacerPoints();				
+				cf.setCercleOn(true);
+				cf.setRectangleOn(false);
+				cf.setTriangleOn(false);
+				cf.setTraitOn(false);
+				cf.setPolygoneOn(false);
+				mh.changerTexteMH("Tracez un cercle : 2 points");
+			}							
+		});
+		
+		((JButton)mg.getBouttonM(6)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cf.toggleMode (false);
+				cf.setDessiner(true);
+				cf.effacerPoints();				
+				cf.setCercleOn(false);
+				cf.setRectangleOn(false);
+				cf.setTriangleOn(false);
+				cf.setTraitOn(false); 
+				cf.setPolygoneOn(true);				
+				int nb = mg.get_nb_points_poly();
+				cf.setNbPointPolygone(nb);
+				mh.changerTexteMH("Tracez un polygone : nombre de points choisis : " + nb);
+			}				
+		});
+		
+		((JButton)mb.getBouttonM(1)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cf.deleteLast();
+				mh.changerTexteMH("Derniere figure effacee");
+			}				
+		});
+		((JButton)mb.getBouttonM(2)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cf.deleteAll();
+				mh.changerTexteMH("Figure(s) effacee");
+			}				
+		});
+		
+		((JCheckBox)mh.getBouttonM(1)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				boolean etat = ((AbstractButton) e.getSource()).getModel().isSelected();
+				mg.changeicons(etat);
+			}				
+		});
 	}
 }
