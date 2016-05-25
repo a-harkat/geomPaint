@@ -37,7 +37,7 @@ public class JeuPrincipal {
 		VueGraphique vg = new VueGraphique();
 		ControleurFigure cf = new ControleurFigure();
 		Conteneur conteneur = new Conteneur();
-		conteneur.setPreferredSize(new Dimension(1024,768));
+		conteneur.setPreferredSize(new Dimension(1024,651));
 		conteneur.ajoutObserver(vg, cf.getListFigures());
 		conteneur.preparationPanel(vg, cf);
 		conteneur.setControlGraphic(cf, vg);
