@@ -32,7 +32,7 @@ public class MenuGauche extends Menu {
 		super(fond);
 
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		this.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 
 		this.generateBoutton();
 	}
