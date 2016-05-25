@@ -252,11 +252,23 @@ public class Conteneur extends JPanel{
 			}				
 		});
 		
+		((JButton)md.getBouttonM(0)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				mh.changerTexteMH("Dupliquer");
+			}				
+		});
+		
+		((JButton)md.getBouttonM(1)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				mh.changerTexteMH("Suppression effectuee");
+			}				
+		});
+		
 		((JCheckBox)md.getBouttonM(2)).addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 boolean etat = ((AbstractButton) e.getSource()).getModel().isSelected();
                 mg.changeicons(etat);
-                mh.changerTexteMH("Menu changé");
+                mh.changerTexteMH("Menu change");
             }                
         });
 	}
