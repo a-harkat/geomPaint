@@ -66,11 +66,11 @@ public class Conteneur extends JPanel{
 		this.add(mh,BorderLayout.NORTH);
 		this.add(vg,BorderLayout.CENTER);
 		this.listFig.addObserver(vg);
-		//ControleurText.listFig.addObserver(vg);
+		ControleurText.listFig.addObserver(vg);
 		
 		ControleurFigure cgt = new ControleurFigure(this.listFig);
 		vg.addMouseMotionListener(cgt);
-		vg.addMouseListener(cgt); 
+		vg.addMouseListener(cgt);
 		 
 		((JButton)mg.getBouttonM(0)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){	
@@ -79,6 +79,7 @@ public class Conteneur extends JPanel{
 						(null, "Choisissez votre couleur", menu_color);
 						mg.set_col_actuelle(couleur);
 						mh.changerTexteMH("couleur choisi : " + couleur);
+						cgt.setBorder_color(mg.get_col_actuelle());
 			}						
 		});
 		
@@ -99,7 +100,7 @@ public class Conteneur extends JPanel{
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(false);
 				cgt.setTraitOn(true);
-				cgt.setPolygoneOn(false); 
+				cgt.setPolygoneOn(false);
 				mh.changerTexteMH("Tracez un trait");
 			}							
 		});
@@ -113,7 +114,7 @@ public class Conteneur extends JPanel{
 				cgt.setRectangleOn(true);
 				cgt.setTriangleOn(false);
 				cgt.setTraitOn(false);
-				cgt.setPolygoneOn(false); 
+				cgt.setPolygoneOn(false);
 				mh.changerTexteMH("Tracez un rectangle : 2 points");
 			}							
 		});	
@@ -127,7 +128,7 @@ public class Conteneur extends JPanel{
 				cgt.setRectangleOn(false);
 				cgt.setTriangleOn(true);
 				cgt.setTraitOn(false);
-				cgt.setPolygoneOn(false); 
+				cgt.setPolygoneOn(false);
 				mh.changerTexteMH("Tracez un triangle : 3 points");
 			}							
 		});	
@@ -192,17 +193,17 @@ public class Conteneur extends JPanel{
 	
 	/**
 	 * Setteur de la couleur du menu
-	 * @param menu_color
+	 * @param new_menu_color
 	 */
 	public void setMenu_color(Color new_menu_color) {
 		this.menu_color = new_menu_color;
 	}
 
 	/**
-	 * M�thode qui va permettre
-	 * de lier une vue textuelle � notre
+	 * Methode qui va permettre
+	 * de lier une vue textuelle a notre
 	 * liste de figures
-	 * @param o Observer Vue �
+	 * @param o Observer Vue a
 	 * associer
 	 */
 	public void ajoutObserver (Observer o) {

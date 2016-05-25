@@ -18,6 +18,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	private boolean newfigure;
 	int index ;
 	private int nbPointPolygone ;
+	private Color border_color;
 	Point p1, p2, p3, p4, p5, p6, p7, p8, pointEditer ;	
 	FigureGeom figure ;
 	ListFigures lsFigures;
@@ -48,7 +49,7 @@ public class ControleurFigure extends MouseInputAdapter {
 		else if (isDessiner())  {
 			if (p1 != null && p2 == null){
 				if (isRectangleOn()){
-					UnRectangle rt = new UnRectangle(p1,e.getPoint(), Color.blue);
+					UnRectangle rt = new UnRectangle(p1,e.getPoint(), border_color);
 					if(!newfigure) {
 						lsFigures.addFigure(rt);
 						newfigure = true;
@@ -56,7 +57,7 @@ public class ControleurFigure extends MouseInputAdapter {
 					lsFigures.setFigure(lsFigures.getFigures().size()-1, rt);
 				}
 				else if (isCercleOn()){
-					UnCercle cl = new UnCercle(p1,e.getPoint(), Color.blue);
+					UnCercle cl = new UnCercle(p1,e.getPoint(), border_color);
 					if(!newfigure) {
 						lsFigures.addFigure(cl);
 						newfigure = true;
@@ -64,7 +65,7 @@ public class ControleurFigure extends MouseInputAdapter {
 					lsFigures.setFigure(lsFigures.getFigures().size()-1, cl);
 				}
 				else if (isTraitOn()){
-					UnTrait tr = new UnTrait(p1,e.getPoint(), Color.blue);
+					UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
 					if(!newfigure) {
 						lsFigures.addFigure(tr);
 						newfigure = true;
@@ -72,7 +73,7 @@ public class ControleurFigure extends MouseInputAdapter {
 					lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
 				}
 				else if (isTriangleOn()){
-					UnTrait tr = new UnTrait(p1,e.getPoint(), Color.blue);
+					UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
 					if(!newfigure) {
 						lsFigures.addFigure(tr);
 						newfigure = true;
@@ -82,7 +83,7 @@ public class ControleurFigure extends MouseInputAdapter {
 			}
 			else if (p1 != null && p2 != null && p3 == null){		
 				if (isTriangleOn()) {
-					UnTriangle triangle = new UnTriangle(p1,p2,e.getPoint(), Color.blue);
+					UnTriangle triangle = new UnTriangle(p1,p2,e.getPoint(), border_color);
 					if(!newfigure) {
 						lsFigures.removeFigure(lsFigures.getFigures().size()-1);
 						lsFigures.addFigure(triangle);
@@ -99,7 +100,7 @@ public class ControleurFigure extends MouseInputAdapter {
 		if (isDessiner())  {
 			if (p1 != null && p2 == null){
 				if (isRectangleOn()){
-					UnRectangle rt = new UnRectangle(p1,e.getPoint(), Color.blue);
+					UnRectangle rt = new UnRectangle(p1,e.getPoint(), border_color);
 					if(!newfigure) {
 						lsFigures.addFigure(rt);
 						newfigure = true;
@@ -107,7 +108,7 @@ public class ControleurFigure extends MouseInputAdapter {
 					lsFigures.setFigure(lsFigures.getFigures().size()-1, rt);
 				}
 				else if (isCercleOn()){
-					UnCercle cl = new UnCercle(p1,e.getPoint(), Color.blue);
+					UnCercle cl = new UnCercle(p1,e.getPoint(), border_color);
 					if(!newfigure) {
 						lsFigures.addFigure(cl);
 						newfigure = true;
@@ -115,7 +116,7 @@ public class ControleurFigure extends MouseInputAdapter {
 					lsFigures.setFigure(lsFigures.getFigures().size()-1, cl);
 				}
 				else if (isTraitOn()){
-					UnTrait tr = new UnTrait(p1,e.getPoint(), Color.blue);
+					UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
 					if(!newfigure) {
 						lsFigures.addFigure(tr);
 						newfigure = true;
@@ -123,7 +124,7 @@ public class ControleurFigure extends MouseInputAdapter {
 					lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
 				}
 				else if (isTriangleOn()){
-					UnTrait tr = new UnTrait(p1,e.getPoint(), Color.blue);
+					UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
 					if(!newfigure) {
 						lsFigures.addFigure(tr);
 						newfigure = true;
@@ -133,7 +134,7 @@ public class ControleurFigure extends MouseInputAdapter {
 			}
 			else if (p1 != null && p2 != null && p3 == null){		
 				if (isTriangleOn()) {
-					UnTriangle triangle = new UnTriangle(p1,p2,e.getPoint(), Color.blue);
+					UnTriangle triangle = new UnTriangle(p1,p2,e.getPoint(), border_color);
 					if(!newfigure) {
 						lsFigures.removeFigure(lsFigures.getFigures().size()-1);
 						lsFigures.addFigure(triangle);
@@ -160,7 +161,7 @@ public class ControleurFigure extends MouseInputAdapter {
 			else if (p3 == null){				
 				p3 = new Point (e.getPoint()) ;			
 				if (isTriangleOn()) {
-					UnTriangle triangle = new UnTriangle(p1,p2,p3, Color.blue);
+					UnTriangle triangle = new UnTriangle(p1,p2,p3, border_color);
 					lsFigures.setFigure(lsFigures.getFigures().size()-1, triangle);	
 					effacerPoints();
 				}
@@ -273,17 +274,17 @@ public class ControleurFigure extends MouseInputAdapter {
 	 */		
 	private void ajouterFig2point() {				
 		if (isRectangleOn()){					
-			UnRectangle rt = new UnRectangle(p1,p2, Color.blue);
+			UnRectangle rt = new UnRectangle(p1,p2, border_color);
 			lsFigures.setFigure(lsFigures.getFigures().size()-1, rt);
 			effacerPoints();
 		}
 		else if (isCercleOn()){		
-			UnCercle cl = new UnCercle(p1,p2, Color.blue);
+			UnCercle cl = new UnCercle(p1,p2, border_color);
 			lsFigures.setFigure(lsFigures.getFigures().size()-1, cl);
 			effacerPoints();
 		}	
 		else if (isTraitOn()){		
-			UnTrait tr = new UnTrait(p1,p2, Color.blue);
+			UnTrait tr = new UnTrait(p1,p2, border_color);
 			lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
 			effacerPoints();
 		}			
@@ -296,23 +297,23 @@ public class ControleurFigure extends MouseInputAdapter {
 		UnQuelconque pl = null;
 		if(p4 == null) {
 			p4 = new Point (p) ;
-			if(getNbPointPolygone() == 4) pl = new UnQuelconque(p1,p2, new Point[]{p3,p4}, Color.blue) ;
+			if(getNbPointPolygone() == 4) pl = new UnQuelconque(p1,p2, new Point[]{p3,p4}, border_color) ;
 		}
 		else if(p5 == null && getNbPointPolygone() > 4) {
 			p5 = new Point (p) ;	
-			if(getNbPointPolygone() == 5) pl = new UnQuelconque(p1,p2, new Point[]{p3,p4,p5}, Color.blue) ;
+			if(getNbPointPolygone() == 5) pl = new UnQuelconque(p1,p2, new Point[]{p3,p4,p5}, border_color) ;
 		}
 		else if(p6 == null && getNbPointPolygone() > 5) {
 			p6 = new Point (p) ;	
-			if(getNbPointPolygone() == 6) pl = new UnQuelconque(p1,p2, new Point[]{p3,p3,p4,p5,p6}, Color.blue) ;	
+			if(getNbPointPolygone() == 6) pl = new UnQuelconque(p1,p2, new Point[]{p3,p3,p4,p5,p6}, border_color) ;	
 		}
 		else if(p7 == null && getNbPointPolygone() > 6) {
 			p7 = new Point (p) ;	
-			if(getNbPointPolygone() == 7) pl = new UnQuelconque(p1,p2, new Point[]{p3,p3,p4,p5,p6,p7}, Color.blue) ;
+			if(getNbPointPolygone() == 7) pl = new UnQuelconque(p1,p2, new Point[]{p3,p3,p4,p5,p6,p7}, border_color) ;
 		}
 		else if(p8 == null && getNbPointPolygone() > 7) {
 			p8 = new Point (p) ;
-			if(getNbPointPolygone() == 8) pl = new UnQuelconque(p1,p2, new Point[]{p3,p3,p4,p5,p6,p7,p8}, Color.blue) ;
+			if(getNbPointPolygone() == 8) pl = new UnQuelconque(p1,p2, new Point[]{p3,p3,p4,p5,p6,p7,p8}, border_color) ;
 		}
 		if (pl != null) {
 			lsFigures.addFigure(pl);
@@ -517,5 +518,13 @@ public class ControleurFigure extends MouseInputAdapter {
 	 */
 	public void setNbPointPolygone(int nbPointPolygone) {
 		this.nbPointPolygone = nbPointPolygone;
+	}
+	
+	/**
+	 * Setter pour la couleur courante
+	 * @param border_color la couleur affectee
+	 */
+	public void setBorder_color(Color border_color) {
+		this.border_color = border_color;
 	}
 }
