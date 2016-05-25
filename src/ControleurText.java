@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.Point;
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.ArrayList;
 
 /**
@@ -32,6 +34,17 @@ public class ControleurText {
 	
 	private final Color BORDER = Color.red;
 	
+	/**
+     * Attribut nous permettant d'utiliser un log du 
+     * message d'erreur pour la Fenetre
+     */
+    private static final Logger LOGGER = 
+        Logger.getLogger(ControleurText.class.getName());
+	
+    /**
+     * Constructeur qui va permettre
+     * d instancier la classe
+     */
 	public ControleurText () {
 		this.listFig = new ListFigures();
 		this.sc = new Scanner(System.in);
@@ -75,7 +88,7 @@ public class ControleurText {
 							throw new NumberFormatException();
 						}
 					} catch (NumberFormatException iae) {
-						System.out.println("Le nombre de points spéficié"
+						LOGGER.log(Level.WARNING, "Le nombre de points spéficié"
 								+ " n'est pas conforme");
 					}
 				}
@@ -113,7 +126,7 @@ public class ControleurText {
 				UnTrait trait = new UnTrait(p1, p2, BORDER);
 				this.listFig.addFigure(trait);
 			} catch (IndexOutOfBoundsException ioobe) {
-				System.out.println("Création du trait impossible");
+				LOGGER.log(Level.WARNING, "Création du trait impossible");
 			}
 		}
 	}
@@ -137,7 +150,7 @@ public class ControleurText {
 				UnCercle cercle = new UnCercle(p1, p2, BORDER);
 				listFig.addFigure(cercle);
 			} catch (IndexOutOfBoundsException ioobe) {
-				System.out.println("Création du cercle impossible");
+				LOGGER.log(Level.WARNING, "Création du cercle impossible");
 			}
 		}
 	}
@@ -161,7 +174,7 @@ public class ControleurText {
 				UnRectangle rectangle = new UnRectangle(p1, p2, BORDER);
 				listFig.addFigure(rectangle);
 			} catch (IndexOutOfBoundsException ioobe) {
-				System.out.println("Création du rectangle impossible");
+				LOGGER.log(Level.WARNING, "Création du rectangle impossible");
 			}
 		}
 	}
@@ -186,7 +199,7 @@ public class ControleurText {
 				UnTriangle triangle = new UnTriangle(p1, p2, p3, BORDER);
 				listFig.addFigure(triangle);
 			} catch (IndexOutOfBoundsException ioobe) {
-				System.out.println("Création du triangle impossible");
+				LOGGER.log(Level.WARNING, "Création du triangle impossible");
 			}
 		}
 	}
@@ -224,7 +237,7 @@ public class ControleurText {
 				UnQuelconque quelconque = new UnQuelconque(p1, p2, tab, BORDER);
 				listFig.addFigure(quelconque);
 			} catch (IndexOutOfBoundsException ioobe) {
-				System.out.println("Création de la forme quelconque"
+				LOGGER.log(Level.WARNING, "Création de la forme quelconque"
 						+ " impossible");
 			}
 		}
@@ -277,7 +290,7 @@ public class ControleurText {
 				listPoint.add(p);
 				iteration ++;
 			} catch (NumberFormatException iae) {
-				System.out.println("Les coordonnées du"
+				LOGGER.log(Level.WARNING, "Les coordonnées du"
 						+ " point ne sont pas conformes");
 				inputing = false;
 			}

@@ -40,7 +40,7 @@ public class UnTriangle extends UnPolygone{
 		double ABP = Math.abs (x1 * (y2 - p.getY()) + x2 * (p.getY() - y1) + p.getX() * (y1 - y2));
 		double APC = Math.abs (x1 * (p.getY() - y3) + p.getX() * (y3 - y1) + x3 * (y1 - p.getY()));
 		double PBC = Math.abs (p.getX() * (y2 - y3) + x2 * (y3 - p.getY()) + x3 * (p.getY() - y2));
-        return  ABP + APC + PBC == ABC;
+        return  (ABP + APC + PBC) == ABC;
     }
 	
 	/**

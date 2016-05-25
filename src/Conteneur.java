@@ -147,12 +147,7 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(2)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cf.toggleMode (false);
-				cf.setDessiner(true);
-				cf.effacerPoints();			
-				cf.setCercleOn(false);
-				cf.setRectangleOn(false);
-				cf.setTriangleOn(false);
+				configTraitPolygon(cf);
 				cf.setTraitOn(true);
 				cf.setPolygoneOn(false);
 				mh.changerTexteMH("Tracez un trait");
@@ -203,12 +198,7 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mg.getBouttonM(6)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cf.toggleMode (false);
-				cf.setDessiner(true);
-				cf.effacerPoints();				
-				cf.setCercleOn(false);
-				cf.setRectangleOn(false);
-				cf.setTriangleOn(false);
+				configTraitPolygon(cf);
 				cf.setTraitOn(false); 
 				cf.setPolygoneOn(true);	
 				int nb = mg.get_nb_points_poly();
@@ -271,5 +261,21 @@ public class Conteneur extends JPanel{
                 mh.changerTexteMH("Menu change");
             }                
         });
+	}
+	
+	/**
+	 * Methode qui va assouplir
+	 * les configurations pour les
+	 * traits et les polygones
+	 * @param cf ControleurFigure
+	 * Gestionnaire des figures
+	 */
+	public void configTraitPolygon (ControleurFigure cf) {
+		cf.toggleMode (false);
+		cf.setDessiner(true);
+		cf.effacerPoints();				
+		cf.setCercleOn(false);
+		cf.setRectangleOn(false);
+		cf.setTriangleOn(false);
 	}
 }
