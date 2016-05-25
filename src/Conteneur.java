@@ -138,6 +138,7 @@ public class Conteneur extends JPanel{
 				mg.set_col_actuelle(couleur);
 				mh.changerTexteMH("couleur choisi : " + couleur);
 				cf.setBorder_color(mg.get_col_actuelle());
+				cf.colorFigure(mg);
 			}						
 		});
 		
@@ -145,7 +146,7 @@ public class Conteneur extends JPanel{
 			public void actionPerformed(ActionEvent e){	
 				cf.effacerPoints();
 				cf.setDessiner(false);
-				cf.setPotPeintureOn(false);
+				ControleurFigure.setPotPeintureOn(false);
 				mh.changerTexteMH("Vous etes en mode selection");
 			}							
 		});
