@@ -93,42 +93,37 @@ public class VueGraphique extends JPanel implements Observer {
 		}
 		if (fg instanceof UnTriangle){
 			UnTriangle triangle = (UnTriangle) fg;					
-			int [] X = {(int)triangle.getP1().getX(), (int)triangle.getP2().getX(), (int)triangle.getP3().getX()};
-			int [] Y = {(int)triangle.getP1().getY(), (int)triangle.getP2().getY(), (int)triangle.getP3().getY()};
-			g.drawPolygon(X, Y, 3);	
+			int [] tabX = {(int)triangle.getP1().getX(), (int)triangle.getP2().getX(), (int)triangle.getP3().getX()};
+			int [] tabY = {(int)triangle.getP1().getY(), (int)triangle.getP2().getY(), (int)triangle.getP3().getY()};
+			g.drawPolygon(tabX, tabY, 3);	
 		}
 		if (fg instanceof UnCercle){
-			UnCercle Cercle = (UnCercle) fg;
-			int r = (int) (Cercle.distance(Cercle.getP1(),Cercle.getP2())) ;
-			int x =(int) Cercle.getP1().getX();
-			int y =(int) Cercle.getP1().getY();
+			UnCercle cercle = (UnCercle) fg;
+			int r = (int) (cercle.distance(cercle.getP1(), cercle.getP2())) ;
+			int x =(int) cercle.getP1().getX();
+			int y =(int) cercle.getP1().getY();
 			g.drawOval(x-r,y-r,r*2,r*2);
 		}
 		if (fg instanceof UnRectangle){
 			UnRectangle rectangle = (UnRectangle) fg;
-			int x = (int) rectangle.getP1().getX() ;
-			int y = (int) rectangle.getP1().getY() ;
-			int width = (int) Math.abs(rectangle.getP1().getX() - rectangle.getP2().getX());
-			int height = (int) Math.abs(rectangle.getP1().getY() - rectangle.getP2().getY());
-			if (y>rectangle.getP2().getY()) y = y - height;
-			if (x>rectangle.getP2().getX())	x = x - width ;		
-			g.drawRect(x, y, width, height );
+			int [] tab = gestionRectangle(rectangle);
+			g.drawRect(tab[0], tab[1], tab[2], tab[3]);
 		}
 		if (fg instanceof UnQuelconque ){
 			UnQuelconque quelconque = (UnQuelconque) fg;
 			int taille = quelconque.getListPoints().length ;
-			int [] X = new int [taille+2];
-			X[0] = (int)quelconque.getP1().getX() ;
-			X[1] = (int)quelconque.getP2().getX();
-			int [] Y = new int [taille+2] ;
-			Y[0] = (int)quelconque.getP1().getY() ; 
-			Y[1] = (int)quelconque.getP2().getY();
+			int [] tabX = new int [taille+2];
+			tabX[0] = (int)quelconque.getP1().getX() ;
+			tabX[1] = (int)quelconque.getP2().getX();
+			int [] tabY = new int [taille+2] ;
+			tabY[0] = (int)quelconque.getP1().getY() ; 
+			tabY[1] = (int)quelconque.getP2().getY();
 			
 			for (int j = 0; j< taille;j++){
-				X[j+2] = (int) quelconque.getListPoints()[j].getX();
-				Y[j+2] = (int) quelconque.getListPoints()[j].getY();
+				tabX[j+2] = (int) quelconque.getListPoints()[j].getX();
+				tabY[j+2] = (int) quelconque.getListPoints()[j].getY();
 			}
-			g.drawPolygon(X, Y, taille+2);	
+			g.drawPolygon(tabX, tabY, taille+2);	
 		}
 		if(fg.isSelectOn() && !ControleurFigure.getPotPeinture())
 			drawVertex(g, fg);
@@ -150,44 +145,69 @@ public class VueGraphique extends JPanel implements Observer {
 		}
 		if (fg instanceof UnTriangle){
 			UnTriangle triangle = (UnTriangle) fg;					
-			int [] X = {(int)triangle.getP1().getX(), (int)triangle.getP2().getX(), (int)triangle.getP3().getX()};
-			int [] Y = {(int)triangle.getP1().getY(), (int)triangle.getP2().getY(), (int)triangle.getP3().getY()};
-			g.fillPolygon(X, Y, 3);	
+			int [] tabX = {(int)triangle.getP1().getX(), (int)triangle.getP2().getX(), (int)triangle.getP3().getX()};
+			int [] tabY = {(int)triangle.getP1().getY(), (int)triangle.getP2().getY(), (int)triangle.getP3().getY()};
+			g.fillPolygon(tabX, tabY, 3);	
 		}
 		if (fg instanceof UnCercle){
-			UnCercle Cercle = (UnCercle) fg;
-			int r = (int) (Cercle.distance(Cercle.getP1(),Cercle.getP2())) ;
-			int x =(int) Cercle.getP1().getX();
-			int y =(int) Cercle.getP1().getY();
+			UnCercle cercle = (UnCercle) fg;
+			int r = (int) (cercle.distance(cercle.getP1(), cercle.getP2())) ;
+			int x =(int) cercle.getP1().getX();
+			int y =(int) cercle.getP1().getY();
 			g.fillOval(x-r,y-r,r*2,r*2);
 		}
 		if (fg instanceof UnRectangle){
 			UnRectangle rectangle = (UnRectangle) fg;
-			int x = (int) rectangle.getP1().getX() ;
-			int y = (int) rectangle.getP1().getY() ;
-			int width = (int) Math.abs(rectangle.getP1().getX() - rectangle.getP2().getX());
-			int height = (int) Math.abs(rectangle.getP1().getY() - rectangle.getP2().getY());
-			if (y>rectangle.getP2().getY()) y = y - height;
-			if (x>rectangle.getP2().getX())	x = x - width ;		
-			g.fillRect(x, y, width, height );
+			int [] tab = gestionRectangle(rectangle);	
+			g.fillRect(tab[0], tab[1], tab[2], tab[3]);
 		}
 		if (fg instanceof UnQuelconque ){
 			UnQuelconque quelconque = (UnQuelconque) fg;
 			int taille = quelconque.getListPoints().length ;
-			int [] X = new int [taille+2];
-			X[0] = (int)quelconque.getP1().getX() ;
-			X[1] = (int)quelconque.getP2().getX();
-			int [] Y = new int [taille+2] ;
-			Y[0] = (int)quelconque.getP1().getY() ; 
-			Y[1] = (int)quelconque.getP2().getY();
+			int [] tabX = new int [taille+2];
+			tabX[0] = (int)quelconque.getP1().getX() ;
+			tabX[1] = (int)quelconque.getP2().getX();
+			int [] tabY = new int [taille+2] ;
+			tabY[0] = (int)quelconque.getP1().getY() ; 
+			tabY[1] = (int)quelconque.getP2().getY();
 			
 			for (int j = 0; j< taille;j++){
-				X[j+2] = (int) quelconque.getListPoints()[j].getX();
-				Y[j+2] = (int) quelconque.getListPoints()[j].getY();
+				tabX[j+2] = (int) quelconque.getListPoints()[j].getX();
+				tabY[j+2] = (int) quelconque.getListPoints()[j].getY();
 			}
-			g.fillPolygon(X, Y, taille+2);	
+			g.fillPolygon(tabX, tabY, taille+2);	
 		}
 		if(fg.isSelectOn() && !ControleurFigure.getPotPeinture())
 			drawVertex(g, fg);
+	}
+	
+	/**
+	 * Methode qui eviter le duplicat
+	 * dans la construction des
+	 * rectangles
+	 * @param rectangle UnRectangle
+	 * Rectangle a gerer
+	 * @return Integer[] Tableau
+	 * d entiers contenant dans l ordre
+	 * l abscisse, l ordonnee, la largeur
+	 * et la hauteur
+	 */
+	public int [] gestionRectangle (UnRectangle rectangle) {
+		int [] tab = new int[4];
+		int x = (int) rectangle.getP1().getX() ;
+		int y = (int) rectangle.getP1().getY() ;
+		int width = (int) Math.abs(rectangle.getP1().getX()
+				- rectangle.getP2().getX());
+		int height = (int) Math.abs(rectangle.getP1().getY()
+				- rectangle.getP2().getY());
+		if (y>rectangle.getP2().getY()) 
+			y = y - height;
+		if (x>rectangle.getP2().getX())	
+			x = x - width ;
+		tab[0] = x;
+		tab[1] = y;
+		tab[2] = width;
+		tab[3] = height;
+		return tab;
 	}
 }
