@@ -256,6 +256,7 @@ public class Conteneur extends JPanel{
             public void actionPerformed(ActionEvent e){
                 boolean etat = ((AbstractButton) e.getSource()).getModel().isSelected();
                 mg.changeicons(etat);
+                mh.changerTexteMH("Menu changé");
             }                
         });
 	}
