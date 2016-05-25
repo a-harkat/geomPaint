@@ -49,7 +49,8 @@ public class VueGraphique extends JPanel implements Observer {
 		if(this.listeFigures != null)
 			for (int i = 0; i < this.listeFigures.getFigures().size(); i++) {
 				FigureGeom tr = this.listeFigures.getFigures().get(i);
-				if (!ControleurFigure.potPeinture) {
+				if (ControleurFigure.potPeinture
+						&& tr.getFigureFilled()) {
 					g.setColor(tr.getFull_color());
 					dessinerFigurePleine(g, tr);
 				} else {
@@ -84,7 +85,7 @@ public class VueGraphique extends JPanel implements Observer {
 	 * @param fg FigureGeom Figure a
 	 * dessiner
 	 */
-	public void dessinerFigurePleine (Graphics g, FigureGeom fg) {
+	public void dessinerFigureVide (Graphics g, FigureGeom fg) {
 		if (fg instanceof UnTrait){
 			g.drawLine((int)fg.getP1().getX(), (int)fg.getP1().getY(),
 					(int)fg.getP2().getX(), (int)fg.getP2().getY()); 
@@ -141,7 +142,7 @@ public class VueGraphique extends JPanel implements Observer {
 	 * @param fg FigureGeom Figure a
 	 * dessiner
 	 */
-	public void dessinerFigureVide (Graphics g, FigureGeom fg) {
+	public void dessinerFigurePleine (Graphics g, FigureGeom fg) {
 		if (fg instanceof UnTrait){
 			g.drawLine((int)fg.getP1().getX(), (int)fg.getP1().getY(),
 					(int)fg.getP2().getX(), (int)fg.getP2().getY()); 

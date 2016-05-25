@@ -202,27 +202,52 @@ public class ControleurFigure extends MouseInputAdapter {
 				if (fg instanceof UnTrait) {
 					UnTrait trait = (UnTrait) fg;
 					if (trait.insideTrait(cible)) {
-						trait.setBorder_color(backgroundFigColor);
+						if (!trait.getFigureFilled()) {
+							trait.setFigureFilled(true);
+							trait.setBorder_color(backgroundFigColor);
+						} else {
+							trait.setFigureFilled(false);
+						}
 					}
 				} else if (fg instanceof UnCercle) {
 					UnCercle cercle = (UnCercle) fg;
 					if (cercle.insideCercle(cible)) {
-						cercle.setFull_color(backgroundFigColor);
+						if (!cercle.getFigureFilled()) {
+							cercle.setFigureFilled(true);
+							cercle.setFull_color(backgroundFigColor);
+						} else {
+							cercle.setFigureFilled(false);
+						}
 					}
 				} else if (fg instanceof UnTriangle) {
 					UnTriangle triangle = (UnTriangle) fg;
 					if (triangle.isInsideTriangle(cible)) {
-						triangle.setFull_color(backgroundFigColor);
+						if (!triangle.getFigureFilled()) {
+							triangle.setFigureFilled(true);
+							triangle.setFull_color(backgroundFigColor);
+						} else {
+							triangle.setFigureFilled(false);
+						}
 					}
 				} else if (fg instanceof UnRectangle) {
 					UnRectangle rectangle = (UnRectangle) fg;
 					if (rectangle.insideRectangle(cible)) {
-						rectangle.setFull_color(backgroundFigColor);
+						if (!rectangle.getFigureFilled()) {
+							rectangle.setFigureFilled(true);
+							rectangle.setFull_color(backgroundFigColor);
+						} else {
+							rectangle.setFigureFilled(false);
+						}
 					}
 				} else if (fg instanceof UnQuelconque) {
 					UnQuelconque quelconque = (UnQuelconque) fg;
 					if (quelconque.insidePolygone(cible)) {
-						quelconque.setFull_color(backgroundFigColor);
+						if (!quelconque.getFigureFilled()) {
+							quelconque.setFigureFilled(true);
+							quelconque.setFull_color(backgroundFigColor);
+						} else {
+							quelconque.setFigureFilled(false);
+						}
 					}
 				}
 			}

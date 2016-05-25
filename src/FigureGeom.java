@@ -12,6 +12,7 @@ public abstract class FigureGeom  {
 	private static final int tolerance = 5;
 	private Point P1, P2 ;
 	private boolean selectOn = false;
+	private boolean figureFilled;
 	
 	/**
 	 * Couleur de la bordure de la figure 
@@ -32,6 +33,7 @@ public abstract class FigureGeom  {
 		border_color = border;
 		P1 = p1 ;
 		P2 = p2 ;
+		figureFilled = false;
 	}
 	
 	// a check 
@@ -182,6 +184,27 @@ public abstract class FigureGeom  {
 		this.full_color = new_full_color;
 	}
 	
+	/**
+	 * Methode qui va indiquer si
+	 * la figure est pleine ou non
+	 * @return Boolean true si la
+	 * figure est pleine, false sinon
+	 */
+	public boolean getFigureFilled () {
+		return this.figureFilled;
+	}
+	
+	/**
+	 * Methode qui va indiquer si
+	 * la figure doit etre pleine
+	 * ou non
+	 * @param bool Boolean true si
+	 * la figure doit etre pleine,
+	 * false sinon
+	 */
+	public void setFigureFilled (boolean bool) {
+		this.figureFilled = bool;
+	}
 	public boolean isSelectOn() {
 		return selectOn;
 	}

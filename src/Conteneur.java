@@ -160,7 +160,6 @@ public class Conteneur extends JPanel{
 				cf.setTriangleOn(false);
 				cf.setTraitOn(true);
 				cf.setPolygoneOn(false);
-				cf.setPotPeintureOn(false);
 				mh.changerTexteMH("Tracez un trait");
 			}							
 		});
@@ -175,7 +174,6 @@ public class Conteneur extends JPanel{
 				cf.setTriangleOn(false);
 				cf.setTraitOn(false);
 				cf.setPolygoneOn(false);
-				cf.setPotPeintureOn(false);
 				mh.changerTexteMH("Tracez un rectangle : 2 points");
 			}							
 		});	
@@ -190,7 +188,6 @@ public class Conteneur extends JPanel{
 				cf.setTriangleOn(true);
 				cf.setTraitOn(false);
 				cf.setPolygoneOn(false);
-				cf.setPotPeintureOn(false);
 				mh.changerTexteMH("Tracez un triangle : 3 points");
 			}							
 		});	
@@ -205,7 +202,6 @@ public class Conteneur extends JPanel{
 				cf.setTriangleOn(false);
 				cf.setTraitOn(false);
 				cf.setPolygoneOn(false);
-				cf.setPotPeintureOn(false);
 				mh.changerTexteMH("Tracez un cercle : 2 points");
 			}							
 		});
@@ -220,7 +216,6 @@ public class Conteneur extends JPanel{
 				cf.setTriangleOn(false);
 				cf.setTraitOn(false); 
 				cf.setPolygoneOn(true);	
-				cf.setPotPeintureOn(false);
 				int nb = mg.get_nb_points_poly();
 				cf.setNbPointPolygone(nb);
 				mh.changerTexteMH("Tracez un polygone : nombre de points choisis : " + nb);
