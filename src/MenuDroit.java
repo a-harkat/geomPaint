@@ -53,15 +53,5 @@ public class MenuDroit extends Menu {
 			bouton.setPreferredSize(new Dimension(140,30));
 		}
 	}
-	
-	/**
-	 * Methode qui permet de tester les calques
-	 * boutons du menu Droit
-	 */
-	private void test() {
-		for (int i = 0; i < 10; i++) {
-			this.ajouterBouttonM(new JButton("test" + i));
-		}
-	}
 
 }
