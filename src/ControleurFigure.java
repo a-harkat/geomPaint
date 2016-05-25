@@ -2,10 +2,12 @@ import java.awt.Point;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import javax.swing.event.MouseInputAdapter;
+
+import java.util.ArrayList;
 /**
  * Classe qui sert de controleur graphique pour les rectangle
  * @author Groupe 2
- * @version 1
+ * @version 1.2
  */
 public class ControleurFigure extends MouseInputAdapter {
 	boolean edition, deplacement ;
@@ -16,9 +18,11 @@ public class ControleurFigure extends MouseInputAdapter {
 	private boolean traitOn;
 	private boolean polygoneOn;
 	private boolean newfigure;
+	public static boolean potPeinture;
 	int index ;
 	private int nbPointPolygone ;
 	private Color border_color;
+	private Color backgroundFigColor;
 	Point p1, p2, p3, p4, p5, p6, p7, p8, pointEditer ;	
 	FigureGeom figure ;
 	ListFigures lsFigures;
@@ -28,7 +32,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	 */
 	public ControleurFigure() {
 		lsFigures = new ListFigures() ;	
-		setDessiner(false) ;
+		setDessiner(false);
 	}
 	
 	/**
@@ -169,7 +173,8 @@ public class ControleurFigure extends MouseInputAdapter {
 				ajouterQuelconque(e.getPoint());				
 			}
 		} 
-		else if (!isDessiner() && lsFigures.getFigures().size() != 0){
+		else if (!isDessiner() &&
+				lsFigures.getFigures().size() != 0 && !potPeinture){
 			if (indexEditer(e.getPoint()) != -1 ){
 				edition = true ;
 				index = indexEditer(e.getPoint());
@@ -180,7 +185,48 @@ public class ControleurFigure extends MouseInputAdapter {
 			}
 			pointEditer = e.getPoint() ;
 			figure = lsFigures.getFigures().get(index);
-		 }
+		}
+		/**
+		 * Mode pot de peinture
+		 */
+		else if (!isDessiner() &&
+				lsFigures.getFigures().size() != 0 && potPeinture) {
+			if (backgroundFigColor == null) {
+				backgroundFigColor = border_color;
+			}
+			int abscisse = e.getX();
+			int ordonnee = e.getY();
+			Point cible = new Point(abscisse, ordonnee);
+			ArrayList<FigureGeom> list = lsFigures.getFigures();
+			for (FigureGeom fg : list) {
+				if (fg instanceof UnTrait) {
+					UnTrait trait = (UnTrait) fg;
+					if (trait.insideTrait(cible)) {
+						trait.setBorder_color(backgroundFigColor);
+					}
+				} else if (fg instanceof UnCercle) {
+					UnCercle cercle = (UnCercle) fg;
+					if (cercle.insideCercle(cible)) {
+						cercle.setFull_color(backgroundFigColor);
+					}
+				} else if (fg instanceof UnTriangle) {
+					UnTriangle triangle = (UnTriangle) fg;
+					if (triangle.isInsideTriangle(cible)) {
+						triangle.setFull_color(backgroundFigColor);
+					}
+				} else if (fg instanceof UnRectangle) {
+					UnRectangle rectangle = (UnRectangle) fg;
+					if (rectangle.insideRectangle(cible)) {
+						rectangle.setFull_color(backgroundFigColor);
+					}
+				} else if (fg instanceof UnQuelconque) {
+					UnQuelconque quelconque = (UnQuelconque) fg;
+					if (quelconque.insidePolygone(cible)) {
+						quelconque.setFull_color(backgroundFigColor);
+					}
+				}
+			}
+		}
 	}
 	
 	/**
@@ -207,7 +253,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * m?thode qui d?place n'importe quelle figure par le mousseDragegd
+	 * methode qui deplace n'importe quelle figure par le mousseDragegd
 	 */
 	private void deplacerFigure(Point p) {
 		if (figure instanceof UnRectangle) {
@@ -238,7 +284,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * m?thode qui ?dite n'importe quelle figure par le mousseDragegd
+	 * methode qui edite n'importe quelle figure par le mousseDragegd
 	 */
 	private void editerFigure(Point p) {
 		if (figure instanceof UnRectangle) {
@@ -269,7 +315,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * Ajoute une figure ? deux point dans la liste de figures
+	 * Ajoute une figure a deux point dans la liste de figures
 	 */		
 	private void ajouterFig2point() {				
 		if (isRectangleOn()){					
@@ -343,7 +389,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * Retourne l'index de la figure selection?e pour d?placer
+	 * Retourne l'index de la figure selectionee pour deplacer
 	 * @param p le point ou s'applique l'edition 
 	 * @return index de la figure
 	 */	
@@ -383,7 +429,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * Suprime le dernier ?l?ment ajout?
+	 * Suprime le dernier element ajoute
 	 */	
 	public void deleteLast (){
 		if (lsFigures.getFigures().size() > 0) 
@@ -392,7 +438,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 * methode qui ?fface les point lors du clique sur un bouton
+	 * methode qui efface les point lors du clique sur un bouton
 	 */
 	public void effacerPoints() {
 		if (p1 != null) p1 = null;
@@ -406,7 +452,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 *Suprime la figure s?lectionn?e
+	 *Supprime la figure selectionnee
 	 */	
 	public void deleteSelected (){
 		lsFigures.removeSelected();
@@ -414,13 +460,25 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
-	 *Suprime toutes les figures
+	 *Supprime toutes les figures
 	 */	
 	public void deleteAll (){			
 		lsFigures.removeAll();	
 		effacerPoints();
 	}
 
+	/**
+	 * Methode qui va colorier
+	 * avec le pot de peinture
+	 * une figure
+	 * @param mg MenuGauche Menu qui contient
+	 * la couleur actuelle
+	 */
+	public void colorFigure (MenuGauche mg) {
+		backgroundFigColor = mg.get_col_actuelle();
+		
+	}
+	
 	/**
 	 * @return the rectangleOn
 	 */
@@ -525,6 +583,17 @@ public class ControleurFigure extends MouseInputAdapter {
 	 */
 	public void setBorder_color(Color border_color) {
 		this.border_color = border_color;
+	}
+	
+	/**
+	 * Methode qui va permettre de definir
+	 * si on est en mode pot de peinture
+	 * ou non
+	 * @param bool Boolean true si on est
+	 * en mode pot de peinture false sinon
+	 */
+	public void setPotPeintureOn(boolean bool) {
+		potPeinture = bool;
 	}
 	
 	/**

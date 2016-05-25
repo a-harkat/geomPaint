@@ -135,16 +135,17 @@ public class Conteneur extends JPanel{
 				mh.changerTexteMH("choisissez votre couleur");
 				Color couleur = JColorChooser.showDialog
 						(null, "Choisissez votre couleur", menu_color);
-						mg.set_col_actuelle(couleur);
-						mh.changerTexteMH("couleur choisi : " + couleur);
-						cf.setBorder_color(mg.get_col_actuelle());
+				mg.set_col_actuelle(couleur);
+				mh.changerTexteMH("couleur choisi : " + couleur);
+				cf.setBorder_color(mg.get_col_actuelle());
 			}						
 		});
 		
 		((JButton)mg.getBouttonM(1)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){	
 				cf.effacerPoints();
-				cf.setDessiner(false);	
+				cf.setDessiner(false);
+				cf.setPotPeintureOn(false);
 				mh.changerTexteMH("Vous etes en mode selection");
 			}							
 		});
@@ -159,6 +160,7 @@ public class Conteneur extends JPanel{
 				cf.setTriangleOn(false);
 				cf.setTraitOn(true);
 				cf.setPolygoneOn(false);
+				cf.setPotPeintureOn(false);
 				mh.changerTexteMH("Tracez un trait");
 			}							
 		});
@@ -173,6 +175,7 @@ public class Conteneur extends JPanel{
 				cf.setTriangleOn(false);
 				cf.setTraitOn(false);
 				cf.setPolygoneOn(false);
+				cf.setPotPeintureOn(false);
 				mh.changerTexteMH("Tracez un rectangle : 2 points");
 			}							
 		});	
@@ -187,6 +190,7 @@ public class Conteneur extends JPanel{
 				cf.setTriangleOn(true);
 				cf.setTraitOn(false);
 				cf.setPolygoneOn(false);
+				cf.setPotPeintureOn(false);
 				mh.changerTexteMH("Tracez un triangle : 3 points");
 			}							
 		});	
@@ -201,6 +205,7 @@ public class Conteneur extends JPanel{
 				cf.setTriangleOn(false);
 				cf.setTraitOn(false);
 				cf.setPolygoneOn(false);
+				cf.setPotPeintureOn(false);
 				mh.changerTexteMH("Tracez un cercle : 2 points");
 			}							
 		});
@@ -214,23 +219,39 @@ public class Conteneur extends JPanel{
 				cf.setRectangleOn(false);
 				cf.setTriangleOn(false);
 				cf.setTraitOn(false); 
-				cf.setPolygoneOn(true);				
+				cf.setPolygoneOn(true);	
+				cf.setPotPeintureOn(false);
 				int nb = mg.get_nb_points_poly();
 				cf.setNbPointPolygone(nb);
 				mh.changerTexteMH("Tracez un polygone : nombre de points choisis : " + nb);
 			}				
 		});
 		
+		((JButton)mb.getBouttonM(0)).addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cf.toggleMode (false);
+				cf.setDessiner(false);
+				cf.effacerPoints();				
+				cf.setCercleOn(false);
+				cf.setRectangleOn(false);
+				cf.setTriangleOn(false);
+				cf.setTraitOn(false); 
+				cf.setPolygoneOn(false);
+				cf.setPotPeintureOn(true);
+				cf.colorFigure(mg);
+				mh.changerTexteMH("Colorier figure");
+			}
+		});
 		((JButton)mb.getBouttonM(1)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				cf.deleteLast();
 				mh.changerTexteMH("Derniere figure effacee");
 			}				
 		});
-		((JButton)mb.getBouttonM(2)).addActionListener(new ActionListener(){
+		((JButton)mb.getBouttonM(3)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				cf.deleteAll();
-				mh.changerTexteMH("Figure(s) effacee");
+				mh.changerTexteMH("Figure(s) effacee(s)");
 			}				
 		});
 		

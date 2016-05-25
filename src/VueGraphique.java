@@ -49,70 +49,144 @@ public class VueGraphique extends JPanel implements Observer {
 		if(this.listeFigures != null)
 			for (int i = 0; i < this.listeFigures.getFigures().size(); i++) {
 				FigureGeom tr = this.listeFigures.getFigures().get(i);
-				g.setColor(tr.getBorder_color());
-				if (tr instanceof UnTrait){
-					g.drawLine((int)tr.getP1().getX(), (int)tr.getP1().getY(),
-							(int)tr.getP2().getX(), (int)tr.getP2().getY()); 
-					
+				if (!ControleurFigure.potPeinture) {
+					g.setColor(tr.getFull_color());
+					dessinerFigurePleine(g, tr);
+				} else {
+					g.setColor(tr.getBorder_color());
+					dessinerFigureVide(g, tr);
 				}
-				if (tr instanceof UnTriangle ){
-					UnTriangle triangle = (UnTriangle) tr ;					
-					int [] X = {(int)triangle.getP1().getX(), (int)triangle.getP2().getX(), (int)triangle.getP3().getX()};
-					int [] Y = {(int)triangle.getP1().getY(), (int)triangle.getP2().getY(), (int)triangle.getP3().getY()};
-					g.drawPolygon(X, Y, 3);	
-				}
-				if (tr instanceof UnCercle ){
-					UnCercle Cercle = (UnCercle) tr ;
-					int r = (int) (Cercle.distance(Cercle.getP1(),Cercle.getP2())) ;
-					int x =(int) Cercle.getP1().getX();
-					int y =(int) Cercle.getP1().getY();
-					g.drawOval(x-r,y-r,r*2,r*2);
-				}
-				if (tr instanceof UnRectangle ){
-					UnRectangle rectangle = (UnRectangle) tr;
-					int x = (int) rectangle.getP1().getX() ;
-					int y = (int) rectangle.getP1().getY() ;
-					int width = (int) Math.abs(rectangle.getP1().getX() - rectangle.getP2().getX());
-					int height = (int) Math.abs(rectangle.getP1().getY() - rectangle.getP2().getY());
-					if (y>rectangle.getP2().getY()) y = y - height;
-					if (x>rectangle.getP2().getX())	x = x - width ;		
-					g.drawRect(x, y, width, height );
-				}
-				if (tr instanceof UnQuelconque ){
-					UnQuelconque quelconque = (UnQuelconque) tr;
-					int taille = quelconque.getListPoints().length ;
-					int [] X = new int [taille+2];
-					X[0] = (int)quelconque.getP1().getX() ;
-					X[1] = (int)quelconque.getP2().getX();
-					int [] Y = new int [taille+2] ;
-					Y[0] = (int)quelconque.getP1().getY() ; 
-					Y[1] = (int)quelconque.getP2().getY();
-					
-					for (int j = 0; j< taille;j++){
-						X[j+2] = (int) quelconque.getListPoints()[j].getX();
-						Y[j+2] = (int) quelconque.getListPoints()[j].getY();
-					}
-					g.drawPolygon(X, Y, taille+2);	
-				}
-				if(tr.isSelectOn())
-					drawVertex(g, tr);
 			}
 	}
 	
 	public void drawVertex(Graphics g, FigureGeom fg) {		
 		int vrtx = VERTEX_SIZE;		
-		g.drawRect((int)fg.getP1().getX()-vrtx/2, (int)fg.getP1().getY()-vrtx/2, vrtx, vrtx);
-		g.drawRect((int)fg.getP2().getX()-vrtx/2, (int)fg.getP2().getY()-vrtx/2, vrtx, vrtx);
+		g.fillRect((int)fg.getP1().getX()-vrtx/2, (int)fg.getP1().getY()-vrtx/2, vrtx, vrtx);
+		g.fillRect((int)fg.getP2().getX()-vrtx/2, (int)fg.getP2().getY()-vrtx/2, vrtx, vrtx);
 		
 		if (fg instanceof UnTriangle ){ 
 			UnTriangle triangle = (UnTriangle) fg ;
-			g.drawRect((int)triangle.getP3().getX()-vrtx/2, (int)triangle.getP3().getY()-vrtx/2, vrtx, vrtx);
+			g.fillRect((int)triangle.getP3().getX()-vrtx/2, (int)triangle.getP3().getY()-vrtx/2, vrtx, vrtx);
 		}
 		if (fg instanceof UnQuelconque ){ 
 			UnQuelconque quelconque = (UnQuelconque) fg ;
 			for (int j = 0; j< quelconque.getListPoints().length;j++){
-				g.drawRect((int)quelconque.getListPoints()[j].getX()-vrtx/2, (int)quelconque.getListPoints()[j].getY()-vrtx/2, vrtx, vrtx);
+				g.fillRect((int)quelconque.getListPoints()[j].getX()-vrtx/2, (int)quelconque.getListPoints()[j].getY()-vrtx/2, vrtx, vrtx);
 			}
 		}
+	}
+	
+	/**
+	 * Methode qui va dessiner une figure
+	 * pleine
+	 * @param g Graphics Graphique devant
+	 * contenir la figure
+	 * @param fg FigureGeom Figure a
+	 * dessiner
+	 */
+	public void dessinerFigurePleine (Graphics g, FigureGeom fg) {
+		if (fg instanceof UnTrait){
+			g.drawLine((int)fg.getP1().getX(), (int)fg.getP1().getY(),
+					(int)fg.getP2().getX(), (int)fg.getP2().getY()); 
+			
+		}
+		if (fg instanceof UnTriangle){
+			UnTriangle triangle = (UnTriangle) fg;					
+			int [] X = {(int)triangle.getP1().getX(), (int)triangle.getP2().getX(), (int)triangle.getP3().getX()};
+			int [] Y = {(int)triangle.getP1().getY(), (int)triangle.getP2().getY(), (int)triangle.getP3().getY()};
+			g.drawPolygon(X, Y, 3);	
+		}
+		if (fg instanceof UnCercle){
+			UnCercle Cercle = (UnCercle) fg;
+			int r = (int) (Cercle.distance(Cercle.getP1(),Cercle.getP2())) ;
+			int x =(int) Cercle.getP1().getX();
+			int y =(int) Cercle.getP1().getY();
+			g.drawOval(x-r,y-r,r*2,r*2);
+		}
+		if (fg instanceof UnRectangle){
+			UnRectangle rectangle = (UnRectangle) fg;
+			int x = (int) rectangle.getP1().getX() ;
+			int y = (int) rectangle.getP1().getY() ;
+			int width = (int) Math.abs(rectangle.getP1().getX() - rectangle.getP2().getX());
+			int height = (int) Math.abs(rectangle.getP1().getY() - rectangle.getP2().getY());
+			if (y>rectangle.getP2().getY()) y = y - height;
+			if (x>rectangle.getP2().getX())	x = x - width ;		
+			g.drawRect(x, y, width, height );
+		}
+		if (fg instanceof UnQuelconque ){
+			UnQuelconque quelconque = (UnQuelconque) fg;
+			int taille = quelconque.getListPoints().length ;
+			int [] X = new int [taille+2];
+			X[0] = (int)quelconque.getP1().getX() ;
+			X[1] = (int)quelconque.getP2().getX();
+			int [] Y = new int [taille+2] ;
+			Y[0] = (int)quelconque.getP1().getY() ; 
+			Y[1] = (int)quelconque.getP2().getY();
+			
+			for (int j = 0; j< taille;j++){
+				X[j+2] = (int) quelconque.getListPoints()[j].getX();
+				Y[j+2] = (int) quelconque.getListPoints()[j].getY();
+			}
+			g.drawPolygon(X, Y, taille+2);	
+		}
+		if(fg.isSelectOn())
+			drawVertex(g, fg);
+	}
+	
+	/**
+	 * Methode qui va dessiner une figure
+	 * vide
+	 * @param g Graphics Graphique devant
+	 * contenir la figure
+	 * @param fg FigureGeom Figure a
+	 * dessiner
+	 */
+	public void dessinerFigureVide (Graphics g, FigureGeom fg) {
+		if (fg instanceof UnTrait){
+			g.drawLine((int)fg.getP1().getX(), (int)fg.getP1().getY(),
+					(int)fg.getP2().getX(), (int)fg.getP2().getY()); 
+			
+		}
+		if (fg instanceof UnTriangle){
+			UnTriangle triangle = (UnTriangle) fg;					
+			int [] X = {(int)triangle.getP1().getX(), (int)triangle.getP2().getX(), (int)triangle.getP3().getX()};
+			int [] Y = {(int)triangle.getP1().getY(), (int)triangle.getP2().getY(), (int)triangle.getP3().getY()};
+			g.fillPolygon(X, Y, 3);	
+		}
+		if (fg instanceof UnCercle){
+			UnCercle Cercle = (UnCercle) fg;
+			int r = (int) (Cercle.distance(Cercle.getP1(),Cercle.getP2())) ;
+			int x =(int) Cercle.getP1().getX();
+			int y =(int) Cercle.getP1().getY();
+			g.fillOval(x-r,y-r,r*2,r*2);
+		}
+		if (fg instanceof UnRectangle){
+			UnRectangle rectangle = (UnRectangle) fg;
+			int x = (int) rectangle.getP1().getX() ;
+			int y = (int) rectangle.getP1().getY() ;
+			int width = (int) Math.abs(rectangle.getP1().getX() - rectangle.getP2().getX());
+			int height = (int) Math.abs(rectangle.getP1().getY() - rectangle.getP2().getY());
+			if (y>rectangle.getP2().getY()) y = y - height;
+			if (x>rectangle.getP2().getX())	x = x - width ;		
+			g.fillRect(x, y, width, height );
+		}
+		if (fg instanceof UnQuelconque ){
+			UnQuelconque quelconque = (UnQuelconque) fg;
+			int taille = quelconque.getListPoints().length ;
+			int [] X = new int [taille+2];
+			X[0] = (int)quelconque.getP1().getX() ;
+			X[1] = (int)quelconque.getP2().getX();
+			int [] Y = new int [taille+2] ;
+			Y[0] = (int)quelconque.getP1().getY() ; 
+			Y[1] = (int)quelconque.getP2().getY();
+			
+			for (int j = 0; j< taille;j++){
+				X[j+2] = (int) quelconque.getListPoints()[j].getX();
+				Y[j+2] = (int) quelconque.getListPoints()[j].getY();
+			}
+			g.fillPolygon(X, Y, taille+2);	
+		}
+		if(fg.isSelectOn())
+			drawVertex(g, fg);
 	}
 }

@@ -56,14 +56,14 @@ public abstract class FigureGeom  {
 
 	
 	/**
-	 * retourne si un point est dans la zone de tol�rance d'un autre point
+	 * retourne si un point est dans la zone de tolerance d'un autre point
 	 */
 	public boolean tolerance (Point p) {
 		return isInToleranceZone(p,this.getP1()) || isInToleranceZone(p,this.getP2());		   
 	}	
 	
 	/**
-	 * retourne si un point est dans le cercle qui a pour centre un point donn�
+	 * retourne si un point est dans le cercle qui a pour centre un point donne
 	 */
 	public boolean isInToleranceZone (Point p1, Point p2) {
 		double dx = p1.getX()- p2.getX();

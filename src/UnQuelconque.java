@@ -28,8 +28,8 @@ public class UnQuelconque extends UnPolygone{
 
 	}
 	/**
-	 * M�thode qui va permettre de
-	 * r�cup�rer la liste des points
+	 * Methode qui va permettre de
+	 * recuperer la liste des points
 	 * du polygone
 	 * @return Point [] Liste
 	 * des points du polygone quelconque
@@ -45,7 +45,7 @@ public class UnQuelconque extends UnPolygone{
 		this.listPoints = listPoints;
 	}
 	/**
-	 * methode qui �dite (redimensionne) un triangle
+	 * methode qui edite (redimensionne) un triangle
 	 */
 	public void editerQuelconque(Point p1, Point p2) {
 		
