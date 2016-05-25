@@ -41,7 +41,7 @@ public class JeuPrincipal {
 		conteneur.ajoutObserver(vg, cf.getListFigures());
 		conteneur.preparationPanel(vg, cf);
 		conteneur.setControlGraphic(cf, vg);
-		JFrame fenetre=new JFrame("GeomPaint :D");
+		JFrame fenetre=new JFrame("GeomPaint");
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fenetre.setContentPane(conteneur); 
 		fenetre.pack();
