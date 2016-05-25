@@ -37,11 +37,15 @@ public class MenuDroit extends Menu {
 	 * boutons du menu Droit
 	 */
 	private void generateBoutton() {
-		JCheckBox choix_type_bouton = new JCheckBox("changer boutons");
-		JButton clear = new JButton("clear all");
 		
-		this.ajouterBouttonM(choix_type_bouton);
+		JButton dup = new JButton("Duplication");
+		JButton clear = new JButton("clear all");
+		JCheckBox choix_type_bouton = new JCheckBox("changer boutons");
+		
+		this.ajouterBouttonM(dup);
 		this.ajouterBouttonM(clear);
+		this.ajouterBouttonM(choix_type_bouton);
+		
 		
 		clear.setMinimumSize(new Dimension(140,30));
 		clear.setMaximumSize(new Dimension(140,30));
@@ -49,6 +53,9 @@ public class MenuDroit extends Menu {
 		choix_type_bouton.setMinimumSize(new Dimension(140,30));
 		choix_type_bouton.setMaximumSize(new Dimension(140,30));
 		choix_type_bouton.setPreferredSize(new Dimension(140,30));
+		dup.setMinimumSize(new Dimension(140,30));
+		dup.setMaximumSize(new Dimension(140,30));
+		dup.setPreferredSize(new Dimension(140,30));
 	}
 	
 	/**

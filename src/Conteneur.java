@@ -1,7 +1,6 @@
 import java.awt.BorderLayout;
 import java.util.Observer;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -253,7 +252,7 @@ public class Conteneur extends JPanel{
 			}				
 		});
 		
-		((JCheckBox)md.getBouttonM(0)).addActionListener(new ActionListener(){
+		((JCheckBox)md.getBouttonM(2)).addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 boolean etat = ((AbstractButton) e.getSource()).getModel().isSelected();
                 mg.changeicons(etat);
