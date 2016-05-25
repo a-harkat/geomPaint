@@ -85,7 +85,7 @@ public class MenuGauche extends Menu {
 	private JSlider generate_mg_jsli() {
 		JSlider b_type = new JSlider();
 		b_type.setMaximum(8);
-	    b_type.setMinimum(3);
+	    b_type.setMinimum(4);
 	    b_type.setValue(1);
 	    b_type.setPaintTicks(true);
 	    b_type.setPaintLabels(true);

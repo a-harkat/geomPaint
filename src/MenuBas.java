@@ -30,18 +30,23 @@ public class MenuBas extends Menu {
 	 * boutons du menu bas
 	 */
 	private void generateBoutton() {
-		ImageIcon sup = new ImageIcon("src/images/poubelle.png", "poubelle");
+		ImageIcon undo_img = new ImageIcon("src/images/undo2.png", "poubelle");
+		ImageIcon redo_img = new ImageIcon("src/images/redo2.png", "poubelle");
+		ImageIcon sup_img = new ImageIcon("src/images/poubelle2.png", "poubelle");
 		
-		JButton undo = new JButton("UNDO");
-		JButton suprimer = new JButton(sup);
+		JButton undo = new JButton(undo_img);
+		JButton redo = new JButton(redo_img);
+		JButton suprimer = new JButton(sup_img);
 		JButton colorier = new JButton("Colorier");
 		
 		undo.setToolTipText("revenir en arriere");
 		suprimer.setToolTipText("suprimer un objet");
 		colorier.setToolTipText("colorier un objet");
+		colorier.setToolTipText("aller en avant ");
 		
 		this.ajouterBouttonM(colorier);
 		this.ajouterBouttonM(undo);
+		this.ajouterBouttonM(redo);
 		this.ajouterBouttonM(suprimer);
 	}
 
