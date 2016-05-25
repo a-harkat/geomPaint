@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -111,19 +112,9 @@ public class VueGraphique extends JPanel implements Observer {
 		}
 		if (fg instanceof UnQuelconque ){
 			UnQuelconque quelconque = (UnQuelconque) fg;
-			int taille = quelconque.getListPoints().length ;
-			int [] tabX = new int [taille+2];
-			tabX[0] = (int)quelconque.getP1().getX() ;
-			tabX[1] = (int)quelconque.getP2().getX();
-			int [] tabY = new int [taille+2] ;
-			tabY[0] = (int)quelconque.getP1().getY() ; 
-			tabY[1] = (int)quelconque.getP2().getY();
-			
-			for (int j = 0; j< taille;j++){
-				tabX[j+2] = (int) quelconque.getListPoints()[j].getX();
-				tabY[j+2] = (int) quelconque.getListPoints()[j].getY();
-			}
-			g.drawPolygon(tabX, tabY, taille+2);	
+			ArrayList<int []> list = gestionQuelconque(quelconque);
+			g.drawPolygon(list.get(0), list.get(1),
+					quelconque.getListPoints().length+2);	
 		}
 		if(fg.isSelectOn() && !ControleurFigure.getPotPeinture())
 			drawVertex(g, fg);
@@ -163,19 +154,9 @@ public class VueGraphique extends JPanel implements Observer {
 		}
 		if (fg instanceof UnQuelconque ){
 			UnQuelconque quelconque = (UnQuelconque) fg;
-			int taille = quelconque.getListPoints().length ;
-			int [] tabX = new int [taille+2];
-			tabX[0] = (int)quelconque.getP1().getX() ;
-			tabX[1] = (int)quelconque.getP2().getX();
-			int [] tabY = new int [taille+2] ;
-			tabY[0] = (int)quelconque.getP1().getY() ; 
-			tabY[1] = (int)quelconque.getP2().getY();
-			
-			for (int j = 0; j< taille;j++){
-				tabX[j+2] = (int) quelconque.getListPoints()[j].getX();
-				tabY[j+2] = (int) quelconque.getListPoints()[j].getY();
-			}
-			g.fillPolygon(tabX, tabY, taille+2);	
+			ArrayList<int []> list = gestionQuelconque(quelconque);
+			g.fillPolygon(list.get(0), list.get(1),
+					quelconque.getListPoints().length+2);	
 		}
 		if(fg.isSelectOn() && !ControleurFigure.getPotPeinture())
 			drawVertex(g, fg);
@@ -209,5 +190,35 @@ public class VueGraphique extends JPanel implements Observer {
 		tab[2] = width;
 		tab[3] = height;
 		return tab;
+	}
+	
+	/**
+	 * Methode qui eviter le duplicat
+	 * dans la construction des
+	 * polygones
+	 * @param quelconque UnQuelconque
+	 * Polygone a gerer
+	 * @return ArrayList<Integer> Tableau
+	 * d entiers contenant dans l ordre
+	 * l abscisse, l ordonnee, la largeur
+	 * et la hauteur
+	 */
+	public ArrayList<int []> gestionQuelconque (UnQuelconque quelconque) {
+		ArrayList<int []> list = new ArrayList<int []>();
+		int taille = quelconque.getListPoints().length ;
+		int [] tabX = new int [taille+2];
+		tabX[0] = (int)quelconque.getP1().getX() ;
+		tabX[1] = (int)quelconque.getP2().getX();
+		int [] tabY = new int [taille+2] ;
+		tabY[0] = (int)quelconque.getP1().getY() ; 
+		tabY[1] = (int)quelconque.getP2().getY();
+		
+		for (int j = 0; j< taille;j++){
+			tabX[j+2] = (int) quelconque.getListPoints()[j].getX();
+			tabY[j+2] = (int) quelconque.getListPoints()[j].getY();
+		}
+		list.add(0, tabX);
+		list.add(0, tabY);
+		return list;
 	}
 }
