@@ -39,6 +39,7 @@ public class TestAlgoPrincipal {
 			LOGGER.log(Level.INFO, "Erreur lors de la recuperation de l'UI", e);
 		}
 		
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner (System.in);
 		VueTexte vt = new VueTexte();
 		VueGraphique vg = new VueGraphique();
@@ -57,7 +58,7 @@ public class TestAlgoPrincipal {
 		fenetre.setLocationRelativeTo(null);
 		String figure = "";
 		while (true) {
-			System.out.println("Entrez dans la console le type de figure souhaité"
+			System.out.println("Entrez dans la console le type de figure souhaitï¿½"
 					+ " parmi triangle, cercle, quelconque, rectangle, trait");
 			figure = sc.nextLine();
 			ct.gestionInputUser(figure);
