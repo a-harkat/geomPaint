@@ -3,3 +3,5 @@
 /src/*.ctxt
 /.classpath
 /.project
+/*.properties
+/*.txt

@@ -622,8 +622,8 @@ public class ControleurFigure extends MouseInputAdapter {
 	 * @param bool Boolean true si on est
 	 * en mode pot de peinture false sinon
 	 */
-	public void setPotPeintureOn(boolean bool) {
-		potPeinture = bool;
+	public static void setPotPeintureOn(boolean bool) {
+		ControleurFigure.potPeinture = bool;
 	}
 	
 	/**

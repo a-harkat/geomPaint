@@ -232,7 +232,7 @@ public class Conteneur extends JPanel{
 				cf.setTriangleOn(false);
 				cf.setTraitOn(false); 
 				cf.setPolygoneOn(false);
-				cf.setPotPeintureOn(true);
+				ControleurFigure.setPotPeintureOn(true);
 				cf.colorFigure(mg);
 				mh.changerTexteMH("Colorier figure");
 			}

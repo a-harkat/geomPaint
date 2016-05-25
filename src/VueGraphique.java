@@ -61,7 +61,7 @@ public class VueGraphique extends JPanel implements Observer {
 	}
 	
 	public void drawVertex(Graphics g, FigureGeom fg) {		
-		int vrtx = VERTEX_SIZE;		
+		int vrtx = VERTEX_SIZE;
 		g.fillRect((int)fg.getP1().getX()-vrtx/2, (int)fg.getP1().getY()-vrtx/2, vrtx, vrtx);
 		g.fillRect((int)fg.getP2().getX()-vrtx/2, (int)fg.getP2().getY()-vrtx/2, vrtx, vrtx);
 		
@@ -130,7 +130,7 @@ public class VueGraphique extends JPanel implements Observer {
 			}
 			g.drawPolygon(X, Y, taille+2);	
 		}
-		if(fg.isSelectOn())
+		if(fg.isSelectOn() && !ControleurFigure.potPeinture)
 			drawVertex(g, fg);
 	}
 	
@@ -187,7 +187,7 @@ public class VueGraphique extends JPanel implements Observer {
 			}
 			g.fillPolygon(X, Y, taille+2);	
 		}
-		if(fg.isSelectOn())
+		if(fg.isSelectOn() && !ControleurFigure.potPeinture)
 			drawVertex(g, fg);
 	}
 }
