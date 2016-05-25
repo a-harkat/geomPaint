@@ -43,6 +43,13 @@ public class MenuBas extends Menu {
 		}
 	}
 	
+	/**
+	 * Methode pour favoriser la lecture claire du code qui
+	 * contient les chemins des icones
+	 * Attention a respecter le meme nombre de tooltip et 
+	 * dans le meme ordre
+	 * @return liste des chemin icones
+	 */
 	public ArrayList<String> getListicone(){
 		ArrayList <String> li = new ArrayList<String>();
 		li.add("src/images/potPaint.png");
@@ -53,6 +60,13 @@ public class MenuBas extends Menu {
 		return li;
 	}
 	
+	/**
+	 * Methode pour favoriser la lecture claire du code qui
+	 * contient les ToolTip des boutons
+	 * Attention a respecter le meme nombre de tooltip et 
+	 * dans le meme ordre
+	 * @return liste des chemin icones
+	 */
 	public ArrayList<String> getListTool(){
 		ArrayList <String> li = new ArrayList<String>();
 		li.add("colorier un objet");
