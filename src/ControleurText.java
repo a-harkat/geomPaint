@@ -89,7 +89,7 @@ public class ControleurText {
 						}
 					} catch (NumberFormatException iae) {
 						LOGGER.log(Level.WARNING, "Le nombre de points spéficié"
-								+ " n'est pas conforme");
+								+ " n'est pas conforme", iae);
 					}
 				}
 				break;
@@ -126,7 +126,7 @@ public class ControleurText {
 				UnTrait trait = new UnTrait(p1, p2, BORDER);
 				this.listFig.addFigure(trait);
 			} catch (IndexOutOfBoundsException ioobe) {
-				LOGGER.log(Level.WARNING, "Création du trait impossible");
+				LOGGER.log(Level.WARNING, "Création du trait impossible", ioobe);
 			}
 		}
 	}
@@ -150,7 +150,7 @@ public class ControleurText {
 				UnCercle cercle = new UnCercle(p1, p2, BORDER);
 				listFig.addFigure(cercle);
 			} catch (IndexOutOfBoundsException ioobe) {
-				LOGGER.log(Level.WARNING, "Création du cercle impossible");
+				LOGGER.log(Level.WARNING, "Création du cercle impossible", ioobe);
 			}
 		}
 	}
@@ -174,7 +174,7 @@ public class ControleurText {
 				UnRectangle rectangle = new UnRectangle(p1, p2, BORDER);
 				listFig.addFigure(rectangle);
 			} catch (IndexOutOfBoundsException ioobe) {
-				LOGGER.log(Level.WARNING, "Création du rectangle impossible");
+				LOGGER.log(Level.WARNING, "Création du rectangle impossible", ioobe);
 			}
 		}
 	}
@@ -199,7 +199,7 @@ public class ControleurText {
 				UnTriangle triangle = new UnTriangle(p1, p2, p3, BORDER);
 				listFig.addFigure(triangle);
 			} catch (IndexOutOfBoundsException ioobe) {
-				LOGGER.log(Level.WARNING, "Création du triangle impossible");
+				LOGGER.log(Level.WARNING, "Création du triangle impossible", ioobe);
 			}
 		}
 	}
@@ -238,7 +238,7 @@ public class ControleurText {
 				listFig.addFigure(quelconque);
 			} catch (IndexOutOfBoundsException ioobe) {
 				LOGGER.log(Level.WARNING, "Création de la forme quelconque"
-						+ " impossible");
+						+ " impossible", ioobe);
 			}
 		}
 	}
@@ -291,7 +291,7 @@ public class ControleurText {
 				iteration ++;
 			} catch (NumberFormatException iae) {
 				LOGGER.log(Level.WARNING, "Les coordonnées du"
-						+ " point ne sont pas conformes");
+						+ " point ne sont pas conformes", iae);
 				inputing = false;
 			}
 		}
