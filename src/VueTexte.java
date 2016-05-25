@@ -115,7 +115,7 @@ public class VueTexte implements Observer {
 							iteration += 1;
 						}
 						System.out.println("\nLe polygone a "
-								+ iteration
+								+ (iteration - 1)
 								+ " points");
 					} else {
 						System.out.println("Vous avez sélectionné seulement "
