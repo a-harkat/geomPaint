@@ -107,11 +107,11 @@ public class VueTexte implements Observer {
 							System.out.print(", x"
 									+ iteration
 									+ " = "
-									+ pt.getX()
+									+ (int) pt.getX()
 									+ ", y"
 									+ iteration
 									+ " = "
-									+ pt.getY());
+									+ (int) pt.getY());
 							iteration += 1;
 						}
 						System.out.println("\nLe polygone a "

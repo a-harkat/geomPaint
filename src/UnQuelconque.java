@@ -91,8 +91,8 @@ public class UnQuelconque extends UnPolygone{
 		for (int i = 0; i<listPoints.length; i++){
 			int xp3 = (int)listPoints[i].getX() ;
 			int yp3 = (int)listPoints[i].getY() ;
-			Point np = new Point(xp3 + (int)(p2.getX() - p1.getX()),
-					yp3 + (int)(p2.getY() - p1.getY()));
+			Point np = new Point(xp3 + ((int)(p2.getX()) - (int)(p1.getX())),
+					yp3 + ((int)(p2.getY()) - (int)(p1.getY())));
 			listPoints[i] = np;
 		}
 	}

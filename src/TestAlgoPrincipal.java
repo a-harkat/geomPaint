@@ -58,8 +58,8 @@ public class TestAlgoPrincipal {
 		fenetre.setLocationRelativeTo(null);
 		String figure = "";
 		while (true) {
-			System.out.println("Entrez dans la console le type de figure souhaitï¿½"
-					+ " parmi triangle, cercle, quelconque, rectangle, trait");
+			System.out.println("Entrez dans la console le type de figure souhaitée\n"
+					+ "parmi triangle, cercle, quelconque, rectangle, trait");
 			figure = sc.nextLine();
 			ct.gestionInputUser(figure);
 		}

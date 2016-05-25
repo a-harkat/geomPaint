@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
  * Classe Conteneur, contient les differents JPanel ainsi que les 
  * le modele MVC et les listeneurs 
  * @author Groupe 2
- * @version 2
+ * @version 1
  */
 public class Conteneur extends JPanel{
     /**
@@ -31,8 +31,8 @@ public class Conteneur extends JPanel{
     /**
      * Constructeur du Conteneur, il se deroule ainsi
      * On definit le layout du conteneur
-     * On creer les differents Menus 
-     * On creer les Vues et les modeles
+     * On cree les differents Menus 
+     * On cree les Vues et les modeles
      * On ajoute les Vues et Menu
      * On lie les Modeles et les Vues (observers)
      * On ajoute les listeneurs aux boutons dans l'ordre:
@@ -64,7 +64,7 @@ public class Conteneur extends JPanel{
      * @param o Observer Vue a
      * associer
      * @param lf ListFigures Liste de
-     * figures � associer � la vue
+     * figures a associer a la vue
      */
     public void ajoutObserver (Observer o, ListFigures lf) {
         lf.addObserver(o);
@@ -88,7 +88,7 @@ public class Conteneur extends JPanel{
      * Methode qui va permettre de
      * preparer le JPanel en fonction d'une vue
      * graphique
-     * @param vg Vue graphique  a preparer
+     * @param vg Vue graphique a preparer
      * @param cf ControleurFigure Controleur
      * qui va gerer les figures
      */

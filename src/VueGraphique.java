@@ -218,7 +218,7 @@ public class VueGraphique extends JPanel implements Observer {
 			tabY[j+2] = (int) quelconque.getListPoints()[j].getY();
 		}
 		list.add(0, tabX);
-		list.add(0, tabY);
+		list.add(1, tabY);
 		return list;
 	}
 }

@@ -344,23 +344,30 @@ public class ControleurFigure extends MouseInputAdapter {
 		UnQuelconque pl = null;
 		if(p4 == null) {
 			p4 = new Point (p) ;
-			if(getNbPointPolygone() == 4) pl = new UnQuelconque(p1,p2, new Point[]{p3,p4}, border_color) ;
+			if(getNbPointPolygone() == 4) {
+				pl = new UnQuelconque(p1,p2, new Point[]{p3,p4}, border_color);
+			}
+				
 		}
 		else if(p5 == null && getNbPointPolygone() > 4) {
 			p5 = new Point (p) ;	
-			if(getNbPointPolygone() == 5) pl = new UnQuelconque(p1,p2, new Point[]{p3,p4,p5}, border_color) ;
+			if(getNbPointPolygone() == 5)
+				pl = new UnQuelconque(p1,p2, new Point[]{p3,p4,p5}, border_color) ;
 		}
 		else if(p6 == null && getNbPointPolygone() > 5) {
 			p6 = new Point (p) ;	
-			if(getNbPointPolygone() == 6) pl = new UnQuelconque(p1,p2, new Point[]{p3,p3,p4,p5,p6}, border_color) ;	
+			if(getNbPointPolygone() == 6)
+				pl = new UnQuelconque(p1,p2, new Point[]{p3,p3,p4,p5,p6}, border_color) ;	
 		}
 		else if(p7 == null && getNbPointPolygone() > 6) {
 			p7 = new Point (p) ;	
-			if(getNbPointPolygone() == 7) pl = new UnQuelconque(p1,p2, new Point[]{p3,p3,p4,p5,p6,p7}, border_color) ;
+			if(getNbPointPolygone() == 7)
+				pl = new UnQuelconque(p1,p2, new Point[]{p3,p3,p4,p5,p6,p7}, border_color) ;
 		}
 		else if(p8 == null && getNbPointPolygone() > 7) {
 			p8 = new Point (p) ;
-			if(getNbPointPolygone() == 8) pl = new UnQuelconque(p1,p2, new Point[]{p3,p3,p4,p5,p6,p7,p8}, border_color) ;
+			if(getNbPointPolygone() == 8)
+				pl = new UnQuelconque(p1,p2, new Point[]{p3,p3,p4,p5,p6,p7,p8}, border_color) ;
 		}
 		if (pl != null) {
 			lsFigures.addFigure(pl);
