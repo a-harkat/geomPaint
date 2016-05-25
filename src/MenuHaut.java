@@ -31,7 +31,7 @@ public class MenuHaut extends Menu {
 	private void generateBoutton() {
 		JLabel statut_prog = new JLabel("Bienvenue !");
 		
-		statut_prog.setForeground(Color.yellow);
+		statut_prog.setForeground(new Color(194, 247, 50));
 		statut_prog.setFont(new Font("TimesRoman", Font.ITALIC, 16));
 		this.ajouterBouttonM(statut_prog);
 	}

@@ -9,7 +9,6 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JSlider;
 
 /**
@@ -44,43 +43,24 @@ public class MenuGauche extends Menu {
 	 */
 	private void generateBoutton() {
 		
+		this.ajouterBouttonM(new JButton("Couleur"));
+		int i = 1;
+		for (String chemin : this.getListicone1()){
+			this.ajouterBouttonM(new JButton());
+			((AbstractButton) this.getBouttonM(i)).setIcon(new ImageIcon(chemin));
+			i++;
+		}
+		this.ajouterBouttonM(this.generate_mg_jsli());
 		
-		ImageIcon img_trait = new ImageIcon("src/images/trait.png", "trait");
-		ImageIcon img_cercle = new ImageIcon("src/images/cercle.png", "cercle");
-		ImageIcon img_rectangle = new ImageIcon("src/images/rectangle.png", "rectangle");
-		ImageIcon img_triangle = new ImageIcon("src/images/triangle.png", "triangle");
-		ImageIcon img_quelconque = new ImageIcon("src/images/quelconque.png", "quelconque");
-		ImageIcon img_edition = new ImageIcon("src/images/edition.png", "edition");
-
-		JButton couleur = new JButton("Couleur");
-		JButton trait = new JButton(img_trait);
-		JButton cercle = new JButton(img_cercle);
-		JButton rectangle = new JButton(img_rectangle);
-		JButton triangle = new JButton(img_triangle);
-		JButton quelconque = new JButton(img_quelconque);
-		JButton edition = new JButton(img_edition);
-		JSlider nb_poly = this.generate_mg_jsli();
-
-		this.ajouterBouttonM(couleur);
-		this.ajouterBouttonM(edition);
-		this.ajouterBouttonM(trait);
-		this.ajouterBouttonM(rectangle);
-		this.ajouterBouttonM(triangle);
-		this.ajouterBouttonM(cercle);
-		this.ajouterBouttonM(quelconque);
-		this.ajouterBouttonM(nb_poly);
-
 		for(Component bouton : this.getListe_b()){
 			if (!(bouton instanceof JSlider)){
 				((AbstractButton) bouton).setAlignmentX(Component.CENTER_ALIGNMENT);
 				((AbstractButton) bouton).setFocusPainted(false);
 			}
 		}
-
-		couleur.setMinimumSize(new Dimension(104,30));
-		couleur.setMaximumSize(new Dimension(104,30));
-		couleur.setPreferredSize(new Dimension(104,30));
-
+		this.getBouttonM(0).setMinimumSize(new Dimension(104,30));
+		this.getBouttonM(0).setMaximumSize(new Dimension(104,30));
+		this.getBouttonM(0).setPreferredSize(new Dimension(104,30));
 	}
 
 	/**
