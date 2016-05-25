@@ -52,50 +52,52 @@ public class ControleurFigure extends MouseInputAdapter {
 			if (! figure.isSelectOn())  figure.setSelectOn(true);
 		}
 		else if (isDessiner())  {
-			if (p1 != null && p2 == null){
-				if (isRectangleOn()){
-					UnRectangle rt = new UnRectangle(p1,e.getPoint(), border_color);
-					if(!newfigure) {
-						lsFigures.addFigure(rt);
-						newfigure = true;
+			if (p1 != null){
+				if (p2 == null) {
+					if (isRectangleOn()){
+						UnRectangle rt = new UnRectangle(p1,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.addFigure(rt);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, rt);
 					}
-					lsFigures.setFigure(lsFigures.getFigures().size()-1, rt);
-				}
-				else if (isCercleOn()){
-					UnCercle cl = new UnCercle(p1,e.getPoint(), border_color);
-					if(!newfigure) {
-						lsFigures.addFigure(cl);
-						newfigure = true;
+					else if (isCercleOn()){
+						UnCercle cl = new UnCercle(p1,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.addFigure(cl);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, cl);
 					}
-					lsFigures.setFigure(lsFigures.getFigures().size()-1, cl);
-				}
-				else if (isTraitOn()){
-					UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
-					if(!newfigure) {
-						lsFigures.addFigure(tr);
-						newfigure = true;
+					else if (isTraitOn()){
+						UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.addFigure(tr);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
 					}
-					lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
-				}
-				else if (isTriangleOn()){
-					UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
-					if(!newfigure) {
-						lsFigures.addFigure(tr);
-						newfigure = true;
+					else if (isTriangleOn()){
+						UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.addFigure(tr);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
 					}
-					lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
 				}
-			}
-			else if ((p1 != null && p2 != null) && p3 == null){		
-				if (isTriangleOn()) {
-					UnTriangle triangle = new UnTriangle(p1,p2,e.getPoint(), border_color);
-					if(!newfigure) {
-						lsFigures.removeFigure(lsFigures.getFigures().size()-1);
-						lsFigures.addFigure(triangle);
-						newfigure = true;
+				else if (p3 == null) {
+					if (isTriangleOn()) {
+						UnTriangle triangle = new UnTriangle(p1,p2,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.removeFigure(lsFigures.getFigures().size()-1);
+							lsFigures.addFigure(triangle);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, triangle);
 					}
-					lsFigures.setFigure(lsFigures.getFigures().size()-1, triangle);
-				}
+				}	
 			}
 		}
 	}
@@ -103,50 +105,52 @@ public class ControleurFigure extends MouseInputAdapter {
 	
 	public void mouseMoved(MouseEvent e) {
 		if (isDessiner())  {
-			if (p1 != null && p2 == null){
-				if (isRectangleOn()){
-					UnRectangle rt = new UnRectangle(p1,e.getPoint(), border_color);
-					if(!newfigure) {
-						lsFigures.addFigure(rt);
-						newfigure = true;
+			if (p1 != null){
+				if (p2 == null) {
+					if (isRectangleOn()){
+						UnRectangle rt = new UnRectangle(p1,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.addFigure(rt);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, rt);
 					}
-					lsFigures.setFigure(lsFigures.getFigures().size()-1, rt);
-				}
-				else if (isCercleOn()){
-					UnCercle cl = new UnCercle(p1,e.getPoint(), border_color);
-					if(!newfigure) {
-						lsFigures.addFigure(cl);
-						newfigure = true;
+					else if (isCercleOn()){
+						UnCercle cl = new UnCercle(p1,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.addFigure(cl);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, cl);
 					}
-					lsFigures.setFigure(lsFigures.getFigures().size()-1, cl);
-				}
-				else if (isTraitOn()){
-					UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
-					if(!newfigure) {
-						lsFigures.addFigure(tr);
-						newfigure = true;
+					else if (isTraitOn()){
+						UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.addFigure(tr);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
 					}
-					lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
-				}
-				else if (isTriangleOn()){
-					UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
-					if(!newfigure) {
-						lsFigures.addFigure(tr);
-						newfigure = true;
+					else if (isTriangleOn()){
+						UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.addFigure(tr);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
 					}
-					lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
 				}
-			}
-			else if (p1 != null && p2 != null && p3 == null){		
-				if (isTriangleOn()) {
-					UnTriangle triangle = new UnTriangle(p1,p2,e.getPoint(), border_color);
-					if(!newfigure) {
-						lsFigures.removeFigure(lsFigures.getFigures().size()-1);
-						lsFigures.addFigure(triangle);
-						newfigure = true;
+				else if (p3 == null) {
+					if (isTriangleOn()) {
+						UnTriangle triangle = new UnTriangle(p1,p2,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.removeFigure(lsFigures.getFigures().size()-1);
+							lsFigures.addFigure(triangle);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, triangle);
 					}
-					lsFigures.setFigure(lsFigures.getFigures().size()-1, triangle);
-				}
+				}		
 			}
 		}
 	}
