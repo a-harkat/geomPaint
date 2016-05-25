@@ -18,7 +18,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	private boolean traitOn;
 	private boolean polygoneOn;
 	private boolean newfigure;
-	public static boolean potPeinture;
+	private static boolean potPeinture;
 	int index ;
 	private int nbPointPolygone ;
 	private Color border_color;
@@ -49,115 +49,31 @@ public class ControleurFigure extends MouseInputAdapter {
 				deplacerFigure(e.getPoint());
 			}
 			pointEditer = e.getPoint();
-			if (! figure.isSelectOn())  figure.setSelectOn(true);
+			if (! figure.isSelectOn())
+				figure.setSelectOn(true);
 		}
-		else if (isDessiner())  {
-			if (p1 != null){
-				if (p2 == null) {
-					if (isRectangleOn()){
-						UnRectangle rt = new UnRectangle(p1,e.getPoint(), border_color);
-						if(!newfigure) {
-							lsFigures.addFigure(rt);
-							newfigure = true;
-						}
-						lsFigures.setFigure(lsFigures.getFigures().size()-1, rt);
-					}
-					else if (isCercleOn()){
-						UnCercle cl = new UnCercle(p1,e.getPoint(), border_color);
-						if(!newfigure) {
-							lsFigures.addFigure(cl);
-							newfigure = true;
-						}
-						lsFigures.setFigure(lsFigures.getFigures().size()-1, cl);
-					}
-					else if (isTraitOn()){
-						UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
-						if(!newfigure) {
-							lsFigures.addFigure(tr);
-							newfigure = true;
-						}
-						lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
-					}
-					else if (isTriangleOn()){
-						UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
-						if(!newfigure) {
-							lsFigures.addFigure(tr);
-							newfigure = true;
-						}
-						lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
-					}
-				}
-				else if (p3 == null) {
-					if (isTriangleOn()) {
-						UnTriangle triangle = new UnTriangle(p1,p2,e.getPoint(), border_color);
-						if(!newfigure) {
-							lsFigures.removeFigure(lsFigures.getFigures().size()-1);
-							lsFigures.addFigure(triangle);
-							newfigure = true;
-						}
-						lsFigures.setFigure(lsFigures.getFigures().size()-1, triangle);
-					}
-				}	
-			}
+		else {
+			gestionDessin(e);
 		}
 	}
 	
-	
+	/**
+	 * Listener souris Moved
+	 * @param e MouseEvent Evenement
+	 * de la souris
+	 */
+	@Override
 	public void mouseMoved(MouseEvent e) {
-		if (isDessiner())  {
-			if (p1 != null){
-				if (p2 == null) {
-					if (isRectangleOn()){
-						UnRectangle rt = new UnRectangle(p1,e.getPoint(), border_color);
-						if(!newfigure) {
-							lsFigures.addFigure(rt);
-							newfigure = true;
-						}
-						lsFigures.setFigure(lsFigures.getFigures().size()-1, rt);
-					}
-					else if (isCercleOn()){
-						UnCercle cl = new UnCercle(p1,e.getPoint(), border_color);
-						if(!newfigure) {
-							lsFigures.addFigure(cl);
-							newfigure = true;
-						}
-						lsFigures.setFigure(lsFigures.getFigures().size()-1, cl);
-					}
-					else if (isTraitOn()){
-						UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
-						if(!newfigure) {
-							lsFigures.addFigure(tr);
-							newfigure = true;
-						}
-						lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
-					}
-					else if (isTriangleOn()){
-						UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
-						if(!newfigure) {
-							lsFigures.addFigure(tr);
-							newfigure = true;
-						}
-						lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
-					}
-				}
-				else if (p3 == null) {
-					if (isTriangleOn()) {
-						UnTriangle triangle = new UnTriangle(p1,p2,e.getPoint(), border_color);
-						if(!newfigure) {
-							lsFigures.removeFigure(lsFigures.getFigures().size()-1);
-							lsFigures.addFigure(triangle);
-							newfigure = true;
-						}
-						lsFigures.setFigure(lsFigures.getFigures().size()-1, triangle);
-					}
-				}		
-			}
-		}
+			gestionDessin(e);
 	}
 
 	/**
 	 * Listener souris Pressed
+	 * @param e MouseEvent Evenement
+	 * de la souris
+	 *
 	 */
+	@Override
 	public void mousePressed(MouseEvent e){
 		newfigure = false;
 		if (isDessiner()) {			
@@ -208,57 +124,27 @@ public class ControleurFigure extends MouseInputAdapter {
 				if (fg instanceof UnTrait) {
 					UnTrait trait = (UnTrait) fg;
 					if (trait.insideTrait(cible)) {
-						if (!trait.getFigureFilled()) {
-							trait.setFigureFilled(true);
-							trait.setFull_color(backgroundFigColor);
-							trait.setBorder_color(backgroundFigColor);
-						} else {
-							trait.setFigureFilled(false);
-						}
+						gestionCouleur(trait);
 					}
 				} else if (fg instanceof UnCercle) {
 					UnCercle cercle = (UnCercle) fg;
 					if (cercle.insideCercle(cible)) {
-						if (!cercle.getFigureFilled()) {
-							cercle.setFigureFilled(true);
-							cercle.setFull_color(backgroundFigColor);
-							cercle.setBorder_color(backgroundFigColor);
-						} else {
-							cercle.setFigureFilled(false);
-						}
+						gestionCouleur(cercle);
 					}
 				} else if (fg instanceof UnTriangle) {
 					UnTriangle triangle = (UnTriangle) fg;
 					if (triangle.isInsideTriangle(cible)) {
-						if (!triangle.getFigureFilled()) {
-							triangle.setFigureFilled(true);
-							triangle.setFull_color(backgroundFigColor);
-							triangle.setBorder_color(backgroundFigColor);
-						} else {
-							triangle.setFigureFilled(false);
-						}
+						gestionCouleur(triangle);
 					}
 				} else if (fg instanceof UnRectangle) {
 					UnRectangle rectangle = (UnRectangle) fg;
 					if (rectangle.insideRectangle(cible)) {
-						if (!rectangle.getFigureFilled()) {
-							rectangle.setFigureFilled(true);
-							rectangle.setFull_color(backgroundFigColor);
-							rectangle.setBorder_color(backgroundFigColor);
-						} else {
-							rectangle.setFigureFilled(false);
-						}
+						gestionCouleur(rectangle);
 					}
 				} else if (fg instanceof UnQuelconque) {
 					UnQuelconque quelconque = (UnQuelconque) fg;
 					if (quelconque.insidePolygone(cible)) {
-						if (!quelconque.getFigureFilled()) {
-							quelconque.setFigureFilled(true);
-							quelconque.setFull_color(backgroundFigColor);
-							quelconque.setBorder_color(backgroundFigColor);
-						} else {
-							quelconque.setFigureFilled(false);
-						}
+						gestionCouleur(quelconque);
 					}
 				}
 			}
@@ -267,7 +153,10 @@ public class ControleurFigure extends MouseInputAdapter {
 	
 	/**
 	 * Listener souris Released
+	 * @param e MouseEvent Evenement
+	 * de la souris
 	 */
+	@Override
 	public void mouseReleased(MouseEvent e){
 		edition = false ;
 		deplacement = false;
@@ -276,7 +165,10 @@ public class ControleurFigure extends MouseInputAdapter {
 	
 	/**
 	 * Listener souris Clicked
+	 * @param e MouseEvent Evenement
+	 * de la souris
 	 */
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		if ((!isDessiner()) && (indexDeplacer(e.getPoint()) != -1)){			
 			index = indexDeplacer(e.getPoint());
@@ -351,6 +243,80 @@ public class ControleurFigure extends MouseInputAdapter {
 	}
 	
 	/**
+	 * Methode qui va gerer les couleurs
+	 * des figures
+	 * @param fg FigureGeom Figure dont on
+	 * doit gerer la couleur
+	 */
+	public void gestionCouleur (FigureGeom fg) {
+		if (!fg.getFigureFilled()) {
+			fg.setFigureFilled(true);
+			fg.setFull_color(backgroundFigColor);
+			fg.setBorder_color(backgroundFigColor);
+		} else {
+			fg.setFigureFilled(false);
+		}
+	}
+	
+	/**
+	 * Methode qui va s occuper
+	 * de la gestion du dessin
+	 * des figures
+	 * @param e MouseEvent
+	 * Evenement de la souris
+	 */
+	public void gestionDessin (MouseEvent e) {
+		if (isDessiner())  {
+			if (p1 != null){
+				if (p2 == null) {
+					if (isRectangleOn()){
+						UnRectangle rt = new UnRectangle(p1,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.addFigure(rt);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, rt);
+					}
+					else if (isCercleOn()){
+						UnCercle cl = new UnCercle(p1,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.addFigure(cl);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, cl);
+					}
+					else if (isTraitOn()){
+						UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.addFigure(tr);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
+					}
+					else if (isTriangleOn()){
+						UnTrait tr = new UnTrait(p1,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.addFigure(tr);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
+					}
+				}
+				else if (p3 == null) {
+					if (isTriangleOn()) {
+						UnTriangle triangle = new UnTriangle(p1,p2,e.getPoint(), border_color);
+						if(!newfigure) {
+							lsFigures.removeFigure(lsFigures.getFigures().size()-1);
+							lsFigures.addFigure(triangle);
+							newfigure = true;
+						}
+						lsFigures.setFigure(lsFigures.getFigures().size()-1, triangle);
+					}
+				}	
+			}
+		}
+	}
+	/**
 	 * Ajoute une figure a deux point dans la liste de figures
 	 */		
 	private void ajouterFig2point() {				
@@ -408,20 +374,22 @@ public class ControleurFigure extends MouseInputAdapter {
 	 * @return index de la figure
 	 */
 	public int indexEditer (Point p){
-		int index = -1 ;
+		int indexEdit = -1 ;
 		for (int i = 0; i < lsFigures.getFigures().size(); i++) {
 			figure = lsFigures.getFigures().get(i);
-			if ( figure instanceof UnRectangle || figure instanceof UnCercle || figure instanceof UnTrait)
-				if (figure.tolerance(p))
-					 index = i ;						
-			if (figure instanceof UnTriangle)
-				if (((UnTriangle)figure).toleranceTriangle(p))
-					 index = i ;
-			if (figure instanceof UnQuelconque)
-				if (((UnQuelconque)figure).toleranceQuelconque(p))
-					 index = i ;
+			if ((figure instanceof UnRectangle 
+					|| figure instanceof UnCercle 
+					|| figure instanceof UnTrait)
+					&& figure.tolerance(p))
+					 indexEdit = i ;						
+			if (figure instanceof UnTriangle
+					&& ((UnTriangle)figure).toleranceTriangle(p))
+					 indexEdit = i ;
+			if (figure instanceof UnQuelconque
+					&& ((UnQuelconque)figure).toleranceQuelconque(p))
+					 indexEdit = i ;
 		}
-		return index ;
+		return indexEdit ;
 	}
 	
 	/**
@@ -430,26 +398,26 @@ public class ControleurFigure extends MouseInputAdapter {
 	 * @return index de la figure
 	 */	
 	public int indexDeplacer (Point p){
-		int index = -1 ;
+		int indexDep = -1 ;
 		for (int i = 0; i < lsFigures.getFigures().size(); i++) {
 			figure = lsFigures.getFigures().get(i);	
-			if ( figure instanceof UnRectangle)
-				if (((UnRectangle)figure).insideRectangle(p))
-					index = i ;	
-			if ( figure instanceof UnTriangle)
-				if (((UnTriangle)figure).isInsideTriangle(p))
-					index = i ;	
-			if ( figure instanceof UnCercle)
-				if (((UnCercle)figure).insideCercle(p))
-					index = i ;	
-			if ( figure instanceof UnTrait)
-				if (((UnTrait)figure).insideTrait(p))
-					index = i ;	
-			if ( figure instanceof UnQuelconque)
-				if (((UnQuelconque)figure).insidePolygone(p))
-					index = i ;
+			if ( figure instanceof UnRectangle
+					&& ((UnRectangle)figure).insideRectangle(p))
+					indexDep = i ;	
+			if ( figure instanceof UnTriangle
+					&& ((UnTriangle)figure).isInsideTriangle(p))
+					indexDep = i ;	
+			if ( figure instanceof UnCercle
+					&& ((UnCercle)figure).insideCercle(p))
+					indexDep = i ;	
+			if ( figure instanceof UnTrait
+					&& ((UnTrait)figure).insideTrait(p))
+					indexDep = i ;	
+			if ( figure instanceof UnQuelconque
+					&& ((UnQuelconque)figure).insidePolygone(p))
+					indexDep = i ;
 		}
-		return index ;
+		return indexDep ;
 	}
 	
 	/**
@@ -482,9 +450,9 @@ public class ControleurFigure extends MouseInputAdapter {
 	public void RestoreLast (){
 		int taille = lsFiguresDelet.getFigures().size() ;	
 		if (taille > 0) {
-		lsFigures.addFigure(lsFiguresDelet.getFigures().get(taille - 1) );		
-		lsFiguresDelet.removeFigure(taille - 1);		
-		effacerPoints();
+			lsFigures.addFigure(lsFiguresDelet.getFigures().get(taille - 1) );		
+			lsFiguresDelet.removeFigure(taille - 1);		
+			effacerPoints();
 		}
 	}
 	
@@ -492,14 +460,22 @@ public class ControleurFigure extends MouseInputAdapter {
 	 * methode qui efface les point lors du clique sur un bouton
 	 */
 	public void effacerPoints() {
-		if (p1 != null) p1 = null;
-		if (p2 != null) p2 = null;
-		if (p3 != null) p3 = null;
-		if (p4 != null) p4 = null;
-		if (p5 != null) p5 = null;
-		if (p6 != null) p6 = null;
-		if (p7 != null) p7 = null;
-		if (p8 != null) p8 = null;
+		if (p1 != null) 
+			p1 = null;
+		if (p2 != null) 
+			p2 = null;
+		if (p3 != null) 
+			p3 = null;
+		if (p4 != null) 
+			p4 = null;
+		if (p5 != null) 
+			p5 = null;
+		if (p6 != null) 
+			p6 = null;
+		if (p7 != null) 
+			p7 = null;
+		if (p8 != null) 
+			p8 = null;
 	}
 	
 	/**
@@ -636,6 +612,17 @@ public class ControleurFigure extends MouseInputAdapter {
 		this.border_color = border_color;
 	}
 	
+	/**
+	 * Methode qui va permettre
+	 * de recuperer l etat du pot
+	 * de peinture
+	 * @return Boolean true si le
+	 * pot de peinture est en utilisation
+	 * ou false sinon
+	 */
+	public static boolean getPotPeinture() {
+		return ControleurFigure.potPeinture;
+	}
 	/**
 	 * Methode qui va permettre de definir
 	 * si on est en mode pot de peinture

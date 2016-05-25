@@ -49,7 +49,7 @@ public class VueGraphique extends JPanel implements Observer {
 		if(this.listeFigures != null)
 			for (int i = 0; i < this.listeFigures.getFigures().size(); i++) {
 				FigureGeom tr = this.listeFigures.getFigures().get(i);
-				if (ControleurFigure.potPeinture
+				if (ControleurFigure.getPotPeinture()
 						&& tr.getFigureFilled()) {
 					g.setColor(tr.getFull_color());
 					dessinerFigurePleine(g, tr);
@@ -130,7 +130,7 @@ public class VueGraphique extends JPanel implements Observer {
 			}
 			g.drawPolygon(X, Y, taille+2);	
 		}
-		if(fg.isSelectOn() && !ControleurFigure.potPeinture)
+		if(fg.isSelectOn() && !ControleurFigure.getPotPeinture())
 			drawVertex(g, fg);
 	}
 	
@@ -187,7 +187,7 @@ public class VueGraphique extends JPanel implements Observer {
 			}
 			g.fillPolygon(X, Y, taille+2);	
 		}
-		if(fg.isSelectOn() && !ControleurFigure.potPeinture)
+		if(fg.isSelectOn() && !ControleurFigure.getPotPeinture())
 			drawVertex(g, fg);
 	}
 }
