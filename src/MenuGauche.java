@@ -8,6 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JSlider;
 
 /**
@@ -49,22 +50,12 @@ public class MenuGauche extends Menu {
 		ImageIcon img_edition = new ImageIcon("src/images/edition.png", "edition");
 		
 		JButton couleur = new JButton("Couleur");
-		couleur.setAlignmentX(Component.CENTER_ALIGNMENT);
-		couleur.setMinimumSize(new Dimension(104,30));
-		couleur.setMaximumSize(new Dimension(104,30));
-		couleur.setPreferredSize(new Dimension(104,30));
 		JButton trait = new JButton(img_trait);
-		trait.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JButton cercle = new JButton(img_cercle);
-		cercle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JButton rectangle = new JButton(img_rectangle);
-		rectangle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JButton triangle = new JButton(img_triangle);
-		triangle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JButton quelconque = new JButton(img_quelconque);
-		quelconque.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JButton edition = new JButton(img_edition);
-		edition.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JSlider nb_poly = this.generate_mg_jsli();
 		
 		this.ajouterBouttonM(couleur);
@@ -75,6 +66,17 @@ public class MenuGauche extends Menu {
 		this.ajouterBouttonM(cercle);
 		this.ajouterBouttonM(quelconque);
 		this.ajouterBouttonM(nb_poly);
+		
+		for(Component bouton : this.getListe_b()){
+			if (!(bouton instanceof JSlider)){
+				((AbstractButton) bouton).setAlignmentX(Component.CENTER_ALIGNMENT);
+				((AbstractButton) bouton).setFocusPainted(false);
+			}
+		}
+		
+		couleur.setMinimumSize(new Dimension(104,30));
+		couleur.setMaximumSize(new Dimension(104,30));
+		couleur.setPreferredSize(new Dimension(104,30));
 		
 	}
 	
