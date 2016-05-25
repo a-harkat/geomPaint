@@ -49,17 +49,17 @@ public class UnQuelconque extends UnPolygone{
 	 */
 	public void editerQuelconque(Point p1, Point p2) {
 		
-		if (this.isInToleranceZone(p1, this.getP1())) 
-			if (noPointOnPoint(0,p2)) 
-				this.setP1(p2)	;		
+		if (this.isInToleranceZone(p1, this.getP1())
+				&& noPointOnPoint(0,p2))
+				this.setP1(p2);		
 		
-		if (this.isInToleranceZone(p1, this.getP2()))
-			if (noPointOnPoint(1, p2))  
+		if (this.isInToleranceZone(p1, this.getP2())
+				&& noPointOnPoint(1, p2))
 				this.setP2(p2);	
 		
 		for (int i = 0; i<listPoints.length; i++){			
-			if (this.isInToleranceZone(p1, listPoints[i])){
-				if (noPointOnPoint(i+2, p2)) 
+			if (this.isInToleranceZone(p1, listPoints[i])
+					&& noPointOnPoint(i+2, p2)){
 					listPoints[i] = p2;	
 			}
 		}
@@ -68,8 +68,7 @@ public class UnQuelconque extends UnPolygone{
 	public boolean noPointOnPoint (int j, Point p) {
 		boolean b = true ;
 		for (int i = 0; i<listPoints.length; i++){	
-			if (i!= j)
-				if (isInToleranceZone(p,listPoints[i])) 
+			if (i!= j && isInToleranceZone(p,listPoints[i]))
 		        	b = false;											
 		    }
 		return b;   
@@ -77,30 +76,23 @@ public class UnQuelconque extends UnPolygone{
 	
 	public boolean toleranceQuelconque (Point p) {		
 		boolean b = false ;
-		if ((isInToleranceZone(p,this.getP1()) ||  isInToleranceZone(p,this.getP2()))) b = true ;
+		if (isInToleranceZone(p,this.getP1()) 
+				||  isInToleranceZone(p,this.getP2()))
+			b = true ;
 		for (int i = 0; i < listPoints.length; i++){
-			if ( isInToleranceZone(p,listPoints[i])) b = true ;
+			if (isInToleranceZone(p,listPoints[i]))
+				b = true ;
 		}	
 		return b ;
 	}
 	
 	public void deplacerQuelconque (Point p1, Point p2){		
-		int xp1 = (int)this.getP1().getX() ;
-		int xp2 = (int)this.getP2().getX();		
-		int yp1 = (int)this.getP1().getY() ;
-		int yp2 = (int)this.getP2().getY();	
-		int x = (int) p1.getX();
-		int y = (int) p1.getY();
-		int nx = (int) (p2.getX()-x) ;
-		int ny = (int) (p2.getY()-y) ;
-		Point np1 = new Point( xp1+nx, yp1+ny);
-		Point np2 = new Point( xp2+nx, yp2+ny);		
-		this.setP1(np1);
-		this.setP2(np2);						
+		deplacerFigure2p(p1, p2);
 		for (int i = 0; i<listPoints.length; i++){
 			int xp3 = (int)listPoints[i].getX() ;
 			int yp3 = (int)listPoints[i].getY() ;
-			Point np = new Point( xp3+nx, yp3+ny);
+			Point np = new Point(xp3 + (int)(p2.getX() - p1.getX()),
+					yp3 + (int)(p2.getY() - p1.getY()));
 			listPoints[i] = np;
 		}
 	}
