@@ -23,7 +23,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	private int nbPointPolygone ;
 	private Color border_color;
 	private Color backgroundFigColor;
-	Point p1, p2, p3, p4, p5, p6, p7, p8, pointEditer ;	
+	Point p1, p2, p3, p4, p5, p6, p7, p8, pointEditer;	
 	FigureGeom figure ;
 	ListFigures lsFigures;
 	
@@ -44,10 +44,10 @@ public class ControleurFigure extends MouseInputAdapter {
 				editerFigure(e.getPoint());
 			}			
 			else if (deplacement) {								
-				deplacerFigure(e.getPoint());				
+				deplacerFigure(e.getPoint());
 			}
-			pointEditer = e.getPoint() ;
-			if (! figure.isSelectOn())  figure.setSelectOn(true) ;
+			pointEditer = e.getPoint();
+			if (! figure.isSelectOn())  figure.setSelectOn(true);
 		}
 		else if (isDessiner())  {
 			if (p1 != null && p2 == null){
@@ -84,7 +84,7 @@ public class ControleurFigure extends MouseInputAdapter {
 					lsFigures.setFigure(lsFigures.getFigures().size()-1, tr);
 				}
 			}
-			else if (p1 != null && p2 != null && p3 == null){		
+			else if ((p1 != null && p2 != null) && p3 == null){		
 				if (isTriangleOn()) {
 					UnTriangle triangle = new UnTriangle(p1,p2,e.getPoint(), border_color);
 					if(!newfigure) {
