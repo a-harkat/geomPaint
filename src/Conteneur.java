@@ -251,11 +251,19 @@ public class Conteneur extends JPanel{
 			}				
 		});
 		
+		((JButton)mb.getBouttonM(2)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cf.RestoreLast();
+				mh.changerTexteMH("Figure(s) restore(s)");
+			}				
+		});
+		
 		((JCheckBox)mh.getBouttonM(1)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				boolean etat = ((AbstractButton) e.getSource()).getModel().isSelected();
 				mg.changeicons(etat);
 			}				
 		});
+		
 	}
 }
