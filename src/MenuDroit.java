@@ -39,13 +39,9 @@ public class MenuDroit extends Menu {
 	 */
 	private void generateBoutton() {
 		
-		JButton dup = new JButton("Duplication");
-		JButton clear = new JButton("clear all");
-		JCheckBox choix_type_bouton = new JCheckBox("changer boutons");
-		
-		this.ajouterBouttonM(dup);
-		this.ajouterBouttonM(clear);
-		this.ajouterBouttonM(choix_type_bouton);
+		this.ajouterBouttonM(new JButton("Duplication"));
+		this.ajouterBouttonM(new JButton("clear all"));
+		this.ajouterBouttonM(new JCheckBox("changer boutons"));
 		
 		for(Component bouton : this.getListe_b()){
 			bouton.setMinimumSize(new Dimension(140,30));

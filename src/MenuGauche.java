@@ -150,6 +150,11 @@ public class MenuGauche extends Menu {
 		}
 	}
 
+	/**
+	 * Methode pour favoriser la lecture claire du code qui
+	 * contient les chemins des icones 1 
+	 * @return liste des chemin icones
+	 */
 	public ArrayList<String> getListicone1(){
 		ArrayList <String> li1 = new ArrayList<String>();
 		li1.add("src/images/edition.png");
@@ -162,6 +167,11 @@ public class MenuGauche extends Menu {
 		return li1;
 	}
 
+	/**
+	 * Methode pour favoriser la lecture claire du code qui
+	 * contient les chemins des icones 1 
+	 * @return liste des chemin icones
+	 */
 	public ArrayList<String> getListicone2(){
 		ArrayList <String> li2 = new ArrayList<String>();
 		li2.add("src/images/edition2.png");
