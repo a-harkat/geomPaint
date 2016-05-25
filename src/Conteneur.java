@@ -245,7 +245,7 @@ public class Conteneur extends JPanel{
 			}				
 		});
 		
-		((JCheckBox)mh.getBouttonM(1)).addActionListener(new ActionListener(){
+		((JCheckBox)md.getBouttonM(0)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				boolean etat = ((AbstractButton) e.getSource()).getModel().isSelected();
 				mg.changeicons(etat);

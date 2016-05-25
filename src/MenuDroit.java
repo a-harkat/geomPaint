@@ -3,6 +3,7 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 
 /**
  * Classe qui represente le menu Droit et qui contient
@@ -35,6 +36,15 @@ public class MenuDroit extends Menu {
 	 * boutons du menu Droit
 	 */
 	private void generateBoutton() {
+		JCheckBox choix_type_bouton = new JCheckBox("changer boutons");
+		this.ajouterBouttonM(choix_type_bouton);
+	}
+	
+	/**
+	 * Methode qui permet de tester les calques
+	 * boutons du menu Droit
+	 */
+	private void test() {
 		for (int i = 0; i < 10; i++) {
 			this.ajouterBouttonM(new JButton("test" + i));
 		}

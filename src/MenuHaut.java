@@ -1,7 +1,5 @@
 import java.awt.Color;
 import java.awt.Font;
-
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 
 /**
@@ -32,11 +30,10 @@ public class MenuHaut extends Menu {
 	 */
 	private void generateBoutton() {
 		JLabel statut_prog = new JLabel("les messages a afficher");
-		JCheckBox choix_type_bouton = new JCheckBox("?");
+		
 		statut_prog.setForeground(Color.yellow);
 		statut_prog.setFont(new Font("TimesRoman", Font.ITALIC, 16));
 		this.ajouterBouttonM(statut_prog);
-		this.ajouterBouttonM(choix_type_bouton);
 	}
 	
 	public void changerTexteMH(String new_texte) {
