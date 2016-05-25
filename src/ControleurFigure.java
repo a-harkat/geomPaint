@@ -478,8 +478,8 @@ public class ControleurFigure extends MouseInputAdapter {
 	public void RestoreLast (){
 		int taille = lsFiguresDelet.getFigures().size() ;	
 		if (taille > 0) {
-		lsFigures.addFigure(lsFiguresDelet.getFigures().get(0) );		
-		lsFiguresDelet.removeFigure(0);		
+		lsFigures.addFigure(lsFiguresDelet.getFigures().get(taille - 1) );		
+		lsFiguresDelet.removeFigure(taille - 1);		
 		effacerPoints();
 		}
 	}
