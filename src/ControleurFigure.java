@@ -35,7 +35,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	 * Listener souris Dragged
 	 */
 	public void mouseDragged(MouseEvent e){	
-		if (!isDessiner()){
+		if (!isDessiner() && lsFigures.getFigures().size() != 0){
 			if (edition ) {
 				editerFigure(e.getPoint());
 			}			
@@ -169,7 +169,7 @@ public class ControleurFigure extends MouseInputAdapter {
 				ajouterQueconque(e.getPoint());				
 			}
 		} 
-		else if (! isDessiner()){
+		else if (!isDessiner() && lsFigures.getFigures().size() != 0){
 			if (indexEditer(e.getPoint()) != -1 ){
 				edition = true ;
 				index = indexEditer(e.getPoint());
