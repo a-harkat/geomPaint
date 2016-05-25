@@ -204,6 +204,7 @@ public class ControleurFigure extends MouseInputAdapter {
 					if (trait.insideTrait(cible)) {
 						if (!trait.getFigureFilled()) {
 							trait.setFigureFilled(true);
+							trait.setFull_color(backgroundFigColor);
 							trait.setBorder_color(backgroundFigColor);
 						} else {
 							trait.setFigureFilled(false);
@@ -215,6 +216,7 @@ public class ControleurFigure extends MouseInputAdapter {
 						if (!cercle.getFigureFilled()) {
 							cercle.setFigureFilled(true);
 							cercle.setFull_color(backgroundFigColor);
+							cercle.setBorder_color(backgroundFigColor);
 						} else {
 							cercle.setFigureFilled(false);
 						}
@@ -225,6 +227,7 @@ public class ControleurFigure extends MouseInputAdapter {
 						if (!triangle.getFigureFilled()) {
 							triangle.setFigureFilled(true);
 							triangle.setFull_color(backgroundFigColor);
+							triangle.setBorder_color(backgroundFigColor);
 						} else {
 							triangle.setFigureFilled(false);
 						}
@@ -235,6 +238,7 @@ public class ControleurFigure extends MouseInputAdapter {
 						if (!rectangle.getFigureFilled()) {
 							rectangle.setFigureFilled(true);
 							rectangle.setFull_color(backgroundFigColor);
+							rectangle.setBorder_color(backgroundFigColor);
 						} else {
 							rectangle.setFigureFilled(false);
 						}
@@ -245,6 +249,7 @@ public class ControleurFigure extends MouseInputAdapter {
 						if (!quelconque.getFigureFilled()) {
 							quelconque.setFigureFilled(true);
 							quelconque.setFull_color(backgroundFigColor);
+							quelconque.setBorder_color(backgroundFigColor);
 						} else {
 							quelconque.setFigureFilled(false);
 						}
