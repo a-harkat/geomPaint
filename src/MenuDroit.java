@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
@@ -46,16 +47,11 @@ public class MenuDroit extends Menu {
 		this.ajouterBouttonM(clear);
 		this.ajouterBouttonM(choix_type_bouton);
 		
-		
-		clear.setMinimumSize(new Dimension(140,30));
-		clear.setMaximumSize(new Dimension(140,30));
-		clear.setPreferredSize(new Dimension(140,30));
-		choix_type_bouton.setMinimumSize(new Dimension(140,30));
-		choix_type_bouton.setMaximumSize(new Dimension(140,30));
-		choix_type_bouton.setPreferredSize(new Dimension(140,30));
-		dup.setMinimumSize(new Dimension(140,30));
-		dup.setMaximumSize(new Dimension(140,30));
-		dup.setPreferredSize(new Dimension(140,30));
+		for(Component bouton : this.getListe_b()){
+			bouton.setMinimumSize(new Dimension(140,30));
+			bouton.setMaximumSize(new Dimension(140,30));
+			bouton.setPreferredSize(new Dimension(140,30));
+		}
 	}
 	
 	/**
