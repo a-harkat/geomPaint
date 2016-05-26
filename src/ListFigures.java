@@ -1,6 +1,5 @@
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Observable;
 
 /**
@@ -46,17 +45,25 @@ public class ListFigures extends Observable{
 	}
 	
 	/**
-	 * Methode pour supprimer les figures selection�es de la liste 
+	 * Methode pour supprimer les figures selectionees de la liste 
 	 */
-	public void removeSelected() {
-		Iterator<FigureGeom> iterator = this.getFigures().iterator();
-		while ( iterator.hasNext() ) {
-			FigureGeom figure = iterator.next();
-			if (figure.isSelectOn()) 
-		        iterator.remove();
-		    }
-		notif();
+	public void removeSelected(ListFigures lf) {
+		ArrayList<FigureGeom> list = this.getFigures();
+		try {
+			for (FigureGeom fg : list) {
+				if (this.getFigures().contains(fg)) {
+					if (fg.isSelectOn()) {
+						lf.addFigure(fg);		
+						figures.remove(fg);
+						notif();
+					}
+				}
+			}
+		} catch (Exception e) {
+			
+		}
 	}
+	
 	
 	/**
 	 * Setter de figure, remplace une figure dans la liste
@@ -182,7 +189,7 @@ public class ListFigures extends Observable{
 		public void deleteLast (ListFigures lsFiguresDelet){
 			int taille = this.getFigures().size() ;	
 			if (taille > 0) {
-				lsFiguresDelet.addFigure(this.getFigures().get(taille-1) );		
+				lsFiguresDelet.addFigure(this.getFigures().get(taille-1));		
 				this.removeFigure (taille-1);				
 			}
 		}
@@ -195,8 +202,8 @@ public class ListFigures extends Observable{
 		public void restoreLast (ListFigures lsFiguresDelet){
 			int taille = lsFiguresDelet.getFigures().size() ;	
 			if (taille > 0) {
-			this.addFigure(lsFiguresDelet.getFigures().get(taille - 1) );		
-			lsFiguresDelet.removeFigure(taille - 1);		
+				this.addFigure(lsFiguresDelet.getFigures().get(taille - 1) );		
+				lsFiguresDelet.removeFigure(taille - 1);		
 			}
 		}
 		
