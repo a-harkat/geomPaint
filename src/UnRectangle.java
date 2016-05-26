@@ -8,7 +8,7 @@ import com.sun.javafx.geom.Rectangle;
  * @author Groupe 2
  * @version 1
  */
-public class UnRectangle extends FigureGeom {
+public class UnRectangle extends UnPolygone {
 
 	/**
 	 * Constructeur de Rectangle
@@ -18,7 +18,6 @@ public class UnRectangle extends FigureGeom {
 	 */
 	public UnRectangle(Point p1, Point p2, Color border) {
 		super(p1, p2, border);
-
 	}
 	/**
 	 * Teste si un point est dans le rectangle
