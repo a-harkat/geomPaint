@@ -55,7 +55,7 @@ public class MenuBas extends Menu {
 		li.add("src/images/potPaint.png");
 		li.add("src/images/undo2.png");
 		li.add("src/images/redo2.png");
-		li.add("src/images/poubelle2.png");
+		li.add("src/images/eraser.png");
 		
 		return li;
 	}
@@ -72,7 +72,7 @@ public class MenuBas extends Menu {
 		li.add("colorier un objet");
 		li.add("revenir en arriere");
 		li.add("aller en avant ");
-		li.add("suprimer un objet");
+		li.add("suprimer objet(s)");
 		
 		return li;
 	}

@@ -204,7 +204,7 @@ public class Conteneur extends JPanel{
 		});
 		((JButton)mb.getBouttonM(3)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cf.getListFigures().removeAll();
+				cf.getListFigures().removeSelected();
 				cf.effacerPoints();	
 				mh.changerTexteMH("Figure(s) effacee(s)");
 			}				
