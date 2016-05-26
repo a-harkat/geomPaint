@@ -47,7 +47,7 @@ public class MenuDroit extends Menu {
 		ArrayList<String> tooltip = this.getListTool();
 		for (String chemin : this.getListicone()){
 			this.ajouterBouttonM(new JButton());
-			((AbstractButton) this.getBouttonM(i)).setIcon(new ImageIcon(chemin));
+			((AbstractButton) this.getBouttonM(i)).setIcon(new ImageIcon(getClass().getResource(chemin)));
 			((AbstractButton) this.getBouttonM(i)).setToolTipText(tooltip.get(i));
 			i++;
 		}
@@ -73,9 +73,9 @@ public class MenuDroit extends Menu {
 	 */
 	public ArrayList<String> getListicone(){
 		ArrayList <String> li = new ArrayList<String>();
-		li.add("src/images/copy.png");
-		li.add("src/images/poubelle2.png");
-		li.add("src/images/rouleau.png");
+		li.add("images/copy.png");
+		li.add("images/poubelle2.png");
+		li.add("images/rouleau.png");
 		
 		return li;
 	}

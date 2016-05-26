@@ -37,7 +37,7 @@ public class MenuBas extends Menu {
 		ArrayList<String> tooltip = this.getListTool();
 		for (String chemin : this.getListicone()){
 			this.ajouterBouttonM(new JButton());
-			((AbstractButton) this.getBouttonM(i)).setIcon(new ImageIcon(chemin));
+			((AbstractButton) this.getBouttonM(i)).setIcon(new ImageIcon(getClass().getResource(chemin)));
 			((AbstractButton) this.getBouttonM(i)).setToolTipText(tooltip.get(i));
 			i++;
 		}
@@ -52,10 +52,10 @@ public class MenuBas extends Menu {
 	 */
 	public ArrayList<String> getListicone(){
 		ArrayList <String> li = new ArrayList<String>();
-		li.add("src/images/potPaint.png");
-		li.add("src/images/undo2.png");
-		li.add("src/images/redo2.png");
-		li.add("src/images/eraser.png");
+		li.add("images/potPaint.png");
+		li.add("images/undo2.png");
+		li.add("images/redo2.png");
+		li.add("images/eraser.png");
 		
 		return li;
 	}

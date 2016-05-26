@@ -47,7 +47,7 @@ public class MenuGauche extends Menu {
 		int i = 1;
 		for (String chemin : this.getListicone1()){
 			this.ajouterBouttonM(new JButton());
-			((AbstractButton) this.getBouttonM(i)).setIcon(new ImageIcon(chemin));
+			((AbstractButton) this.getBouttonM(i)).setIcon(new ImageIcon(getClass().getResource(chemin)));
 			i++;
 		}
 		this.ajouterBouttonM(this.generate_mg_jsli());
@@ -117,14 +117,14 @@ public class MenuGauche extends Menu {
 		if (!etat) {
 			int i = 1;
 			for (String chemin : this.getListicone1()){
-				((AbstractButton) this.getBouttonM(i)).setIcon(new ImageIcon(chemin));
+				((AbstractButton) this.getBouttonM(i)).setIcon(new ImageIcon(getClass().getResource(chemin)));
 				i++;
 			}
 		}
 		else {
 			int i = 1;
 			for (String chemin : this.getListicone2()){
-				((AbstractButton) this.getBouttonM(i)).setIcon(new ImageIcon(chemin));
+				((AbstractButton) this.getBouttonM(i)).setIcon(new ImageIcon(getClass().getResource(chemin)));
 				i++;
 			}
 		}
@@ -137,12 +137,12 @@ public class MenuGauche extends Menu {
 	 */
 	public ArrayList<String> getListicone1(){
 		ArrayList <String> li1 = new ArrayList<String>();
-		li1.add("src/images/edition.png");
-		li1.add("src/images/trait.png");
-		li1.add("src/images/rectangle.png");
-		li1.add("src/images/triangle.png");
-		li1.add("src/images/cercle.png");
-		li1.add("src/images/quelconque.png");
+		li1.add("images/edition.png");
+		li1.add("images/trait.png");
+		li1.add("images/rectangle.png");
+		li1.add("images/triangle.png");
+		li1.add("images/cercle.png");
+		li1.add("images/quelconque.png");
 		
 		return li1;
 	}
@@ -154,12 +154,12 @@ public class MenuGauche extends Menu {
 	 */
 	public ArrayList<String> getListicone2(){
 		ArrayList <String> li2 = new ArrayList<String>();
-		li2.add("src/images/edition2.png");
-		li2.add("src/images/trait2.png");
-		li2.add("src/images/rectangle2.png");
-		li2.add("src/images/triangle2.png");
-		li2.add("src/images/cercle2.png");
-		li2.add("src/images/quelconque2.png");
+		li2.add("images/edition2.png");
+		li2.add("images/trait2.png");
+		li2.add("images/rectangle2.png");
+		li2.add("images/triangle2.png");
+		li2.add("images/cercle2.png");
+		li2.add("images/quelconque2.png");
 		
 		return li2;
 	}
