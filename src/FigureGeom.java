@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Point;
 
-
 /**
  * Classe qui represente les figures geometriques
  * @author Groupe 2
@@ -28,6 +27,7 @@ public abstract class FigureGeom  {
 	 * Constructeur de Figure geometrique
 	 * @param p1 point 1
 	 * @param p2 point 2
+	 * @param border couleur de la figure
 	 */
 	public FigureGeom(Point p1, Point p2, Color border) {
 		border_color = border;
@@ -36,29 +36,42 @@ public abstract class FigureGeom  {
 		figureFilled = false;
 	}
 	
-	// a check 
+	/**
+	 * getter
+	 * @return P1
+	 */
 	public Point getP1() {
 		return P1 ;
 	}
 	
-	// a check 
+	/**
+	 * getter
+	 * @return P2
+	 */
 	public Point getP2() {
 		return P2;
 	}
 	
+	/**
+	 * setter
+	 * @param p nouveau point
+	 */
 	public void setP1(Point p) {
 		 P1 = p ;
 	}
 	
-	// a check 
+	/**
+	 * setter
+	 * @param p nouveau point
+	 */
 	public void setP2(Point p) {
 		P2 = p;
 	}
 
-
-	
 	/**
 	 * retourne si un point est dans la zone de tolerance d'un autre point
+	 * @param p le point a tester
+	 * @return true si le point est dans la zone
 	 */
 	public boolean tolerance (Point p) {
 		return isInToleranceZone(p,this.getP1()) || isInToleranceZone(p,this.getP2());		   
@@ -66,6 +79,9 @@ public abstract class FigureGeom  {
 	
 	/**
 	 * retourne si un point est dans le cercle qui a pour centre un point donne
+	 * @param p1 
+	 * @param p2 
+	 * @return true si le point est dans le cercle
 	 */
 	public boolean isInToleranceZone (Point p1, Point p2) {
 		double dx = p1.getX()- p2.getX();
@@ -73,9 +89,19 @@ public abstract class FigureGeom  {
 	   return dx * dx + dy * dy <= tolerance * tolerance;
 	}
 	
+	/**
+	 * teste si le point n'est pas la zone de tolerance de P1
+	 * @param p1 le point a tester
+	 * @return true si le point n'est pas proche de P1
+	 */
 	public boolean noPoint1 (Point p1) {
 		return  (!(this.isInToleranceZone(p1, this.getP1())));	    	
 	}
+	/**
+	 * teste si le point n'est pas la zone de tolerance de P2
+	 * @param p1 le point a tester
+	 * @return true si le point n'est pas proche de P2
+	 */
 	public boolean noPoint2 (Point p1) {		    
 		return (!(this.isInToleranceZone(p1, this.getP2())));
 	}
@@ -128,6 +154,11 @@ public abstract class FigureGeom  {
 		return nbPoints;			
 	}
 	
+	/**
+	 * modifie la position d'un point de la figure
+	 * @param p1 point depart
+	 * @param p2 point arrivee
+	 */
 	public void editerFigure2p(Point p1, Point p2){		
 		if (this.isInToleranceZone(p1, this.getP1()))
 			if (this.noPoint2(p2)) 
@@ -137,6 +168,11 @@ public abstract class FigureGeom  {
 				this.setP2(p2);		
 	}
 	
+	/**
+	 * deplace les deux points
+	 * @param p1 point de depart
+	 * @param p2 point d'arrivee
+	 */
 	public void deplacerFigure2p(Point p1, Point p2){
 		int xp1 = (int)this.getP1().getX() ;
 		int xp2 = (int)this.getP2().getX();
@@ -162,7 +198,7 @@ public abstract class FigureGeom  {
 	
 	/**
 	 * Setteur de la couleur de la bordure de la figure
-	 * @param new_border_color
+	 * @param new_border_color nouvelle couleur
 	 */
 	public void setBorder_color(Color new_border_color) {
 		this.border_color = new_border_color;
@@ -170,7 +206,7 @@ public abstract class FigureGeom  {
 	
 	/**
 	 * Getteur de la couleur pleine de la figure
-	 * @return Color pleine de la figure
+	 * @return full_color pleine de la figure
 	 */
 	public Color getFull_color() {
 		return full_color;
@@ -178,7 +214,7 @@ public abstract class FigureGeom  {
 	
 	/**
 	 * Setteur de la couleur pleine de la figure
-	 * @param new_full_color
+	 * @param new_full_color nouvelle couleur
 	 */
 	public void setFull_color(Color new_full_color) {
 		this.full_color = new_full_color;
@@ -205,10 +241,18 @@ public abstract class FigureGeom  {
 	public void setFigureFilled (boolean bool) {
 		this.figureFilled = bool;
 	}
+	/**
+	 * getter 
+	 * @return selectOn
+	 */
 	public boolean isSelectOn() {
 		return selectOn;
 	}
 
+	/**
+	 * setter
+	 * @param selectOn nouvelle valeur
+	 */
 	public void setSelectOn(boolean selectOn) {
 		this.selectOn = selectOn;
 	}

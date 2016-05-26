@@ -21,6 +21,9 @@ public class VueGraphique extends JPanel implements Observer {
 	 *Liste des figures
 	 */
 	private ListFigures listeFigures;
+	/**
+	 * la taille du carre d'un sommet selectionne
+	 */
 	public static final int VERTEX_SIZE = 6;
 
 	/**
@@ -61,6 +64,12 @@ public class VueGraphique extends JPanel implements Observer {
 			}
 	}
 	
+	/**
+	 * Dessine des carres autour des sommets
+	 * d'une figure
+	 * @param g l'objet graphic a utiliser
+	 * @param fg la figure a utiliser
+	 */
 	public void drawVertex(Graphics g, FigureGeom fg) {		
 		int vrtx = VERTEX_SIZE;
 		g.fillRect((int)fg.getP1().getX()-vrtx/2, (int)fg.getP1().getY()-vrtx/2, vrtx, vrtx);

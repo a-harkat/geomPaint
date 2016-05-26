@@ -16,9 +16,10 @@ public class UnTriangle extends UnPolygone{
 	
 	/**
 	 * Constructeur de Triangle
-	 * @param p1
-	 * @param p2
-	 * @param p3
+	 * @param p1 point 1
+	 * @param p2 point 2
+	 * @param p3 point 3
+	 * @param border couleur du triangle
 	 */
 	public UnTriangle(Point p1, Point p2, Point p3, Color border) {
 		super(p1, p2, border);
@@ -26,7 +27,9 @@ public class UnTriangle extends UnPolygone{
 	}
 	
 	/**
-	 * retourne si un point est dans triangle triangle
+	 * Teste si un point est dans le triangle
+	 * @param p le point a tester
+	 * @return true si vrai
 	 */
 	public boolean isInsideTriangle(Point2D p)
     {	  
@@ -44,7 +47,10 @@ public class UnTriangle extends UnPolygone{
     }
 	
 	/**
-	 * retourne si un point est dans la zone de tol�rance d'un autre point
+	 * Teste si un point est dans la zone de tolerance 
+	 * d'un des points du triangle
+	 * @param p le point a tester
+	 * @return true si vrai
 	 */
 	public boolean toleranceTriangle (Point p) {
 		return isInToleranceZone(p,this.getP1()) || isInToleranceZone(p,this.getP2()) || isInToleranceZone(p,this.getP3()) ;		   
@@ -65,10 +71,21 @@ public class UnTriangle extends UnPolygone{
 		this.p3 = p3;
 	}
 	
-	public boolean noPoint3 (Point p1) {		    
-		return (!(this.isInToleranceZone(p1, this.getP3())));
+	/**
+	 * Teste si un point n'est pas proche
+	 * au point 3 du tringle
+	 * @param p le point a tester
+	 * @return false si le point est proche
+	 */
+	public boolean noPoint3 (Point p) {		    
+		return (!(this.isInToleranceZone(p, this.getP3())));
 	}
 	
+	/**
+	 * Modifie la position d'un du triangle
+	 * @param p1 point depart
+	 * @param p2 point arrivee
+	 */
 	public void editerTriangle (Point p1, Point p2){
 		if (this.isInToleranceZone(p1, this.getP1())) 
 			if (this.noPoint2(p2) && this.noPoint3(p2)) 
@@ -81,6 +98,11 @@ public class UnTriangle extends UnPolygone{
 				this.setP3(p2);
 	}
 	
+	/**
+	 * Deplace les points du triangle 
+	 * @param p1 point de depart
+	 * @param p2 point d'arrivee
+	 */
 	public void deplacerTriangle (Point p1, Point p2){
 		int xp1 = (int)this.getP1().getX() ;
 		int xp2 = (int)this.getP2().getX();

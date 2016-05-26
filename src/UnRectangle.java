@@ -14,12 +14,18 @@ public class UnRectangle extends FigureGeom {
 	 * Constructeur de Rectangle
 	 * @param p1 point 1
 	 * @param p2 point 2
+	 * @param border couleur du rectangle
 	 */
 	public UnRectangle(Point p1, Point p2, Color border) {
 		super(p1, p2, border);
 
 	}
 	
+	/**
+	 * Teste si un point est dans le rectangle
+	 * @param p1 le point a tester
+	 * @return true si vrai
+	 */
 	public boolean insideRectangle(Point p1) 
 	{
 		int x = (int) this.getP1().getX() ;

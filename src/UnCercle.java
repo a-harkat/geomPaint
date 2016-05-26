@@ -13,16 +13,28 @@ public class UnCercle extends FigureGeom {
 	 * Constructeur de Cercle
 	 * @param p1 point 1 centre
 	 * @param p2 point 2 rayon
+	 * @param border la couleur du cercle
 	 */
 	public UnCercle(Point p1, Point p2, Color border) {
 		super(p1, p2, border);		
 	}
 	
+	/**
+	 * Teste si un point est a l'interieure du cercle
+	 * @param p1 le point a tester
+	 * @return true si vrai
+	 */
 	public boolean insideCercle (Point2D p1) {
 		double dx = p1.getX()- this.getP1().getX();
 	   double dy = p1.getY()- this.getP1().getY();
 	   return dx * dx + dy * dy <= distance(p1, this.getP1())*distance(p1, this.getP1());
 	}
+	/**
+	 * Calcule la distance entre deux points
+	 * @param p1
+	 * @param p2
+	 * @return la distance
+	 */
 	public double distance (Point2D p1, Point2D p2) {
 		double x1 = this.getP1().getX();
 		double y1 = this.getP1().getY();

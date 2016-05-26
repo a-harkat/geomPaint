@@ -12,11 +12,17 @@ public class UnTrait extends FigureGeom{
 	 * Constructeur de Trait 
 	 * @param p1 point 1
 	 * @param p2 point 2
+	 * @param border couleur trait
 	 */
 	public UnTrait(Point p1, Point p2, Color border) {
 		super(p1, p2, border);
 	}
 	
+	/**
+	 * Teste si un point est proche du trait
+	 * @param p le point a tester
+	 * @return true si le point est proche
+	 */
 	public boolean insideTrait(Point p) {
 		double x1 = this.getP1().getX() ;
 		double y1 =  this.getP1().getY() ;

@@ -51,7 +51,7 @@ public class ListFigures extends Observable{
 	}
 	
 	/**
-	 * Methode pour supprimer les figures selectionées de la liste 
+	 * Methode pour supprimer les figures selectionï¿½es de la liste 
 	 */
 	public void removeSelected() {
 		Iterator<FigureGeom> iterator = this.getFigures().iterator();
@@ -75,10 +75,18 @@ public class ListFigures extends Observable{
 		notifyObservers();
 	}
 
+	/**
+	 * getter
+	 * @return figures
+	 */
 	public ArrayList<FigureGeom> getFigures() {
 		return figures;
 	}
 
+	/**
+	 * setter
+	 * @param figures la nouvelle liste
+	 */
 	public void setFigures(ArrayList<FigureGeom> figures) {
 		this.figures = figures;
 	}

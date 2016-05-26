@@ -36,6 +36,10 @@ public class MenuHaut extends Menu {
 		this.ajouterBouttonM(statut_prog);
 	}
 	
+	/**
+	 * Methode qui change le texte a afficher
+	 * @param new_texte nouveau texte
+	 */
 	public void changerTexteMH(String new_texte) {
 		((JLabel)this.getBouttonM(0)).setText(new_texte);
 	}

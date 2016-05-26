@@ -20,7 +20,8 @@ public class UnQuelconque extends UnPolygone{
 	 * Constructeur de figure quelquonque 
 	 * @param p1 point 1
 	 * @param p2 point 2 
-	 * @param lp liste des points 
+	 * @param p tableau de points
+	 * @param border couleur du quelconque
 	 */
 	public UnQuelconque(Point p1, Point p2, Point[] p, Color border) {
 		super(p1, p2, border);
@@ -45,7 +46,9 @@ public class UnQuelconque extends UnPolygone{
 		this.listPoints = listPoints;
 	}
 	/**
-	 * methode qui edite (redimensionne) un triangle
+	 * Change la position d'un point du polygone
+	 * @param p1 point de depart
+	 * @param p2 point d'arrivee
 	 */
 	public void editerQuelconque(Point p1, Point p2) {
 		
@@ -65,15 +68,26 @@ public class UnQuelconque extends UnPolygone{
 		}
 	}
 
+	/**
+	 * @param j
+	 * @param p
+	 * @return true sinon false
+	 */
 	public boolean noPointOnPoint (int j, Point p) {
 		boolean b = true ;
-		for (int i = 0; i<listPoints.length; i++){	
+		for (int i = 0; i<listPoints.length; i++){
 			if (i!= j && isInToleranceZone(p,listPoints[i]))
-		        	b = false;											
+				b = false;											
 		    }
 		return b;   
 	}
 	
+	/**
+	 * teste si un point est proche
+	 * a un point du polygone
+	 * @param p le point a tester
+	 * @return b true ou false
+	 */
 	public boolean toleranceQuelconque (Point p) {		
 		boolean b = false ;
 		if (isInToleranceZone(p,this.getP1()) 
@@ -86,6 +100,11 @@ public class UnQuelconque extends UnPolygone{
 		return b ;
 	}
 	
+	/**
+	 * deplace les points du polygone
+	 * @param p1 point de depart
+	 * @param p2 point d'arrivee
+	 */
 	public void deplacerQuelconque (Point p1, Point p2){		
 		deplacerFigure2p(p1, p2);
 		for (int i = 0; i<listPoints.length; i++){
@@ -97,6 +116,11 @@ public class UnQuelconque extends UnPolygone{
 		}
 	}
 	
+	/**
+	 * Teste si un point est dans le polygone
+	 * @param p1 le point a tester
+	 * @return true si vrai
+	 */
 	public boolean insidePolygone(Point p1) {
 		int taille = getListPoints().length ;
 		int [] X = new int [taille+2];
