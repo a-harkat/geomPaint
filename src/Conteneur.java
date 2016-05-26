@@ -127,11 +127,13 @@ public class Conteneur extends JPanel{
             public void actionPerformed(ActionEvent e){ 
                 mh.changerTexteMH("choisissez votre couleur");
                 Color couleur = JColorChooser.showDialog
-                        (null, "Choisissez votre couleur", menu_color);
-                mg.set_col_actuelle(couleur);
-                mh.changerTexteMH("couleur choisi : " + couleur);
-                cf.setBorder_color(mg.get_col_actuelle());
-                cf.colorFigure(mg);
+                        (null, "Choisissez votre couleur", mg.get_col_actuelle());
+                if (! (couleur == null)){
+                	 mg.set_col_actuelle(couleur);
+                     mh.changerTexteMH("couleur choisi : " + couleur);
+                     cf.setBorder_color(mg.get_col_actuelle());
+                     cf.colorFigure(mg);
+                }
             }                       
         });
         
