@@ -207,6 +207,7 @@ public class Conteneur extends JPanel{
 		});
 		((JButton)mb.getBouttonM(3)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				prepareSelection(cf);
 				cf.getListFigures().removeSelected();
 				cf.effacerPoints();	
 				mh.changerTexteMH("Figure(s) effacee(s)");
@@ -223,6 +224,7 @@ public class Conteneur extends JPanel{
 		
 		((JButton)md.getBouttonM(0)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				prepareSelection(cf);
 				cf.getListFigures().dupliquer(40);
 				cf.effacerPoints();	
 				mh.changerTexteMH("Dupliquer");
@@ -233,9 +235,9 @@ public class Conteneur extends JPanel{
 			public void actionPerformed(ActionEvent e){
 				int reponse = question1();
 				if (reponse ==0) {
-				cf.getListFigures().removeAll();
-				cf.effacerPoints();	
-				mh.changerTexteMH("Suppression effectuee");
+					cf.getListFigures().removeAll();
+					cf.effacerPoints();	
+					mh.changerTexteMH("Suppression effectuee");
 				}
 			}				
 		});
@@ -278,5 +280,24 @@ public class Conteneur extends JPanel{
 		cf.setTraitOn(false);
 		cf.setPolygoneOn(false);
 		ControleurFigure.setSelectionOn(false);
+	}
+	
+	/**
+	 * Methode qui va assouplir
+	 * les configurations pour les
+	 * traits et les polygones
+	 * @param cf ControleurFigure
+	 * Gestionnaire des figures
+	 */
+	public void prepareSelection (ControleurFigure cf) {
+		cf.setDessiner(false);				
+		cf.setCercleOn(false);
+		cf.setRectangleOn(false);
+		cf.setTriangleOn(false);
+		cf.setTraitOn(false);
+		cf.setPolygoneOn(false);
+		ControleurFigure.setSelectionOn(true);
+		cf.effacerPoints();
+        ControleurFigure.setPotPeintureOn(false);
 	}
 }

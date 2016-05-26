@@ -37,6 +37,23 @@ public abstract class FigureGeom  {
 	}
 	
 	/**
+	 * Constructeur qui va permettre
+	 * de construire des figures pleines
+	 * @param p1 Point 1
+	 * @param p2 Point 2
+	 * @param border Color Couleur
+	 * du bord de la figure
+	 * @param filled Boolean True si
+	 * la figure est pleine false sinon
+	 */
+	public FigureGeom(Point p1, Point p2, Color border, boolean filled) {
+		border_color = border;
+		P1 = p1;
+		P2 = p2;
+		figureFilled = filled;
+	}
+	
+	/**
 	 * getter
 	 * @return P1
 	 */

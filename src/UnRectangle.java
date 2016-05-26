@@ -19,6 +19,19 @@ public class UnRectangle extends UnPolygone {
 	public UnRectangle(Point p1, Point p2, Color border) {
 		super(p1, p2, border);
 	}
+	
+	/**
+	 * Constructeur de Rectangle
+	 * @param p1 Point 1
+	 * @param p2 Point 2
+	 * @param border Color couleur du rectangle
+	 * @param filled Boolean True si le
+	 * rectangle est plein false sinon
+	 */
+	public UnRectangle(Point p1, Point p2, Color border, boolean filled) {
+		super(p1, p2, border, filled);
+	}
+	
 	/**
 	 * Teste si un point est dans le rectangle
 	 * @param p1 le point a tester

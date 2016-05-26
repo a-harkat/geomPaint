@@ -141,11 +141,11 @@ public class ListFigures extends Observable{
 				Point p1 = new Point ((int)(figure.getP1().getX()+j),(int)(figure.getP1().getY()+j));
 				Point p2 = new Point ((int)(figure.getP2().getX()+j),(int)(figure.getP2().getY()+j));
 				if (figure instanceof UnRectangle){					
-					UnRectangle rt = new UnRectangle(p1,p2, figure.getBorder_color());
+					UnRectangle rt = new UnRectangle(p1,p2, figure.getBorder_color(), figure.getFigureFilled());
 					this.addFigure(rt);
 				}
-				else if (figure instanceof UnCercle){		
-					UnCercle cl = new UnCercle(p1,p2, figure.getBorder_color());
+				else if (figure instanceof UnCercle){
+					UnCercle cl = new UnCercle(p1,p2, figure.getBorder_color(), figure.getFigureFilled());
 					this.addFigure(cl);
 				}	
 				else if (figure instanceof UnTrait){		
@@ -154,7 +154,7 @@ public class ListFigures extends Observable{
 				}
 				else if (figure instanceof UnTriangle) {
 					Point p3 = new Point ((int)(((UnTriangle)figure).getP3().getX()+j),(int)(((UnTriangle)figure).getP3().getY()+j));
-					UnTriangle triangle = new UnTriangle(p1,p2,p3, figure.getBorder_color());
+					UnTriangle triangle = new UnTriangle(p1,p2,p3, figure.getBorder_color(), figure.getFigureFilled());
 					this.addFigure(triangle);	
 				}
 				else if (figure instanceof UnQuelconque){
@@ -162,7 +162,7 @@ public class ListFigures extends Observable{
 						for (int t =0; t<ptPoly.length; t++ ){
 							ptPoly[t] = new Point ((int)(ptPoly[t].getX()+j), (int)(ptPoly[t].getY()+j));
 						}
-					UnQuelconque ql = new UnQuelconque(p1,p2,ptPoly, figure.getBorder_color());
+					UnQuelconque ql = new UnQuelconque(p1,p2,ptPoly, figure.getBorder_color(), figure.getFigureFilled());
 					this.addFigure(ql);			
 				}
 			}

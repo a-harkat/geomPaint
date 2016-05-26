@@ -112,6 +112,19 @@ public class ControleurFigure extends MouseInputAdapter {
 			}
 			pointEditer = e.getPoint() ;
 			figure = lsFigures.getFigures().get(index);
+			
+			/*if ((!isDessiner()) 
+			 * && (lsFigures.indexDeplacer(e.getPoint()) != -1)){
+				index = lsFigures.indexDeplacer(e.getPoint());
+				figure = lsFigures.getFigures().get(index);		
+				if (ControleurFigure.select)
+					if(!figure.isSelectOn())
+						figure.setSelectOn(true);
+					else
+						figure.setSelectOn(false);
+				else figure.setSelectOn(false);
+				lsFigures.setFigure(index, figure) ;				
+			}*/
 		}
 		/**
 		 * Mode pot de peinture

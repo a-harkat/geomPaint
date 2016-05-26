@@ -27,6 +27,20 @@ public class UnTriangle extends UnPolygone{
 	}
 	
 	/**
+	 * Constructeur de Triangle
+	 * @param p1 Point 1
+	 * @param p2 Point 2
+	 * @param p3 Point 3
+	 * @param border Color couleur du triangle
+	 * @param filled Boolean True si
+	 * le triangle est plein false sinon
+	 */
+	public UnTriangle(Point p1, Point p2, Point p3, Color border, boolean filled) {
+		super(p1, p2, border, filled);
+		this.setP3(p3) ;
+	}
+	
+	/**
 	 * Teste si un point est dans le triangle
 	 * @param p le point a tester
 	 * @return true si vrai

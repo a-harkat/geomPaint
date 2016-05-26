@@ -28,6 +28,21 @@ public class UnQuelconque extends UnPolygone{
 		listPoints = p ;	
 
 	}
+	
+	/**
+	 * Constructeur de figure quelquonque 
+	 * @param p1 Point 1
+	 * @param p2 Point 2 
+	 * @param p Point[] tableau de points
+	 * @param border Color couleur du quelconque
+	 * @param filled Boolean True si le polygone
+	 * est plein false sinon
+	 */
+	public UnQuelconque(Point p1, Point p2, Point[] p, Color border, boolean filled) {
+		super(p1, p2, border, filled);
+		listPoints = p ;	
+
+	}
 	/**
 	 * Methode qui va permettre de
 	 * recuperer la liste des points

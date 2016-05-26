@@ -17,6 +17,19 @@ public class UnCercle extends FigureGeom {
 	public UnCercle(Point p1, Point p2, Color border) {
 		super(p1, p2, border);		
 	}
+	
+	/**
+	 * Constructeur de Cercle
+	 * @param p1 Point 1 centre
+	 * @param p2 Point 2 rayon
+	 * @param border Color la couleur du cercle
+	 * @param filled Boolean True si
+	 * cercle plein false sinon
+	 */
+	public UnCercle(Point p1, Point p2, Color border, boolean filled) {
+		super(p1, p2, border, filled);		
+	}
+	
 	/**
 	 * Teste si un point est a l'interieure du cercle
 	 * @param p1 le point a tester
