@@ -1,9 +1,12 @@
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.util.ArrayList;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
@@ -39,15 +42,56 @@ public class MenuDroit extends Menu {
 	 */
 	private void generateBoutton() {
 		
-		this.ajouterBouttonM(new JButton("Duplication"));
-		this.ajouterBouttonM(new JButton("clear all"));
-		this.ajouterBouttonM(new JCheckBox("changer boutons"));
+		
+		int i = 0;
+		ArrayList<String> tooltip = this.getListTool();
+		for (String chemin : this.getListicone()){
+			this.ajouterBouttonM(new JButton());
+			((AbstractButton) this.getBouttonM(i)).setIcon(new ImageIcon(chemin));
+			((AbstractButton) this.getBouttonM(i)).setToolTipText(tooltip.get(i));
+			i++;
+		}
+
+		this.ajouterBouttonM(new JCheckBox("Changer boutons"));
+		
 		
 		for(Component bouton : this.getListe_b()){
-			bouton.setMinimumSize(new Dimension(140,30));
-			bouton.setMaximumSize(new Dimension(140,30));
-			bouton.setPreferredSize(new Dimension(140,30));
+			bouton.setMinimumSize(new Dimension(130,60));
+			bouton.setMaximumSize(new Dimension(130,60));
+			bouton.setPreferredSize(new Dimension(130,60));
 		}
+		((JCheckBox)this.getBouttonM(2)).setMaximumSize(new Dimension(130,30));
+		
+	}
+	
+	/**
+	 * Methode pour favoriser la lecture claire du code qui
+	 * contient les chemins des icones
+	 * Attention a respecter le meme nombre de tooltip et 
+	 * dans le meme ordre
+	 * @return liste des chemin icones
+	 */
+	public ArrayList<String> getListicone(){
+		ArrayList <String> li = new ArrayList<String>();
+		li.add("src/images/copy.png");
+		li.add("src/images/poubelle2.png");
+		
+		return li;
+	}
+	
+	/**
+	 * Methode pour favoriser la lecture claire du code qui
+	 * contient les ToolTip des boutons
+	 * Attention a respecter le meme nombre de tooltip et 
+	 * dans le meme ordre
+	 * @return liste des chemin icones
+	 */
+	public ArrayList<String> getListTool(){
+		ArrayList <String> li = new ArrayList<String>();
+		li.add("Dupliquer");
+		li.add("Supprimer tous");
+		
+		return li;
 	}
 
 }
