@@ -5,4 +5,4 @@
 /.project
 /*.properties
 /*.txt
-/.sonar/
+/.sonar/*
