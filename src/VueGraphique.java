@@ -57,7 +57,11 @@ public class VueGraphique extends JPanel implements Observer {
 					g.setColor(tr.getFull_color());
 					dessinerFigurePleine(g, tr);
 				} else {
-					g.setColor(tr.getBorder_color());
+					if (tr.getBorder_color() != null) {
+						g.setColor(tr.getBorder_color());
+					} else {
+						g.setColor(Color.black);
+					}
 					dessinerFigureVide(g, tr);
 				}
 			}
