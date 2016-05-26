@@ -216,13 +216,10 @@ public class Conteneur extends JPanel{
 		});
 		((JButton)mb.getBouttonM(3)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				int reponse = question2();
-				if (reponse ==0) {
-					prepareSelection(cf);
-					cf.getListFigures().removeSelected(cf.getLsFiguresDelet());
-					cf.effacerPoints();	
-					mh.changerTexteMH("Figure(s) effacee(s)");
-				}
+				prepareSelection(cf);
+				cf.getListFigures().removeSelected(cf.getLsFiguresDelet());
+				cf.effacerPoints();	
+				mh.changerTexteMH("Figure(s) effacee(s)");
 			}				
 		});
 
