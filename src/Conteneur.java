@@ -253,8 +253,26 @@ public class Conteneur extends JPanel{
 				}
 			}				
 		});
+		
+		((JButton)md.getBouttonM(2)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){ 
+				mh.changerTexteMH("Choisissez une couleur");
+				Color couleur = JColorChooser.showDialog
+						(null, "Choisissez la couleur souhaitee pour vos figures", mg.get_col_actuelle());
+				if (! (couleur == null)){
+					mg.setBackground(couleur);
+					mb.setBackground(couleur);
+					md.setBackground(couleur);
+					mh.setBackground(couleur);
+					mh.changerTexteMH("couleur choisi : " + couleur);
+				}
+				else {
+					mh.changerTexteMH("Couleur non changee");
+				}
+			}                       
+		});
 
-		((JCheckBox)md.getBouttonM(2)).addActionListener(new ActionListener(){
+		((JCheckBox)md.getBouttonM(3)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				boolean etat = ((AbstractButton) e.getSource()).getModel().isSelected();
 				mg.changeicons(etat);

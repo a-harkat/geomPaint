@@ -60,7 +60,7 @@ public class MenuDroit extends Menu {
 			bouton.setMaximumSize(new Dimension(130,60));
 			bouton.setPreferredSize(new Dimension(130,60));
 		}
-		((JCheckBox)this.getBouttonM(2)).setMaximumSize(new Dimension(130,30));
+		((JCheckBox)this.getBouttonM(3)).setMaximumSize(new Dimension(130,30));
 		
 	}
 	
@@ -75,6 +75,7 @@ public class MenuDroit extends Menu {
 		ArrayList <String> li = new ArrayList<String>();
 		li.add("src/images/copy.png");
 		li.add("src/images/poubelle2.png");
+		li.add("src/images/rouleau.png");
 		
 		return li;
 	}
@@ -90,6 +91,7 @@ public class MenuDroit extends Menu {
 		ArrayList <String> li = new ArrayList<String>();
 		li.add("Dupliquer");
 		li.add("Supprimer toutes les figures");
+		li.add("Changer la couleur de fond du menu");
 		
 		return li;
 	}
