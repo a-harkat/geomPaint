@@ -256,5 +256,75 @@ public abstract class FigureGeom  {
 	public void setSelectOn(boolean selectOn) {
 		this.selectOn = selectOn;
 	}
+
+	/**
+	 * methode qui deplace n'importe quelle figure par le mousseDragegd
+	 * @param p point d'arrivee
+	 * @param pointEditer point de depart
+	 * @param lsFigures la list qui contient la figure a deplacer
+	 * @param index de la figure a deplacer
+	 */
+	public void deplacerFigure(Point p, Point pointEditer, ListFigures lsFigures, int index) {
+		if (this instanceof UnRectangle) {
+			UnRectangle rectangle = (UnRectangle) lsFigures.getFigures().get(index);
+			this.deplacerFigure2p(pointEditer, p) ;
+			lsFigures.setFigure(index, rectangle);
+		}
+		if (this instanceof UnTrait) {
+			UnTrait trait = (UnTrait) lsFigures.getFigures().get(index);
+			trait.deplacerFigure2p(pointEditer, p) ;
+			lsFigures.setFigure(index, trait);
+		}
+		if (this instanceof UnCercle) {
+			UnCercle rectangle = (UnCercle) lsFigures.getFigures().get(index);
+			this.deplacerFigure2p(pointEditer, p) ;
+			lsFigures.setFigure(index, rectangle);
+		}				
+		if (this instanceof UnTriangle) {	
+			UnTriangle triangle = (UnTriangle) lsFigures.getFigures().get(index);
+			triangle.deplacerTriangle(pointEditer, p) ;
+			lsFigures.setFigure(index, triangle);
+		}
+		if (this instanceof UnQuelconque) {	
+			UnQuelconque quelconque = (UnQuelconque) lsFigures.getFigures().get(index);
+			quelconque.deplacerQuelconque(pointEditer,  p);
+			lsFigures.setFigure(index, quelconque);
+		}		
+	}
+	
+	/**
+	 * methode qui edite n'importe quelle figure par le mousseDragegd
+	 * @param p point d'arrivee
+	 * @param pointEditer point de depart
+	 * @param lsFigures la list qui contient la figure a modifier
+	 * @param index de la figure a modifier
+	 */
+	public void editerFigure(Point p, Point pointEditer, ListFigures lsFigures, int index) {
+		if (this instanceof UnRectangle) {
+			UnRectangle rectangle = (UnRectangle) lsFigures.getFigures().get(index);
+			rectangle.editerFigure2p(pointEditer, p) ;
+			lsFigures.setFigure(index, rectangle);
+		}
+		if (this instanceof UnTrait) {
+			UnTrait trait = (UnTrait) lsFigures.getFigures().get(index);
+			trait.editerFigure2p(pointEditer, p) ;
+			lsFigures.setFigure(index, trait);
+		}
+		if (this instanceof UnCercle) {
+			UnCercle cercle = (UnCercle) lsFigures.getFigures().get(index);
+			cercle.editerFigure2p(pointEditer, p) ;
+			lsFigures.setFigure(index, cercle);
+		}				
+		if (this instanceof UnTriangle) {	
+			UnTriangle triangle = (UnTriangle) lsFigures.getFigures().get(index);
+			triangle.editerTriangle(pointEditer, p) ;
+			lsFigures.setFigure(index, triangle);
+		}
+		if (this instanceof UnQuelconque) {	
+			UnQuelconque quelconque = (UnQuelconque) lsFigures.getFigures().get(index);
+			quelconque.editerQuelconque(pointEditer,  p);
+			lsFigures.setFigure(index, quelconque);
+		}		
+	}
 	
 }

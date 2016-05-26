@@ -67,11 +67,12 @@ public class UnQuelconque extends UnPolygone{
 			}
 		}
 	}
-
 	/**
-	 * @param j
-	 * @param p
-	 * @return true sinon false
+	 * retourne vrai si un point n'est pas sur un des sommets
+	 * du quelconque
+	 * @param j l'index du point du quelconque a tester
+	 * @param p le point a tester
+	 * @return true si vrai
 	 */
 	public boolean noPointOnPoint (int j, Point p) {
 		boolean b = true ;
@@ -99,7 +100,6 @@ public class UnQuelconque extends UnPolygone{
 		}	
 		return b ;
 	}
-	
 	/**
 	 * deplace les points du polygone
 	 * @param p1 point de depart
@@ -110,12 +110,11 @@ public class UnQuelconque extends UnPolygone{
 		for (int i = 0; i<listPoints.length; i++){
 			int xp3 = (int)listPoints[i].getX() ;
 			int yp3 = (int)listPoints[i].getY() ;
-			Point np = new Point(xp3 + ((int)(p2.getX()) - (int)(p1.getX())),
-					yp3 + ((int)(p2.getY()) - (int)(p1.getY())));
+			Point np = new Point(xp3 + (int)(p2.getX() - p1.getX()),
+					yp3 + (int)(p2.getY() - p1.getY()));
 			listPoints[i] = np;
 		}
 	}
-	
 	/**
 	 * Teste si un point est dans le polygone
 	 * @param p1 le point a tester

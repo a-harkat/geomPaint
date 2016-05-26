@@ -72,15 +72,14 @@ public class UnTriangle extends UnPolygone{
 	}
 	
 	/**
-	 * Teste si un point n'est pas proche
-	 * au point 3 du tringle
+	 * Teste si le troisieme point n'est pas
+	 * colle avec les deux autres point
 	 * @param p le point a tester
 	 * @return false si le point est proche
 	 */
 	public boolean noPoint3 (Point p) {		    
 		return (!(this.isInToleranceZone(p, this.getP3())));
 	}
-	
 	/**
 	 * Modifie la position d'un du triangle
 	 * @param p1 point depart
@@ -97,7 +96,6 @@ public class UnTriangle extends UnPolygone{
 			if (this.noPoint1(p2) && this.noPoint2(p2)) 
 				this.setP3(p2);
 	}
-	
 	/**
 	 * Deplace les points du triangle 
 	 * @param p1 point de depart

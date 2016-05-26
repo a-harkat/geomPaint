@@ -20,7 +20,6 @@ public class UnRectangle extends FigureGeom {
 		super(p1, p2, border);
 
 	}
-	
 	/**
 	 * Teste si un point est dans le rectangle
 	 * @param p1 le point a tester
