@@ -25,7 +25,7 @@ public class UnQuelconque extends UnPolygone{
 	 */
 	public UnQuelconque(Point p1, Point p2, Point[] p, Color border) {
 		super(p1, p2, border);
-		listPoints = p ;	
+		listPoints = p;
 
 	}
 	
@@ -40,7 +40,7 @@ public class UnQuelconque extends UnPolygone{
 	 */
 	public UnQuelconque(Point p1, Point p2, Point[] p, Color border, boolean filled) {
 		super(p1, p2, border, filled);
-		listPoints = p ;	
+		listPoints = p;
 
 	}
 	/**

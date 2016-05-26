@@ -133,9 +133,9 @@ public class ListFigures extends Observable{
 		for (int i = 0; i < this.getFigures().size(); i++) {	
 			if (this.getFigures().get(i).isSelectOn()){
 				FigureGeom figure = this.getFigures().get(i) ;			
-				Point p1 = new Point ((int)(figure.getP1().getX()+j),(int)(figure.getP1().getY()+j));
-				Point p2 = new Point ((int)(figure.getP2().getX()+j),(int)(figure.getP2().getY()+j));
-				if (figure instanceof UnRectangle){					
+				Point p1 = new Point ((int)(figure.getP1().getX()+j),(int)(figure.getP1().getY()));
+				Point p2 = new Point ((int)(figure.getP2().getX()+j),(int)(figure.getP2().getY()));
+				if (figure instanceof UnRectangle){
 					UnRectangle rt = new UnRectangle(p1,p2, figure.getBorder_color(), figure.getFigureFilled());
 					this.addFigure(rt);
 				}
@@ -143,26 +143,31 @@ public class ListFigures extends Observable{
 					UnCercle cl = new UnCercle(p1,p2, figure.getBorder_color(), figure.getFigureFilled());
 					this.addFigure(cl);
 				}	
-				else if (figure instanceof UnTrait){		
+				else if (figure instanceof UnTrait){
 					UnTrait tr = new UnTrait(p1,p2, figure.getBorder_color());
 					this.addFigure(tr);
 				}
 				else if (figure instanceof UnTriangle) {
-					Point p3 = new Point ((int)(((UnTriangle)figure).getP3().getX()+j),(int)(((UnTriangle)figure).getP3().getY()+j));
+					Point p3 = new Point ((int)(((UnTriangle)figure).getP3().getX()+j),(int)(((UnTriangle)figure).getP3().getY()));
 					UnTriangle triangle = new UnTriangle(p1,p2,p3, figure.getBorder_color(), figure.getFigureFilled());
 					this.addFigure(triangle);	
 				}
 				else if (figure instanceof UnQuelconque){
-					Point [] ptPoly = ((UnQuelconque)figure).getListPoints();
-						for (int t =0; t<ptPoly.length; t++ ){
-							ptPoly[t] = new Point ((int)(ptPoly[t].getX()+j), (int)(ptPoly[t].getY()+j));
-						}
-					UnQuelconque ql = new UnQuelconque(p1,p2,ptPoly, figure.getBorder_color(), figure.getFigureFilled());
-					this.addFigure(ql);			
-				}
+                    Point [] ptPoly = ((UnQuelconque)figure).getListPoints();
+                    Point [] temp = new Point [ptPoly.length];
+                    for(int k = 0; k < ptPoly.length; k++){
+                        temp[k] = new Point((int)ptPoly[k].getX()+j, (int)ptPoly[k].getY());
+                    }
+                        for (int t =0; t<temp.length; t++ ){
+                            temp[t] = new Point ((int)(temp[t].getX()), (int)(temp[t].getY()));
+                            temp[t] = new Point ((int)(temp[t].getX()), (int)(temp[t].getY()));
+                        }
+                    UnQuelconque ql = new UnQuelconque(p1,p2,temp, figure.getBorder_color(), figure.getFigureFilled());
+                    this.addFigure(ql);         
+                }
 			}
 		}
-		}
+	}
 		/**
 		 * active ou desactive la selection de toutes les figures
 		 * @param b l'etat du nouveau mode
