@@ -25,8 +25,7 @@ public class ListFigures extends Observable{
 	 */
 	public void addFigure(FigureGeom figure) {
 		figures.add(figure);
-		setChanged();
-		notifyObservers();
+		notif();
 	}
 	
 	/**
@@ -35,8 +34,7 @@ public class ListFigures extends Observable{
 	 */
 	public void removeFigure(int numfigure) {
 		figures.remove(numfigure);
-		setChanged();
-		notifyObservers();
+		notif();
 	}
 	
 	/**
@@ -44,8 +42,7 @@ public class ListFigures extends Observable{
 	 */
 	public void removeAll() {
 		figures.clear();
-		setChanged();
-		notifyObservers();
+		notif();
 	}
 	
 	/**
@@ -58,8 +55,7 @@ public class ListFigures extends Observable{
 			if (figure.isSelectOn()) 
 		        iterator.remove();
 		    }
-		setChanged();
-		notifyObservers();
+		notif();
 	}
 	
 	/**
@@ -69,8 +65,7 @@ public class ListFigures extends Observable{
 	 */
 	public void setFigure(int numfigure, FigureGeom figure) {
 		figures.set(numfigure, figure);
-		setChanged();
-		notifyObservers();
+		notif();
 	}
 	/**
 	 * Methode qui va renvoyer la
@@ -202,5 +197,10 @@ public class ListFigures extends Observable{
 			this.addFigure(lsFiguresDelet.getFigures().get(taille - 1) );		
 			lsFiguresDelet.removeFigure(taille - 1);		
 			}
+		}
+		
+		public void notif () {
+			setChanged();
+			notifyObservers();
 		}
 }

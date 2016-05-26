@@ -46,8 +46,8 @@ public class ControleurFigure extends MouseInputAdapter {
 				&& figure != null){
 			if (edition ) {
 				figure.editerFigure(e.getPoint(), pointEditer, lsFigures, index);
-			}			
-			else if (deplacement) {								
+			}
+			else if (deplacement) {
 				figure.deplacerFigure(e.getPoint(), pointEditer, lsFigures, index);
 			}
 			pointEditer = e.getPoint();
@@ -204,6 +204,7 @@ public class ControleurFigure extends MouseInputAdapter {
 		} else {
 			fg.setFigureFilled(false);
 		}
+		lsFigures.notif();
 	}
 	
 	/**
