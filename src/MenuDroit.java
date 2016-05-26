@@ -89,7 +89,7 @@ public class MenuDroit extends Menu {
 	public ArrayList<String> getListTool(){
 		ArrayList <String> li = new ArrayList<String>();
 		li.add("Dupliquer");
-		li.add("Supprimer tous");
+		li.add("Supprimer toutes les figures");
 		
 		return li;
 	}

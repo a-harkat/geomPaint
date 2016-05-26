@@ -228,9 +228,12 @@ public class Conteneur extends JPanel{
 		
 		((JButton)md.getBouttonM(1)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				int reponse = question1();
+				if (reponse ==0) {
 				cf.getListFigures().removeAll();
 				cf.effacerPoints();	
 				mh.changerTexteMH("Suppression effectuee");
+				}
 			}				
 		});
 		
@@ -247,10 +250,10 @@ public class Conteneur extends JPanel{
      * tout supprimer
      * @return int la reponse
      */
-    public int questions1(){
+    public int question1(){
         return  JOptionPane.showConfirmDialog(
                 (JFrame) SwingUtilities.getWindowAncestor(this),
-                "Etes vous sûr de vouloir tout supprimer ?",
+                "Cette action est irreversible. Etes vous sûr de vouloir tout supprimer ?",
                 "",
                 JOptionPane.YES_NO_OPTION);
     }

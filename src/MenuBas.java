@@ -72,7 +72,7 @@ public class MenuBas extends Menu {
 		li.add("colorier un objet");
 		li.add("revenir en arriere");
 		li.add("aller en avant ");
-		li.add("suprimer objet(s)");
+		li.add("supprimer objet(s)");
 		
 		return li;
 	}
