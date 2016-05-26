@@ -228,7 +228,7 @@ public class Conteneur extends JPanel{
 		
 		((JButton)md.getBouttonM(1)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cf.getListFigures().removeSelected();
+				cf.getListFigures().removeAll();
 				cf.effacerPoints();	
 				mh.changerTexteMH("Suppression effectuee");
 			}				
