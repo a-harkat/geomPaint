@@ -3,11 +3,15 @@ import java.util.Observer;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -209,10 +213,13 @@ public class Conteneur extends JPanel{
 		});
 		((JButton)mb.getBouttonM(3)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				int reponse = question2();
+				if (reponse ==0) {
 				prepareSelection(cf);
 				cf.getListFigures().removeSelected();
 				cf.effacerPoints();	
 				mh.changerTexteMH("Figure(s) effacee(s)");
+				}
 			}				
 		});
 		
@@ -251,7 +258,20 @@ public class Conteneur extends JPanel{
                 mh.changerTexteMH("Menu change");
             }                
         });
+		
+		((JLabel)mh.getBouttonM(0)).addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+            	mh.changerTexteMH("choisissez votre couleur");
+                Color couleur = JColorChooser.showDialog
+                        (null, "Choisissez votre couleur", mg.get_col_actuelle());
+                if (! (couleur == null)){
+                	 mh.changerColorMH(couleur);
+                     mh.changerTexteMH("couleur choisi : " + couleur);
+            }
+            }                     
+        });
 	}
+    
     /**
      * Methode qui demande si on est sur de vouloir
      * tout supprimer
@@ -261,6 +281,19 @@ public class Conteneur extends JPanel{
         return  JOptionPane.showConfirmDialog(
                 (JFrame) SwingUtilities.getWindowAncestor(this),
                 "Cette action est irreversible. Etes vous sûr de vouloir tout supprimer ?",
+                "",
+                JOptionPane.YES_NO_OPTION);
+    }
+    
+    /**
+     * Methode qui demande si on est sur de vouloir
+     * supprimer les objets selectionner
+     * @return int la reponse
+     */
+    public int question2(){
+        return  JOptionPane.showConfirmDialog(
+                (JFrame) SwingUtilities.getWindowAncestor(this),
+                "Cette action est irreversible. Etes vous sûr de supprimer les figures selectionees ?",
                 "",
                 JOptionPane.YES_NO_OPTION);
     }

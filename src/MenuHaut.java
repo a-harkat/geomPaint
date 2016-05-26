@@ -43,4 +43,12 @@ public class MenuHaut extends Menu {
 	public void changerTexteMH(String new_texte) {
 		((JLabel)this.getBouttonM(0)).setText(new_texte);
 	}
+	
+	/**
+	 * Methode qui change la couleur du  texte a afficher
+	 * @param new_color nouveau texte
+	 */
+	public void changerColorMH(Color new_color) {
+		((JLabel)this.getBouttonM(0)).setForeground(new_color);
+	}
 }
