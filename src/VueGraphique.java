@@ -53,8 +53,7 @@ public class VueGraphique extends JPanel implements Observer {
 		if(this.listeFigures != null)
 			for (int i = 0; i < this.listeFigures.getFigures().size(); i++) {
 				FigureGeom tr = this.listeFigures.getFigures().get(i);
-				if (ControleurFigure.getPotPeinture()
-						&& tr.getFigureFilled()) {
+				if (tr.getFigureFilled()) {
 					g.setColor(tr.getFull_color());
 					dessinerFigurePleine(g, tr);
 				} else {

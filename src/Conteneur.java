@@ -140,6 +140,7 @@ public class Conteneur extends JPanel{
                 cf.effacerPoints();
                 cf.setDessiner(false);
                 ControleurFigure.setPotPeintureOn(false);
+                ControleurFigure.setSelectionOn(true);
                 mh.changerTexteMH("Vous etes en mode selection");
             }                           
         });
@@ -148,6 +149,7 @@ public class Conteneur extends JPanel{
 			public void actionPerformed(ActionEvent e){
 				configTraitPolygon(cf);
 				cf.setTraitOn(true);
+				
 				mh.changerTexteMH("Tracez un trait");
 			}							
 		});
@@ -172,6 +174,7 @@ public class Conteneur extends JPanel{
 			public void actionPerformed(ActionEvent e){	
 				configTraitPolygon(cf);		
 				cf.setCercleOn(true);
+				
 				mh.changerTexteMH("Tracez un cercle : 2 points");
 			}							
 		});
@@ -212,7 +215,7 @@ public class Conteneur extends JPanel{
 		
 		((JButton)mb.getBouttonM(2)).addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				cf.getListFigures().RestoreLast(cf.getLsFiguresDelet());
+				cf.getListFigures().restoreLast(cf.getLsFiguresDelet());
 				cf.effacerPoints();	
 				mh.changerTexteMH("Figure(s) restore(s)");
 			}				
@@ -274,5 +277,6 @@ public class Conteneur extends JPanel{
 		cf.setTriangleOn(false);
 		cf.setTraitOn(false);
 		cf.setPolygoneOn(false);
+		ControleurFigure.setSelectionOn(false);
 	}
 }

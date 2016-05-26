@@ -19,6 +19,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	private boolean polygoneOn;
 	private boolean newfigure;
 	private static boolean potPeinture;
+	private static boolean select;
 	int index ;
 	private int nbPointPolygone ;
 	private Color border_color;
@@ -41,7 +42,8 @@ public class ControleurFigure extends MouseInputAdapter {
 	 * Listener souris Dragged
 	 */
 	public void mouseDragged(MouseEvent e){	
-		if (!isDessiner() && lsFigures.getFigures().size() != 0){
+		if (!isDessiner() && lsFigures.getFigures().size() != 0
+				&& figure != null){
 			if (edition ) {
 				figure.editerFigure(e.getPoint(), pointEditer, lsFigures, index);
 			}			
@@ -49,8 +51,11 @@ public class ControleurFigure extends MouseInputAdapter {
 				figure.deplacerFigure(e.getPoint(), pointEditer, lsFigures, index);
 			}
 			pointEditer = e.getPoint();
-			if (! figure.isSelectOn())
-				figure.setSelectOn(true);
+			if (ControleurFigure.select) {
+					figure.setSelectOn(true);
+			}
+				
+				
 		}
 		else {
 			gestionDessin(e);
@@ -76,7 +81,7 @@ public class ControleurFigure extends MouseInputAdapter {
 	@Override
 	public void mousePressed(MouseEvent e){
 		newfigure = false;
-		if (isDessiner()) {			
+		if (isDessiner()) {
 			if (p1 == null) 
 				p1 = new Point (e.getPoint());
 			else if (p2 == null){ 
@@ -170,12 +175,15 @@ public class ControleurFigure extends MouseInputAdapter {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if ((!isDessiner()) && (lsFigures.indexDeplacer(e.getPoint()) != -1)){			
+		if ((!isDessiner()) && (lsFigures.indexDeplacer(e.getPoint()) != -1)){
 			index = lsFigures.indexDeplacer(e.getPoint());
 			figure = lsFigures.getFigures().get(index);		
-			if (figure.isSelectOn())
-					figure.setSelectOn(false);				
-			else figure.setSelectOn(true);
+			if (ControleurFigure.select)
+				if(!figure.isSelectOn())
+					figure.setSelectOn(true);
+				else
+					figure.setSelectOn(false);
+			else figure.setSelectOn(false);
 			lsFigures.setFigure(index, figure) ;				
 		}
 	}
@@ -498,5 +506,12 @@ public class ControleurFigure extends MouseInputAdapter {
 	 */
 	public ListFigures getLsFiguresDelet() {
 		return lsFiguresDelet;
+	}
+	
+	public static void setSelectionOn(boolean bool) {
+		ControleurFigure.select = bool;
+	}
+	public static boolean getSelectionOn() {
+		return ControleurFigure.select;
 	}
 }

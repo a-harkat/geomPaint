@@ -196,7 +196,7 @@ public class ListFigures extends Observable{
 		 * @param lsFiguresDelet la liste source
 		 * des elements suprimes
 		 */	
-		public void RestoreLast (ListFigures lsFiguresDelet){
+		public void restoreLast (ListFigures lsFiguresDelet){
 			int taille = lsFiguresDelet.getFigures().size() ;	
 			if (taille > 0) {
 			this.addFigure(lsFiguresDelet.getFigures().get(taille - 1) );		
