@@ -255,7 +255,7 @@ public class Conteneur extends JPanel{
 			public void actionPerformed(ActionEvent e){ 
 				mh.changerTexteMH("Choisissez une couleur");
 				Color couleur = JColorChooser.showDialog
-						(null, "Choisissez la couleur souhaitee pour vos figures", mg.get_col_actuelle());
+						(null, "Choisissez la couleur de fond du menu", mg.get_col_actuelle());
 				if (! (couleur == null)){
 					mg.setBackground(couleur);
 					mb.setBackground(couleur);
