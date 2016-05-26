@@ -64,11 +64,18 @@ public class UnTriangle extends UnPolygone{
 	public void setP3(Point p3) {
 		this.p3 = p3;
 	}
-	
+	/**
+	 * retourne vrai si le troisième point n'est pas sur le deux premier
+	 * @return boolean
+	 */
 	public boolean noPoint3 (Point p1) {		    
 		return (!(this.isInToleranceZone(p1, this.getP3())));
 	}
-	
+	/**
+	 * permet de redimensinner le traingle selectionne contenant deux point
+	 * @param p1 
+	 * @param p2
+	 */
 	public void editerTriangle (Point p1, Point p2){
 		if (this.isInToleranceZone(p1, this.getP1())) 
 			if (this.noPoint2(p2) && this.noPoint3(p2)) 
@@ -80,7 +87,11 @@ public class UnTriangle extends UnPolygone{
 			if (this.noPoint1(p2) && this.noPoint2(p2)) 
 				this.setP3(p2);
 	}
-	
+	/**
+	 * permet de deplace le triangle selectionne contenant deux point
+	 * @param p1 
+	 * @param p2
+	 */
 	public void deplacerTriangle (Point p1, Point p2){
 		int xp1 = (int)this.getP1().getX() ;
 		int xp2 = (int)this.getP2().getX();

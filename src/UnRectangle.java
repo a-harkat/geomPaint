@@ -19,7 +19,11 @@ public class UnRectangle extends FigureGeom {
 		super(p1, p2, border);
 
 	}
-	
+	/**
+	 * retourne vrai si le point dans les paramettres est 
+	 * a l'interieur du rectangle
+	 * @param p1 point 
+	 */
 	public boolean insideRectangle(Point p1) 
 	{
 		int x = (int) this.getP1().getX() ;

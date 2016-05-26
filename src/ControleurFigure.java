@@ -43,10 +43,10 @@ public class ControleurFigure extends MouseInputAdapter {
 	public void mouseDragged(MouseEvent e){	
 		if (!isDessiner() && lsFigures.getFigures().size() != 0){
 			if (edition ) {
-				editerFigure(e.getPoint());
+				figure.editerFigure(e.getPoint(), pointEditer, lsFigures, index);
 			}			
 			else if (deplacement) {								
-				deplacerFigure(e.getPoint());
+				figure.deplacerFigure(e.getPoint(), pointEditer, lsFigures, index);
 			}
 			pointEditer = e.getPoint();
 			if (! figure.isSelectOn())
@@ -97,13 +97,13 @@ public class ControleurFigure extends MouseInputAdapter {
 		} 
 		else if (!isDessiner() &&
 				lsFigures.getFigures().size() != 0 && !potPeinture){
-			if (indexEditer(e.getPoint()) != -1 ){
+			if (lsFigures.indexEditer(e.getPoint()) != -1 ){
 				edition = true ;
-				index = indexEditer(e.getPoint());
+				index = lsFigures.indexEditer(e.getPoint());
 			}		
-			else if (indexDeplacer(e.getPoint()) != -1){
+			else if (lsFigures.indexDeplacer(e.getPoint()) != -1){
 				deplacement = true ;			
-				index = indexDeplacer(e.getPoint());
+				index = lsFigures.indexDeplacer(e.getPoint());
 			}
 			pointEditer = e.getPoint() ;
 			figure = lsFigures.getFigures().get(index);
@@ -170,8 +170,8 @@ public class ControleurFigure extends MouseInputAdapter {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if ((!isDessiner()) && (indexDeplacer(e.getPoint()) != -1)){			
-			index = indexDeplacer(e.getPoint());
+		if ((!isDessiner()) && (lsFigures.indexDeplacer(e.getPoint()) != -1)){			
+			index = lsFigures.indexDeplacer(e.getPoint());
 			figure = lsFigures.getFigures().get(index);		
 			if (figure.isSelectOn())
 					figure.setSelectOn(false);				
@@ -180,67 +180,7 @@ public class ControleurFigure extends MouseInputAdapter {
 		}
 	}
 	
-	/**
-	 * methode qui deplace n'importe quelle figure par le mousseDragegd
-	 */
-	private void deplacerFigure(Point p) {
-		if (figure instanceof UnRectangle) {
-			UnRectangle rectangle = (UnRectangle) lsFigures.getFigures().get(index);
-			figure.deplacerFigure2p(pointEditer, p) ;
-			lsFigures.setFigure(index, rectangle);
-		}
-		if (figure instanceof UnTrait) {
-			UnTrait trait = (UnTrait) lsFigures.getFigures().get(index);
-			trait.deplacerFigure2p(pointEditer, p) ;
-			lsFigures.setFigure(index, trait);
-		}
-		if (figure instanceof UnCercle) {
-			UnCercle rectangle = (UnCercle) lsFigures.getFigures().get(index);
-			figure.deplacerFigure2p(pointEditer, p) ;
-			lsFigures.setFigure(index, rectangle);
-		}				
-		if (figure instanceof UnTriangle) {	
-			UnTriangle triangle = (UnTriangle) lsFigures.getFigures().get(index);
-			triangle.deplacerTriangle(pointEditer, p) ;
-			lsFigures.setFigure(index, triangle);
-		}
-		if (figure instanceof UnQuelconque) {	
-			UnQuelconque quelconque = (UnQuelconque) lsFigures.getFigures().get(index);
-			quelconque.deplacerQuelconque(pointEditer,  p);
-			lsFigures.setFigure(index, quelconque);
-		}		
-	}
 	
-	/**
-	 * methode qui edite n'importe quelle figure par le mousseDragegd
-	 */
-	private void editerFigure(Point p) {
-		if (figure instanceof UnRectangle) {
-			UnRectangle rectangle = (UnRectangle) lsFigures.getFigures().get(index);
-			rectangle.editerFigure2p(pointEditer, p) ;
-			lsFigures.setFigure(index, rectangle);
-		}
-		if (figure instanceof UnTrait) {
-			UnTrait trait = (UnTrait) lsFigures.getFigures().get(index);
-			trait.editerFigure2p(pointEditer, p) ;
-			lsFigures.setFigure(index, trait);
-		}
-		if (figure instanceof UnCercle) {
-			UnCercle cercle = (UnCercle) lsFigures.getFigures().get(index);
-			cercle.editerFigure2p(pointEditer, p) ;
-			lsFigures.setFigure(index, cercle);
-		}				
-		if (figure instanceof UnTriangle) {	
-			UnTriangle triangle = (UnTriangle) lsFigures.getFigures().get(index);
-			triangle.editerTriangle(pointEditer, p) ;
-			lsFigures.setFigure(index, triangle);
-		}
-		if (figure instanceof UnQuelconque) {	
-			UnQuelconque quelconque = (UnQuelconque) lsFigures.getFigures().get(index);
-			quelconque.editerQuelconque(pointEditer,  p);
-			lsFigures.setFigure(index, quelconque);
-		}		
-	}
 	
 	/**
 	 * Methode qui va gerer les couleurs
@@ -375,93 +315,8 @@ public class ControleurFigure extends MouseInputAdapter {
 		}		
 	}
 	
-	/**
-	 * Retourne l'index de la figure selectionee pour editer
-	 * @param p le point ou s'applique l'edition
-	 * @return index de la figure
-	 */
-	public int indexEditer (Point p){
-		int indexEdit = -1 ;
-		for (int i = 0; i < lsFigures.getFigures().size(); i++) {
-			figure = lsFigures.getFigures().get(i);
-			if ((figure instanceof UnRectangle 
-					|| figure instanceof UnCercle 
-					|| figure instanceof UnTrait)
-					&& figure.tolerance(p))
-					 indexEdit = i ;						
-			if (figure instanceof UnTriangle
-					&& ((UnTriangle)figure).toleranceTriangle(p))
-					 indexEdit = i ;
-			if (figure instanceof UnQuelconque
-					&& ((UnQuelconque)figure).toleranceQuelconque(p))
-					 indexEdit = i ;
-		}
-		return indexEdit ;
-	}
 	
-	/**
-	 * Retourne l'index de la figure selectionee pour deplacer
-	 * @param p le point ou s'applique l'edition 
-	 * @return index de la figure
-	 */	
-	public int indexDeplacer (Point p){
-		int indexDep = -1 ;
-		for (int i = 0; i < lsFigures.getFigures().size(); i++) {
-			figure = lsFigures.getFigures().get(i);	
-			if ( figure instanceof UnRectangle
-					&& ((UnRectangle)figure).insideRectangle(p))
-					indexDep = i ;	
-			if ( figure instanceof UnTriangle
-					&& ((UnTriangle)figure).isInsideTriangle(p))
-					indexDep = i ;	
-			if ( figure instanceof UnCercle
-					&& ((UnCercle)figure).insideCercle(p))
-					indexDep = i ;	
-			if ( figure instanceof UnTrait
-					&& ((UnTrait)figure).insideTrait(p))
-					indexDep = i ;	
-			if ( figure instanceof UnQuelconque
-					&& ((UnQuelconque)figure).insidePolygone(p))
-					indexDep = i ;
-		}
-		return indexDep ;
-	}
 	
-	/**
-	 * active ou desactive la selection de toutes les figures
-	 * @param b l'etat du nouveau mode
-	 */	
-	public void toggleMode (boolean b){
-		for (int i = 0; i < lsFigures.getFigures().size(); i++) {			
-			lsFigures.getFigures().get(i).setSelectOn(b);
-			lsFigures.setFigure(i,lsFigures.getFigures().get(i));					
-		}
-		effacerPoints();
-	}
-	
-	/**
-	 * Suprime le dernier element ajoute
-	 */	
-	public void deleteLast (){
-		int taille = lsFigures.getFigures().size() ;	
-		if (taille > 0) {
-			lsFiguresDelet.addFigure(lsFigures.getFigures().get(taille-1) );		
-			lsFigures.removeFigure (taille-1);				
-			effacerPoints();
-		}
-	}
-	
-	/**
-	 * restore le dernier element efface
-	 */	
-	public void RestoreLast (){
-		int taille = lsFiguresDelet.getFigures().size() ;	
-		if (taille > 0) {
-			lsFigures.addFigure(lsFiguresDelet.getFigures().get(taille - 1) );		
-			lsFiguresDelet.removeFigure(taille - 1);		
-			effacerPoints();
-		}
-	}
 	
 	/**
 	 * methode qui efface les point lors du clique sur un bouton
@@ -485,21 +340,6 @@ public class ControleurFigure extends MouseInputAdapter {
 			p8 = null;
 	}
 	
-	/**
-	 *Supprime la figure selectionnee
-	 */	
-	public void deleteSelected (){
-		lsFigures.removeSelected();
-		effacerPoints();
-	}
-	
-	/**
-	 *Supprime toutes les figures
-	 */	
-	public void deleteAll (){			
-		lsFigures.removeAll();	
-		effacerPoints();
-	}
 
 	/**
 	 * Methode qui va colorier
@@ -649,5 +489,14 @@ public class ControleurFigure extends MouseInputAdapter {
 	 */
 	public ListFigures getListFigures() {
 		return lsFigures;
+	}
+	/**
+	 * Methode qui va renvoyer la
+	 * liste de figures supprimes
+	 * @return ListFiguresDelet Liste des
+	 * figures
+	 */
+	public ListFigures getLsFiguresDelet() {
+		return lsFiguresDelet;
 	}
 }

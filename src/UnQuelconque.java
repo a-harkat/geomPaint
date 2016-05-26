@@ -64,7 +64,12 @@ public class UnQuelconque extends UnPolygone{
 			}
 		}
 	}
-
+	/**
+	 * retourne vrai si les point dans le paramettre n'est pas sur un des sommets
+	 * du quelconque
+	 * @param int j l'index du point à tester
+	 * @param tablea point contient tout les point du quelconque
+	 */
 	public boolean noPointOnPoint (int j, Point p) {
 		boolean b = true ;
 		for (int i = 0; i<listPoints.length; i++){	
@@ -74,6 +79,10 @@ public class UnQuelconque extends UnPolygone{
 		return b;   
 	}
 	
+	/**
+	 * retourne vrai on clique sur un des sommets du quelconque
+	 * @return boolean
+	 */
 	public boolean toleranceQuelconque (Point p) {		
 		boolean b = false ;
 		if (isInToleranceZone(p,this.getP1()) 
@@ -85,18 +94,26 @@ public class UnQuelconque extends UnPolygone{
 		}	
 		return b ;
 	}
-	
+	/**
+	 * methode qui deplace le quelconque
+	 * @param p1 point
+	 * @param p2 point
+	 */
 	public void deplacerQuelconque (Point p1, Point p2){		
 		deplacerFigure2p(p1, p2);
 		for (int i = 0; i<listPoints.length; i++){
 			int xp3 = (int)listPoints[i].getX() ;
 			int yp3 = (int)listPoints[i].getY() ;
-			Point np = new Point(xp3 + ((int)(p2.getX()) - (int)(p1.getX())),
-					yp3 + ((int)(p2.getY()) - (int)(p1.getY())));
+			Point np = new Point(xp3 + (int)(p2.getX() - p1.getX()),
+					yp3 + (int)(p2.getY() - p1.getY()));
 			listPoints[i] = np;
 		}
 	}
-	
+	/**
+	 * retourne vrai si le point dans les paramettres est 
+	 * a l'interieur du quelconque
+	 * @return boolean
+	 */
 	public boolean insidePolygone(Point p1) {
 		int taille = getListPoints().length ;
 		int [] X = new int [taille+2];

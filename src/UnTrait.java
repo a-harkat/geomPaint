@@ -17,6 +17,10 @@ public class UnTrait extends FigureGeom{
 		super(p1, p2, border);
 	}
 	
+	/**
+	 * retourne vrai si le point se retrouve sur le trait 
+	 * @param p point 1
+	 */
 	public boolean insideTrait(Point p) {
 		double x1 = this.getP1().getX() ;
 		double y1 =  this.getP1().getY() ;

@@ -145,126 +145,103 @@ public class Conteneur extends JPanel{
         });
         
         ((JButton)mg.getBouttonM(2)).addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                configTraitPolygon(cf);
-                cf.setTraitOn(true);
-                cf.setPolygoneOn(false);
-                mh.changerTexteMH("Tracez un trait");
-            }                           
-        });
-        
-        ((JButton)mg.getBouttonM(3)).addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                cf.toggleMode(false);
-                cf.setDessiner(true);
-                cf.effacerPoints();             
-                cf.setCercleOn(false);
-                cf.setRectangleOn(true);
-                cf.setTriangleOn(false);
-                cf.setTraitOn(false);
-                cf.setPolygoneOn(false);
-                mh.changerTexteMH("Tracez un rectangle : 2 points");
-            }                           
-        }); 
-        
-        ((JButton)mg.getBouttonM(4)).addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                cf.toggleMode (false);
-                cf.setDessiner(true);
-                cf.effacerPoints();             
-                cf.setCercleOn(false);
-                cf.setRectangleOn(false);
-                cf.setTriangleOn(true);
-                cf.setTraitOn(false);
-                cf.setPolygoneOn(false);
-                mh.changerTexteMH("Tracez un triangle : 3 points");
-            }                           
-        }); 
-        
-        ((JButton)mg.getBouttonM(5)).addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){ 
-                cf.toggleMode (false);
-                cf.setDessiner(true);
-                cf.effacerPoints();             
-                cf.setCercleOn(true);
-                cf.setRectangleOn(false);
-                cf.setTriangleOn(false);
-                cf.setTraitOn(false);
-                cf.setPolygoneOn(false);
-                mh.changerTexteMH("Tracez un cercle : 2 points");
-            }                           
-        });
-        
-        ((JButton)mg.getBouttonM(6)).addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                configTraitPolygon(cf);
-                cf.setTraitOn(false); 
-                cf.setPolygoneOn(true); 
-                int nb = mg.get_nb_points_poly();
-                cf.setNbPointPolygone(nb);
-                mh.changerTexteMH("Tracez un polygone : nombre de points choisis : " + nb);
-            }               
-        });
-        
-        ((JButton)mb.getBouttonM(0)).addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				configTraitPolygon(cf);
+				cf.setTraitOn(true);
+				mh.changerTexteMH("Tracez un trait");
+			}							
+		});
+		
+		((JButton)mg.getBouttonM(3)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				configTraitPolygon(cf);
+				cf.setRectangleOn(true);
+				mh.changerTexteMH("Tracez un rectangle : 2 points");
+			}							
+		});	
+		
+		((JButton)mg.getBouttonM(4)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				configTraitPolygon(cf);
+				cf.setTriangleOn(true);
+				mh.changerTexteMH("Tracez un triangle : 3 points");
+			}							
+		});	
+		
+		((JButton)mg.getBouttonM(5)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){	
+				configTraitPolygon(cf);		
+				cf.setCercleOn(true);
+				mh.changerTexteMH("Tracez un cercle : 2 points");
+			}							
+		});
+		
+		((JButton)mg.getBouttonM(6)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				configTraitPolygon(cf);
+				cf.setPolygoneOn(true);	
+				int nb = mg.get_nb_points_poly();
+				cf.setNbPointPolygone(nb);
+				mh.changerTexteMH("Tracez un polygone : nombre de points choisis : " + nb);
+			}				
+		});
+		
+		((JButton)mb.getBouttonM(0)).addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                cf.toggleMode (false);
+                configTraitPolygon(cf);
                 cf.setDessiner(false);
-                cf.effacerPoints();             
-                cf.setCercleOn(false);
-                cf.setRectangleOn(false);
-                cf.setTriangleOn(false);
-                cf.setTraitOn(false); 
-                cf.setPolygoneOn(false);
                 ControleurFigure.setPotPeintureOn(true);
                 cf.colorFigure(mg);
                 mh.changerTexteMH("Colorier figure");
             }
-        });
-        ((JButton)mb.getBouttonM(1)).addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                cf.deleteLast();
-                mh.changerTexteMH("Derniere figure effacee");
-            }               
-        });
-        ((JButton)mb.getBouttonM(3)).addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                cf.deleteAll();
-                mh.changerTexteMH("Figure(s) effacee(s)");
-            }               
-        });
-        
-        ((JButton)mb.getBouttonM(2)).addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                cf.RestoreLast();
-                mh.changerTexteMH("Figure(s) restore(s)");
-            }               
-        });
-        
-        ((JButton)md.getBouttonM(0)).addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                mh.changerTexteMH("Dupliquer");
-            }               
-        });
-        
-        ((JButton)md.getBouttonM(1)).addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                int reponse = questions1();
-                if (reponse ==0){
-                    mh.changerTexteMH("Suppression effectuee");
-                }
-            }               
-        });
-        
-        ((JCheckBox)md.getBouttonM(2)).addActionListener(new ActionListener(){
+		});
+		((JButton)mb.getBouttonM(1)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cf.getListFigures().deleteLast(cf.getLsFiguresDelet());
+				cf.effacerPoints();	
+				mh.changerTexteMH("Derniere figure effacee");
+			}				
+		});
+		((JButton)mb.getBouttonM(3)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cf.getListFigures().removeAll();
+				cf.effacerPoints();	
+				mh.changerTexteMH("Figure(s) effacee(s)");
+			}				
+		});
+		
+		((JButton)mb.getBouttonM(2)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cf.getListFigures().RestoreLast(cf.getLsFiguresDelet());
+				cf.effacerPoints();	
+				mh.changerTexteMH("Figure(s) restore(s)");
+			}				
+		});
+		
+		((JButton)md.getBouttonM(0)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cf.getListFigures().dupliquer(40);
+				cf.effacerPoints();	
+				mh.changerTexteMH("Dupliquer");
+			}				
+		});
+		
+		((JButton)md.getBouttonM(1)).addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				cf.getListFigures().removeSelected();
+				cf.effacerPoints();	
+				mh.changerTexteMH("Suppression effectuee");
+			}				
+		});
+		
+		((JCheckBox)md.getBouttonM(2)).addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 boolean etat = ((AbstractButton) e.getSource()).getModel().isSelected();
                 mg.changeicons(etat);
                 mh.changerTexteMH("Menu change");
             }                
         });
-    }
-    
+	}
     /**
      * Methode qui demande si on est sur de vouloir
      * tout supprimer
@@ -279,18 +256,20 @@ public class Conteneur extends JPanel{
     }
     
     /**
-     * Methode qui va assouplir
-     * les configurations pour les
-     * traits et les polygones
-     * @param cf ControleurFigure
-     * Gestionnaire des figures
-     */
-    public void configTraitPolygon (ControleurFigure cf) {
-        cf.toggleMode (false);
-        cf.setDessiner(true);
-        cf.effacerPoints();             
-        cf.setCercleOn(false);
-        cf.setRectangleOn(false);
-        cf.setTriangleOn(false);
-    }
+	 * Methode qui va assouplir
+	 * les configurations pour les
+	 * traits et les polygones
+	 * @param cf ControleurFigure
+	 * Gestionnaire des figures
+	 */
+	public void configTraitPolygon (ControleurFigure cf) {
+		cf.getListFigures().toggleMode(false);
+		cf.setDessiner(true);
+		cf.effacerPoints();				
+		cf.setCercleOn(false);
+		cf.setRectangleOn(false);
+		cf.setTriangleOn(false);
+		cf.setTraitOn(false);
+		cf.setPolygoneOn(false);
+	}
 }
